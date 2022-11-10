@@ -1,10 +1,11 @@
 // import React from 'react';
 import axios from 'axios';
+import { ReactElement } from 'react';
+
 import { searchUrl, testUrl } from './Search';
 
 import Sidebar from './Sidebar';
 import Results from './Results';
-import { useEffect } from 'react';
 
 //__TEST VARIABLES
 const PAGE_TITLE = 'The Guardian Browser';
@@ -18,7 +19,6 @@ const TEST_DATA = {
   tag: TEST_TAG,
   text: TEST_TEXT,
 }
-
 
 const getDateFormatEU = (value: string) => `${value[2]}/${value[1]}/${value[0]}`;
 const getDateFormatUS = (value: string) => `${value[1]}/${value[2]}/${value[0]}`;
@@ -36,7 +36,7 @@ const getResponseByAxios = async (url: string) => {
 getResponseByAxios(searchUrl);
 console.log(getResponseByAxios(searchUrl));
 
-export default function App() {
+export default function App(): ReactElement {
   return (
     <div>
       <Sidebar />
