@@ -23,6 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # info
-
+/_public_default
+/_src_default
 _CRA-info.md
 _to-do-list.md
