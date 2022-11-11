@@ -1,12 +1,14 @@
 import { ReactElement } from 'react';
 import Card from './Card';
 
-interface Data {
+interface DataObj {
     title: string;
     date: string;
     tag: string;
     text: string;
 }
+
+type Data = DataObj[];
 
 interface PropsResults {
     title: string;
@@ -14,17 +16,18 @@ interface PropsResults {
 }
 
 export default function Results(props: PropsResults): ReactElement {
+    const data = props.data;
+    const items = data.map((obj: DataObj) =>
+        <Card key={obj.title} {...obj} />
+    );
     return (
         <div>
-            <h1>
+            <h1 className='page-title'>
                 {props.title}
             </h1>
-            <Card 
-                title={props.data.title} 
-                date={props.data.date}
-                tag={props.data.tag}
-                text={props.data.text}
-            />
+            <div className='results'>
+                {items}
+            </div>
         </div>
     );
 }
