@@ -1,9 +1,20 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
+import SearchForm from './SearchForm';
+import Categories from './Categories';
+ 
+type Categories = string[];
 
-export default function Sidebar(): ReactElement {
+interface PropsCategories {
+    categories: Categories;
+}
+
+export default function Sidebar(props: PropsCategories): ReactElement {
+    const categories = props.categories;
+
     return (
-        <div>
-            Sidebar
+        <div className='sidebar'>
+            <SearchForm/>
+            <Categories categories={categories}/>
         </div>
     )
 }
