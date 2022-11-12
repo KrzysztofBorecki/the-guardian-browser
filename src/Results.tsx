@@ -21,11 +21,11 @@ export default function Results(props: PropsResults): ReactElement {
         <Card key={obj.title} {...obj} />
     );
     return (
-        <div>
+        <div className='results'>
             <h1 className='page-title'>
                 {props.title}
             </h1>
-            <div className='results'>
+            <div className='articles'>
                 {items}
             </div>
         </div>
