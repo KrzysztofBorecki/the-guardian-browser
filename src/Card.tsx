@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { ReactElement } from 'react';
 
 interface PropsCard {
     title: string;
@@ -9,19 +9,19 @@ interface PropsCard {
 
 export default function Card(props: PropsCard): ReactElement {
     return (
-        <div>
-            <h2>
+        <div className='card'>
+            <h2 className='card-title'>
                 {props.title}
             </h2>
-            <div>
+            <div className='card-info'>
                 <p>
-                    {props.date}
+                    {`Date: ${props.date}`}
                 </p>
                 <p>
-                    {props.tag}
+                    {`Tags: ${props.tag}`}
                 </p>          
             </div>
-            <p>
+            <p className='card-text'>
                 {props.text}
             </p>
         </div>
