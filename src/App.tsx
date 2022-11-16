@@ -7,7 +7,7 @@ import {
 } from './Data';
 import Sidebar from './Sidebar';
 import Results from './Results';
-import makeRequest from './SearchAxios';
+import makeRequest from './AxiosSearch';
 
 
 interface StateType {
