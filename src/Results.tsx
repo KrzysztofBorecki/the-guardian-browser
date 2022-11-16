@@ -1,5 +1,8 @@
 import { ReactElement } from 'react';
 import Card from './Card';
+import Pagination from './Pagination';
+
+import {TEST_PAGES_ALL, TEST_PAGES_CURRENT} from './Data';
 
 interface DataObj {
     title: string;
@@ -28,6 +31,7 @@ export default function Results(props: PropsResults): ReactElement {
             <div className='articles'>
                 {items}
             </div>
+            <Pagination pagesAll={TEST_PAGES_ALL} pagesCurrent={TEST_PAGES_CURRENT}/>
         </div>
     );
 }
