@@ -7,23 +7,19 @@ import {
 } from './Data';
 import Sidebar from './Sidebar';
 import Results from './Results';
+import sectionsRequest from './AxiosSections';
 import makeRequest from './AxiosSearch';
 
-
-interface StateType {
-  test: string;
-}
+export type Sections = object[];
 
 export default function App(): ReactElement {
 
-  const [state, setState]= useState<StateType | null>(null);
+  const [sections, setSections]= useState<Sections | null>(null);
 
   useEffect(() => {
+    sectionsRequest(setSections);
     makeRequest();
-    setState({test: 'test-text'});
   }, []);
-
-  console.log(state);
 
   return (
     <div className='app'>
