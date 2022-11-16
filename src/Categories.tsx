@@ -1,16 +1,19 @@
 import { ReactElement } from 'react';
+import { TEST_CATEGORIES } from './Data';
 
-type Categories = string[];
-
-interface PropsCategories {
-    categories: Categories;
+interface Category {
+    maincategory: string;
+    subcategories: string[];
 }
 
-export default function Categories(props: PropsCategories): ReactElement {
-    const categories = props.categories;
-    const items = categories.map((name: string) =>
-        <li key={name} className='category'>
-            {name}
+type Categories = Category[];
+
+const categories: Categories = TEST_CATEGORIES;
+
+export default function Categories(): ReactElement {
+    const items = categories.map((category: Category) =>
+        <li key={category.maincategory} className='main-category'>
+            {category.maincategory}
         </li>
     );
     return (
