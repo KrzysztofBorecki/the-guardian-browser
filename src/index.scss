@@ -83,31 +83,15 @@ body {
     width: 100%;
     border: 2px solid var(--color-white);
     transition: 200ms cubic-bezier(.22,.61,.36,1);
+    cursor: pointer;
     
-    &:hover {
+    &:hover, &:focus {
         border: 2px solid var(--color-dark-grey);
-    }
-    
-    &-link {
-        text-decoration: none;
-        
-        &:link, &:visited {
-            color: var(--color-light-grey);
-        }
+        color: var(--color-dark-grey);
+        font-weight: bold;
     }
 }
 
-// .main-category:link .main-category-link,
-// .main-category:visited .main-category-link {
-//     color: var(--color-dark-grey);
-    
-// } 
-
-.main-category:hover .main-category-link,
-.main-category:active .main-category-link {
-    color: var(--color-dark-grey);
-    font-weight: bold;
-} 
 //__
 //__RESULTS
 //__
