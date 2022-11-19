@@ -63,19 +63,10 @@ body {
   width: 100%;
   border: 2px solid var(--color-white);
   transition: 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+  cursor: pointer;
 }
-.main-category:hover {
+.main-category:hover, .main-category:focus {
   border: 2px solid var(--color-dark-grey);
-}
-.main-category-link {
-  text-decoration: none;
-}
-.main-category-link:link, .main-category-link:visited {
-  color: var(--color-light-grey);
-}
-
-.main-category:hover .main-category-link,
-.main-category:active .main-category-link {
   color: var(--color-dark-grey);
   font-weight: bold;
 }
