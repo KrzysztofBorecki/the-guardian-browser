@@ -1,19 +1,20 @@
 import { ReactElement } from 'react';
-import { TEST_CATEGORIES } from './Data';
+// import { TEST_CATEGORIES } from './Data';
+import { TEST_Category, TEST_Categories } from './Types';
+import { ResponseSectionsResults } from './AxiosSections';
 
-interface Category {
-    maincategory: string;
-    subcategories: string[];
-}
+// const categories: TEST_Categories = TEST_CATEGORIES;
 
-type Categories = Category[];
+type SectionsData = {
+    sectionsData: ResponseSectionsResults[]
+} 
 
-const categories: Categories = TEST_CATEGORIES;
+export default function Categories(props: SectionsData): ReactElement {
+    const sectionsData = props.sectionsData;
 
-export default function Categories(): ReactElement {
-    const items = categories.map((category: Category) =>
-        <li key={category.maincategory} className='main-category'>
-            {category.maincategory}
+    const items = sectionsData.map((section: ResponseSectionsResults) =>
+        <li key={section.id} className='main-category' data-href={section.webUrl}>
+            {section.webTitle}
         </li>
     );
     return (
