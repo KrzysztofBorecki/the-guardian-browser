@@ -1,10 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-interface PagesData {
-    pagesAll: number;
-    pagesCurrent: number;
-}
+import { PagesData } from './Types';
 
 function getLastDigit(number: number) {
     return number % 10;
