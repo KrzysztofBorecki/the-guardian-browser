@@ -84,7 +84,9 @@ export default async function getArticlesData(phrase = SEARCH_DEFAULT) {
         );
 
         console.log(response);
-        return response.data.response.results;
+
+        // return response.data.response.results;
+        return response.data.response;
     } catch (error) {
         if (axios.isAxiosError(error)) {
             console.log('error message: ', error.message);
