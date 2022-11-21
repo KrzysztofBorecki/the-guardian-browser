@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { PagesData } from './Types';
+import type { PagesData } from './Types';
 
 function getLastDigit(number: number) {
     return number % 10;
@@ -37,6 +37,7 @@ export default function Pagination(props: PagesData) {
                 key={value}
                 className='pagination-list-item'
                 data-selected={(value === pagesCurrent) ? true : false}
+                // onClick={}
             >
                 <Link to={'/'} className='pagination-link' data-title={value}>
                     {value}
