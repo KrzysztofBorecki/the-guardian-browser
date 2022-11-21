@@ -1,4 +1,5 @@
-import { ResponseSectionsResults } from './AxiosSections';
+import type { ResponseSectionsResults } from './AxiosSections';
+import type { ResponseArticlesResults, ResponseArticles } from './AxiosArticles';
 
 export interface Author {
     name: string;
@@ -10,21 +11,19 @@ export interface ArticleDataBase {
     date: string;
     tag: string;
     text: string;
+    url: string;
 }
 
 export type ArticlesDataBase = ArticleDataBase[]
 
 export interface ResultsData {
     title: string;
-    data: ArticlesDataBase;
+    data: ResponseArticles;
     authors: Author[];
 }
 
-export interface CardData {
-    title: string;
-    date: string;
-    tag: string;
-    text: string;
+export interface CardData extends ResponseArticlesResults {
+    // text: string;
     author: Author;
 }
 
