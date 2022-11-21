@@ -8,6 +8,7 @@
 
 :root {
   --color-white: rgb(255, 255, 255);
+  --color-white-transparent: rgb(255, 255, 255, 0.4);
   --color-paper: #f2edec;
   --color-blue: #052962;
   --color-black: #31353b;
@@ -15,7 +16,7 @@
   --color-light-grey: #79808b;
   --font-size-small: 14px;
   --font-size-main: 16px;
-  --font-size-medium: 24px;
+  --font-size-medium: 22px;
   --font-size-large: 64px;
   --gap-small-small: 5px;
   --gap-small-large: 10px;
@@ -91,10 +92,11 @@ body {
   border-radius: var(--gap-small-large);
   background-color: var(--color-white);
   padding: var(--gap-medium-medium);
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+  display: grid;
+  grid-template-rows: 2rem -webkit-min-content 1fr 2rem;
+  grid-template-rows: 2rem min-content 1fr 2rem;
   gap: var(--gap-medium-small);
+  text-decoration: none;
 }
 
 .card-title {
@@ -170,6 +172,7 @@ body {
   background-color: var(--color-white);
   text-decoration: none;
   text-align: center;
+  border: 2px solid var(--color-white);
 }
 
 .pagination-btn:link,
@@ -202,6 +205,12 @@ body {
   list-style-type: none;
   border-radius: var(--gap-small-large);
 }
+.pagination-list-item[data-selected=true] {
+  font-weight: bold;
+}
+.pagination-list-item[data-selected=true] > a {
+  background-color: var(--color-white-transparent);
+}
 
 .pagination-link {
   display: block;
@@ -210,6 +219,7 @@ body {
   background-color: var(--color-white);
   text-decoration: none;
   text-align: center;
+  border: 2px solid var(--color-white);
 }
 
 .pagination-link::before {
