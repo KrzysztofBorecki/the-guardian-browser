@@ -3,15 +3,15 @@ import getSectionsData from './AxiosSections';
 import getArticlesData from './AxiosArticles';
 import Sidebar from './Sidebar';
 import Results from './Results';
-import { getAuthors, PAGE_TITLE, TEST_CARD_DATA_LIST } from './Data';
+import { getAuthors, PAGE_TITLE} from './Data';
 import type { ResponseSectionsResults } from './AxiosSections';
-import type { ResponseArticlesResults } from './AxiosArticles';
+import type { ResponseArticles, ResponseArticlesResults } from './AxiosArticles';
 
 const TEST_PHRASE = 'nasa artemis'
 
 export default function App(): ReactElement {
   const [sections, setSections] = useState<ResponseSectionsResults[] | null>(null);
-  const [articles, setArticles] = useState<ResponseArticlesResults[] | null>(null);
+  const [articles, setArticles] = useState<ResponseArticles | null>(null);
   const [searchQuery, setSearchQuery] = useState<string | ''>('');
   const [searchSection, setSearchSection] = useState<string | null>(null);
 
@@ -58,6 +58,22 @@ export default function App(): ReactElement {
     );
   }, []);
 
+
+  // implement page=<number -1>
+  function handlePageDown() {
+    
+  }
+  
+  // implement page=<number + 1>
+  function handlePageUp() {
+    
+  }
+  
+  // implement page=<selected number>
+  function handlePageChange() {
+
+  }
+
   // useEffect(() => {
   //   getArticlesData(TEST_PHRASE).then(
   //     (value) => {
@@ -68,21 +84,25 @@ export default function App(): ReactElement {
   //     }
   //   );
   // }, []);
+  console.log("ARTICLES")
+  console.log(articles);
 
   return (
     <div className='app'>
-      {(sections) ? <Sidebar 
-        sectionsData={sections} 
-        onChange={handleChange} 
-        onSubmit={handleSubmit} 
-        onReset={handleReset}
-        searchQuery={searchQuery} 
+      {(sections) ? 
+        <Sidebar 
+          sectionsData={sections} 
+          onChange={handleChange} 
+          onSubmit={handleSubmit} 
+          onReset={handleReset}
+          searchQuery={searchQuery} 
         /> : null}
-      <Results
-        title={PAGE_TITLE}
-        data={TEST_CARD_DATA_LIST}
-        authors={getAuthors()}
-      />
+      {(articles) ? 
+        <Results
+          title={PAGE_TITLE}
+          data={articles}
+          authors={getAuthors()}
+      /> : null}
     </div>
   );
 }
