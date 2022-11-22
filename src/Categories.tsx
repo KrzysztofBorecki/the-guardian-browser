@@ -1,13 +1,9 @@
 import { ReactElement } from 'react';
-// import { TEST_CATEGORIES } from './Data';
-import { TEST_Category, TEST_Categories } from './Types';
 import { ResponseSectionsResults } from './AxiosSections';
 
-// const categories: TEST_Categories = TEST_CATEGORIES;
-
 type SectionsData = {
-    sectionsData: ResponseSectionsResults[]
-} 
+    sectionsData: ResponseSectionsResults[];
+}
 
 export default function Categories(props: SectionsData): ReactElement {
     const sectionsData = props.sectionsData;
@@ -17,9 +13,10 @@ export default function Categories(props: SectionsData): ReactElement {
             {section.webTitle}
         </li>
     );
+    
     return (
         <ul className='categories'>
             {items}
         </ul>
-    )
+    );
 }
