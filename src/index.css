@@ -9,7 +9,8 @@
 :root {
   --color-white: rgb(255, 255, 255);
   --color-white-transparent: rgb(255, 255, 255, 0.4);
-  --color-paper: #f2edec;
+  --color-paper-start: #f2edec;
+  --color-paper-end: #E6DDDB;
   --color-blue: #052962;
   --color-black: #31353b;
   --color-dark-grey: #444950;
@@ -33,7 +34,8 @@ body {
   width: 100%;
   font-family: Poppins, Arial, Helvetica, sans-serif;
   color: var(--color-black);
-  background-color: var(--color-paper);
+  background-color: var(--color-paper-start);
+  background: linear-gradient(160deg, var(--color-paper-end) 0%, var(--color-paper-start) 5%, var(--color-paper-start) 95%, var(--color-paper-end) 100%);
 }
 
 .app {
@@ -75,27 +77,24 @@ body {
 .results {
   grid-column: 3/13;
   grid-row: 2/3;
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: center;
-  gap: var(--gap-large-small);
 }
 
 .articles {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: var(--gap-medium-medium);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: var(--gap-medium-large);
+  padding: var(--gap-medium-large);
 }
 
 .card {
   border-radius: var(--gap-small-large);
   background-color: var(--color-white);
-  padding: var(--gap-medium-medium);
+  padding: var(--gap-large-small);
   display: grid;
   grid-template-rows: 2rem -webkit-min-content 1fr 2rem;
   grid-template-rows: 2rem min-content 1fr 2rem;
-  gap: var(--gap-medium-small);
+  gap: var(--gap-medium-medium);
   text-decoration: none;
 }
 
@@ -163,6 +162,7 @@ body {
 .pagination {
   display: flex;
   gap: var(--gap-small-large);
+  justify-content: center;
 }
 
 .pagination-btn {
@@ -252,6 +252,7 @@ body {
 .page-title {
   font-family: "Merriweather", serif;
   font-size: var(--font-size-large);
+  padding: var(--gap-medium-medium) 0;
   font-weight: bold;
   text-align: center;
 }
