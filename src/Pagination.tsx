@@ -1,45 +1,71 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import type { PagesData } from './Types';
 
-function getLastDigit(number: number) {
-    return number % 10;
+//__START_v2
+function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
+    return (Math.floor(pagesCurrent / 10) <= Math.floor(pagesAll / 10)) ?
+        (Math.floor((pagesCurrent - 1) / 10)) :
+        (Math.floor((pagesAll - 1) / 10));
 }
 
-function getPaginationListSpliced(paginationList: number[], pagesCurrent: number) {
-    const pagesCurrentLastDigit = getLastDigit(pagesCurrent);
-    const pagesAfterCurrent = 10 - pagesCurrentLastDigit;
-    const pagesBeforeCurrent = pagesCurrentLastDigit - 1;
-    const paginationListSpliced = paginationList.slice(pagesCurrent - pagesBeforeCurrent - 1, pagesCurrent + pagesAfterCurrent);
-    
-    return paginationListSpliced;
+function getPaginationListLength(pagesAll: number, baseValue: number): number {
+    return ((baseValue * 10 + 10) <= pagesAll) ? 10 : pagesAll % 10;
 }
 
-function getPaginationList(pagesAll: number, pagesCurrent: number) {
-    const paginationList = Array.from(new Array(pagesAll), (_, index) => index + 1);
 
-    if (pagesAll <= 10) {
-        return paginationList;
-    }
+function getPaginationList(pagesAll: number, pagesCurrent: number): number[] {
+    const baseValue = getPaginationBaseValue(pagesAll, pagesCurrent);
+    const paginationListLength = getPaginationListLength(pagesAll, baseValue);
 
-    return getPaginationListSpliced(paginationList, pagesCurrent);
+    return Array.from(
+        new Array(paginationListLength), 
+        (_, idx) => baseValue * 10 + idx + 1
+    );
 }
+//__END_v2
+
+//__START_v1
+// function getLastDigit(value: number) {
+//     const number = value % 10;
+
+//     return (number) ? number : 10;
+// }
+
+// function getPaginationListSpliced(paginationList: number[], pagesCurrent: number) {
+//     const pagesCurrentLastDigit = getLastDigit(pagesCurrent);
+//     const pagesAfterCurrent = 10 - pagesCurrentLastDigit;
+//     const pagesBeforeCurrent = pagesCurrentLastDigit - 1;
+//     const paginationListSpliced = paginationList.slice(pagesCurrent - pagesBeforeCurrent - 1, pagesCurrent + pagesAfterCurrent);
+
+//     return paginationListSpliced;
+// }
+
+// function getPaginationList(pagesAll: number, pagesCurrent: number) {
+//     const paginationList = Array.from(new Array(pagesAll), (_, index) => index + 1);
+
+//     if (pagesAll <= 10) {
+//         return paginationList;
+//     }
+
+//     return getPaginationListSpliced(paginationList, pagesCurrent);
+// }
+//__END_v2
 
 export default function Pagination(props: PagesData) {
-    const [pagesAll, setPageAll] = useState(props.pagesAll);
-    const [pagesCurrent, setPageCurrent] = useState(props.pagesCurrent);
-
-    const paginationList = getPaginationList(pagesAll, pagesCurrent);
-
+    const paginationList = getPaginationList(props.pagesAll, props.pagesCurrent);
     const paginationItemsListFull = paginationList.map((value) => {
         return (
             <li
                 key={value}
                 className='pagination-list-item'
-                data-selected={(value === pagesCurrent) ? true : false}
-                // onClick={}
+                data-selected={(value === props.pagesCurrent) ? true : false}
+                onClick={props.onClick}
             >
-                <Link to={'/'} className='pagination-link' data-title={value}>
+                <Link
+                    to={'/'}
+                    className='pagination-link'
+                    data-title={value}
+                >
                     {value}
                 </Link>
             </li>
@@ -48,13 +74,23 @@ export default function Pagination(props: PagesData) {
 
     return (
         <div className='pagination'>
-            <Link to={'/'} className='pagination-btn' data-title='Previous'>
+            <Link
+                to={'/'}
+                className='pagination-btn'
+                data-title='Previous'
+                onClick={props.onPageDown}
+            >
                 Previous
             </Link>
             <ul className='pagination-list'>
                 {paginationItemsListFull}
             </ul>
-            <Link to={'/'} className='pagination-btn' data-title='Next'>
+            <Link
+                to={'/'}
+                className='pagination-btn'
+                data-title='Next'
+                onClick={props.onPageUp}
+            >
                 Next
             </Link>
         </div>
