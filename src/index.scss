@@ -9,7 +9,8 @@
 :root {
     --color-white: rgb(255, 255, 255);
     --color-white-transparent: rgb(255, 255, 255, 0.4);
-    --color-paper: #f2edec;
+    --color-paper-start: #f2edec;
+    --color-paper-end: #E6DDDB;
     --color-blue: #052962;
     --color-black: #31353b;
     --color-dark-grey: #444950;
@@ -35,7 +36,14 @@ body {
     width: 100%;
     font-family: Poppins, Arial, Helvetica, sans-serif;
     color: var(--color-black);
-    background-color: var(--color-paper);
+    background-color: var(--color-paper-start);
+    // background: rgb(205,186,182);
+    background: linear-gradient(
+        160deg, 
+        var(--color-paper-end) 0%, 
+        var(--color-paper-start) 5%, 
+        var(--color-paper-start)95%, 
+        var(--color-paper-end) 100%);
 
 }
 
@@ -99,20 +107,22 @@ body {
 .results {
     grid-column: 3 / 13;
     grid-row: 2/3;
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    gap: var(--gap-large-small);
+    // display: flex;
+    // flex-flow: column nowrap;
+    // align-items: center;
+    // gap: var(--gap-large-small);
     // position: relative;
 }
 
 .articles {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
     // flex-flow: row wrap;
     // justify-content: flex-start;
-    gap: var(--gap-medium-medium);
+    gap: var(--gap-medium-large);
+    // margin-left: var(--gap-medium-large);
+    padding: var(--gap-medium-large);
 }
 
 .card {
@@ -120,15 +130,14 @@ body {
     background-color: var(--color-white);
     // max-width: 32ch;
     // max-width: 40ch;
-    padding: var(--gap-medium-medium);
+    padding: var(--gap-large-small);
     // display: flex;
     display: grid;
     grid-template-rows: 2rem min-content 1fr 2rem;
     // flex-flow: column nowrap;
     // justify-content: space-between;
-    gap: var(--gap-medium-small);
+    gap: var(--gap-medium-medium);
     text-decoration: none;
-
     // border-right: 2px solid var(--color-white);
     // border-radius: 2px;
     // border-radius: 10px;
@@ -149,12 +158,14 @@ body {
 }
 
 .card-info {
+
     font-size: var(--font-size-small);
     color: var(--color-light-grey);
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    
 
     &-tag {
         font-weight: bolder;
@@ -217,6 +228,7 @@ body {
 .pagination {
     display: flex;
     gap: var(--gap-small-large);
+    justify-content: center;
 }
 
 .pagination-btn {
@@ -309,6 +321,7 @@ body {
 .page-title {
     font-family: 'Merriweather', serif;
     font-size: var(--font-size-large);
+    padding: var(--gap-medium-medium) 0;
     font-weight: bold;
     text-align: center;
 }
