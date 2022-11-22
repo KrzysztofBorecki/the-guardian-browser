@@ -2,13 +2,9 @@ import axios from 'axios';
 import { 
     URL_BASE,
     URL_SEARCH,
-    // URL_TAGS,
     QUERY,
-    // TAG,
-    // FROM_DATE,
     API_KEY,
     API_KEY_NUMBER,
-    SEARCH_DEFAULT,
 } from './Data';
 
 // in current implementation: 
@@ -70,7 +66,7 @@ type ResponseAxios = {
     //request: {}
 }
 
-export default async function getArticlesData(phrase = SEARCH_DEFAULT) {
+export default async function getArticlesData(phrase: string) {
     try {
         const response: ResponseAxios = await axios(
             {
@@ -85,7 +81,6 @@ export default async function getArticlesData(phrase = SEARCH_DEFAULT) {
 
         console.log(response);
 
-        // return response.data.response.results;
         return response.data.response;
     } catch (error) {
         if (axios.isAxiosError(error)) {

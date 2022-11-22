@@ -67,7 +67,6 @@ export type ResponseAxios = {
     //request: {}
 }
 
-
 export default async function getSectionsData() {
     try {
         const response: ResponseAxios = await axios({
@@ -79,6 +78,7 @@ export default async function getSectionsData() {
         });
 
         console.log(response);
+
         return response.data.response.results;
     } catch (error) {
         if (axios.isAxiosError(error)) {
