@@ -4,18 +4,17 @@ import './index.css';
 import App from './App';
 import ErrorBoundary from './ErrorPage';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-
 // https://reactrouter.com/en/main/routers/create-browser-router
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    errorElement: <ErrorBoundary />
-  }
+    errorElement: <ErrorBoundary />,
+  },
 ]);
 
-const rootElement = document.getElementById('root')
+const rootElement = document.getElementById('root');
 
 if (rootElement) {
   const root = ReactDOM.createRoot(rootElement);
