@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import arrowRight from './arrow-right.svg';
 import type { CardData } from './Types';
 
@@ -33,9 +33,17 @@ function getParsedDate(value: string): string {
 
 // import { Link } from 'react-router-dom';
 
+function handleClick(url: string) {
+    window.open(url);
+}
+
 export default function Card(props: CardData): ReactElement {
     return (
-        <a className='card' href={props.webUrl}>
+        <div 
+            className='card' 
+            onClick={() => handleClick(props.webUrl)}
+            // onClick={() => document.location.href = props.webUrl}
+        >
             <div className='card-info'>
                 <p className='card-info-tag'>
                     {props.sectionName.toUpperCase()}
@@ -60,6 +68,6 @@ export default function Card(props: CardData): ReactElement {
                     <img src={arrowRight} className={'arrow-right'} alt="arrow right" />
                 </a>
             </div>
-        </a>
+        </div>
     );
 }
