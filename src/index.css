@@ -173,6 +173,7 @@ body {
   text-decoration: none;
   text-align: center;
   border: 2px solid var(--color-white);
+  cursor: pointer;
 }
 
 .pagination-btn:link,
