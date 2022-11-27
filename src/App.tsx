@@ -1,173 +1,113 @@
 import React, { ReactElement, useState, useEffect } from 'react';
-import getSectionsData from './AxiosSections';
-import getArticlesData from './AxiosArticles';
-import getArticlesDataFromPage from './AxiosPage'
+import { useSearchParams } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Results from './Results';
-import { getAuthors, PAGE_TITLE, SEARCH_DEFAULT } from './Data';
+import { getAuthors, PAGE_TITLE} from './Data';
+import httpGet from './httpGet';
 
-import type { ResponseSectionsResults } from './AxiosSections';
-import type { ResponseArticles, ResponseArticlesResults } from './AxiosArticles';
+import type { ResponseSectionsResults, ResponseArticles } from './httpGet.types';
 import type { Author } from './Types';
+
 
 export default function App(): ReactElement {
   const [sections, setSections] = useState<ResponseSectionsResults[] | null>(null);
   const [articles, setArticles] = useState<ResponseArticles | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>(SEARCH_DEFAULT);
-  const [searchSection, setSearchSection] = useState<string | null>(null);
+
   const [authors, setAuthors] = useState<Author[]>(getAuthors());
-
- 
-
-  function handleSectionPick(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('>>>section pick')
-
-    setSearchSection(event.target.value);
+  const [searchParams, setSearchParams] = useSearchParams();
+  function getObjectFromURLSearchParams(): Record<string, string> {
+    return Object.fromEntries(searchParams);
   }
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-    console.log('>>>change')
+  function handleSubmit(searchPhrase: string): void {
+    console.log(`>>>submit: ${searchPhrase}`);
+    if (!searchPhrase) return;
 
-    setSearchQuery(event.target.value);
-    event.preventDefault();
+    setSearchParams({ q: searchPhrase, page: '1' });
   }
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    console.log('>>>submit')
-
-    if (searchQuery !== '') {
-      getArticlesData(searchQuery).then(
-        (value) => {
-          if (value && typeof value !== 'string') {
-            console.log(value);
-
-            setAuthors(getAuthors());
-            setArticles(value);
-          }
-        }
-      );
-    }
-    event.preventDefault();
-  }
-
-  //__PROBLEM-1
-  //__searchQuery aktualizuje się po wykonaniu requestu
-  //__w efekcie request wykonywany jest ze starą wartością searchQuery
-  //__jeżeli układ wygląda tak:
-  //  {
-  //    setSearchQuery('');
-  //    getArticlesData(searchQuery).then();
-  //}
-
-  async function handleReset(event: React.FormEvent<HTMLFormElement>) {
+  function handleReset() {
     console.log('>>>reset');
-
-    getArticlesData(SEARCH_DEFAULT).then(
-      (value) => {
-        if (value && typeof value !== 'string') {
-          setArticles(value);
-        }
-      }
-    );
-
-    setSearchQuery(SEARCH_DEFAULT);
-    event.preventDefault();
+    setSearchParams({ page: '1' });
   }
 
   useEffect(() => {
-    getSectionsData().then(
-      (value) => {
-        if (value && typeof value !== 'string') {
-          setSections(value);
-        }
-      }
-    );
-
-    getArticlesData(searchQuery).then(
-      (value) => {
-        if (value && typeof value !== 'string') {
-          setArticles(value);
-        }
-      }
-    );
+    setSearchParams({ page: '1' });
   }, []);
 
-
-  function handlePageDown() {
-    console.log('>>>Page Down')
-
-    if (!articles) return
-    if (!searchQuery) return
-
-    const currentPage = articles.currentPage;
-
-    getArticlesDataFromPage(searchQuery, currentPage - 1).then(
+  useEffect(() => {
+    httpGet('sections').then(
       (value) => {
-        if (value && typeof value !== 'string') {
-          setAuthors(getAuthors());
-          setArticles(value);
-        }
+        if (!value) return;
+        if (typeof value === 'string') return;
+        if ('pages' in value) return;
+        
+        setSections(value.results);
       }
     );
+
+    //__!!__NAPRAWIĆ TYP ANY
+    httpGet('search', getObjectFromURLSearchParams()).then(
+      (value) => {
+        if (!value) return;
+        if (typeof value === 'string') return;
+        if (!('pages' in value)) return;
+        
+        setAuthors(getAuthors());
+        setArticles(value);
+      }
+    );
+  }, [searchParams]);
+
+  function handlePageDown() {
+    if (!searchParams.has('page')) return;
+
+    const currentPage = Number(searchParams.get('page'));
+
+    if (currentPage === 1) return;
+
+    const page = String(currentPage - 1);
+
+    setSearchParams({ ...searchParams, page });
   }
 
   function handlePageUp() {
-    console.log('>>>Page Up')
+    const currentPage = Number(searchParams.get('page'));
 
-    if (!articles) return
-    if (!searchQuery) return
+    if (!currentPage) return;
+    if (!articles) return;
+    if (currentPage === articles.pages) return;
 
-    const currentPage = articles.currentPage;
+    const page = String(currentPage + 1);
 
-    getArticlesDataFromPage(searchQuery, currentPage + 1).then(
-      (value) => {
-        if (value && typeof value !== 'string') {
-          setAuthors(getAuthors());
-          setArticles(value);
-        }
-      }
-    );
+    setSearchParams({ ...searchParams, page });
   }
 
   function handlePageChange(e: React.PointerEvent<HTMLLIElement>) {
     console.log('>>>Page Change');
-    
+
     if (!articles) return;
-    
+
     const newPage = Number(e.currentTarget.textContent);
-    
+
     if (!newPage || newPage === articles.currentPage) return;
-    getArticlesDataFromPage(searchQuery, newPage).then(
-      (value) => {
-        if (value && typeof value !== 'string') {         
-          setAuthors(getAuthors());
-          setArticles(value);
-        }
-      }
-    );
+
+    const page = String(newPage);
+
+    setSearchParams({ ...searchParams, page })
+
     e.preventDefault();
   }
-
-  // useEffect(() => {
-  //   getArticlesData(TEST_PHRASE).then(
-  //     (value) => {
-  //       if (value && typeof value !== 'string') {
-  //         console.log(value);
-  //         setArticles(value);
-  //       }
-  //     }
-  //   );
-  // }, []);
 
   return (
     <div className='app'>
       {(sections) ?
         <Sidebar
           sectionsData={sections}
-          onChange={handleChange}
+          // onChange={handleChange}
           onSubmit={handleSubmit}
           onReset={handleReset}
-          searchQuery={searchQuery}
+        // searchQuery={searchQuery}
         /> :
         null}
       {(articles) ?
