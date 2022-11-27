@@ -1,9 +1,6 @@
 import { ReactElement } from 'react';
-import { ResponseSectionsResults } from './AxiosSections';
-
-type SectionsData = {
-    sectionsData: ResponseSectionsResults[];
-}
+import type { ResponseSectionsResults } from './Types';
+import type { SectionsData } from './Categories.types';
 
 export default function Categories(props: SectionsData): ReactElement {
     const sectionsData = props.sectionsData;
