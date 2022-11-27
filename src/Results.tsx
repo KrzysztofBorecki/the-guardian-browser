@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import Card from './Card';
 import Pagination from './Pagination';
 import type { ResultsData } from './Types';
-import type { ResponseArticlesResults } from './AxiosArticles';
+import type { ResponseArticlesResults } from './Types';
 
 export default function Results(props: ResultsData): ReactElement {
     const articles = props.data.results;
