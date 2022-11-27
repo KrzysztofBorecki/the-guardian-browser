@@ -35,14 +35,16 @@ export type Sections = object[];
 
 //__App/Sidebar
 export interface SearchFormProps {
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
-    onReset: (event: React.FormEvent<HTMLFormElement>) => void;
-    searchQuery: string;
+    // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onSubmit: (searchPhrase: string) => void;
+    onReset: () => void;
+    // searchPhrase: string;
 }
 
 //__App/Sidebar/SearchForms
-export interface SidebarProps extends SearchFormProps {
+export interface SidebarProps {
+    onSubmit: (searchPhrase: string) => void;
+    onReset: () => void;
     sectionsData: ResponseSectionsResults[];
 }
 
