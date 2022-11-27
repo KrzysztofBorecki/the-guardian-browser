@@ -12,7 +12,6 @@ function getPaginationListLength(pagesAll: number, baseValue: number): number {
     return ((baseValue * 10 + 10) <= pagesAll) ? 10 : pagesAll % 10;
 }
 
-
 function getPaginationList(pagesAll: number, pagesCurrent: number): number[] {
     const baseValue = getPaginationBaseValue(pagesAll, pagesCurrent);
     const paginationListLength = getPaginationListLength(pagesAll, baseValue);
@@ -73,26 +72,24 @@ export default function Pagination(props: PagesData) {
     });
 
     return (
-        <div className='pagination'>
-            <Link
-                to={'/'}
+        <ul className='pagination'>
+            <li
                 className='pagination-btn'
                 data-title='Previous'
                 onClick={props.onPageDown}
             >
                 Previous
-            </Link>
+            </li>
             <ul className='pagination-list'>
                 {paginationItemsListFull}
             </ul>
-            <Link
-                to={'/'}
+            <li
                 className='pagination-btn'
                 data-title='Next'
                 onClick={props.onPageUp}
             >
                 Next
-            </Link>
-        </div>
+            </li>
+        </ul>
     );
 }
