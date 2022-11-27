@@ -67,22 +67,6 @@ export interface PagesData {
 
 export type Sections = object[];
 
-//__App/Sidebar
-export interface SearchFormProps {
-    // onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onSubmit: (searchPhrase: string) => void;
-    onReset: () => void;
-    // searchPhrase: string;
-}
-
-//__App/Sidebar/SearchForms
-export interface SidebarProps {
-    onSubmit: (searchPhrase: string) => void;
-    onReset: () => void;
-    sectionsData: ResponseSectionsResults[];
-}
-
-
 //__!!__DODAĆ GENERYKI DLA AXIOS:
 // type GenericType<T> = {
 //     data: T; 
