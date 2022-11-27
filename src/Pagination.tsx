@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { PagesData } from './Types';
+import type { PagesData } from './Pagination.types';
 
 //__START_v2
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {

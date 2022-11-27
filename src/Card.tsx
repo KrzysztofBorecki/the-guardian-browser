@@ -1,6 +1,6 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import arrowRight from './arrow-right.svg';
-import type { CardData } from './Types';
+import type { CardData } from './Card.types';
 
 // function getParsedDate(dateString: string): string {
 //     const dateMs = Date.parse(dateString);
@@ -8,7 +8,7 @@ import type { CardData } from './Types';
 //     const year = dateObj.getFullYear();
 //     const month = dateObj.getMonth() + 1;
 //     const day = dateObj.getDate();
-    
+
 //     return `${day}-${month}-${year}`;
 // }
 
@@ -31,23 +31,21 @@ function getParsedDate(value: string): string {
     return getArticleDate(dateSplitted);
 }
 
-// import { Link } from 'react-router-dom';
-
 function handleClick(url: string) {
     window.open(url);
 }
 
 export default function Card(props: CardData): ReactElement {
     return (
-        <div 
-            className='card' 
+        <div
+            className='card'
             onClick={() => handleClick(props.webUrl)}
-            // onClick={() => document.location.href = props.webUrl}
+        // onClick={() => document.location.href = props.webUrl}
         >
             <div className='card-info'>
                 <p className='card-info-tag'>
                     {props.sectionName.toUpperCase()}
-                </p>          
+                </p>
                 <p className='card-info-date'>
                     {getParsedDate(props.webPublicationDate)}
                 </p>
