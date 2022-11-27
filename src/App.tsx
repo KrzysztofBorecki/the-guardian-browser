@@ -5,13 +5,13 @@ import Results from './Results';
 import { getAuthors, PAGE_TITLE} from './Data';
 import httpGet from './httpGet';
 
-import type { ResponseSectionsResults, ResponseArticles } from './httpGet.types';
+import type { ResponseSectionsResults, ResponseSearch } from './httpGet.types';
 import type { Author } from './Types';
 
 
 export default function App(): ReactElement {
   const [sections, setSections] = useState<ResponseSectionsResults[] | null>(null);
-  const [articles, setArticles] = useState<ResponseArticles | null>(null);
+  const [articles, setArticles] = useState<ResponseSearch | null>(null);
 
   const [authors, setAuthors] = useState<Author[]>(getAuthors());
   const [searchParams, setSearchParams] = useSearchParams();

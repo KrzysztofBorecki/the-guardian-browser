@@ -1,4 +1,4 @@
-export type ResponseArticlesResults = {
+export type ResponseSearchResults = {
     id:	string;
     type: string;
     sectionId: string;
@@ -12,7 +12,7 @@ export type ResponseArticlesResults = {
     pillarName: string;
 }
 
-export type ResponseArticles = {
+export type ResponseSearch = {
     status:	string;
     userTier: string;
     total:	number;
@@ -21,7 +21,7 @@ export type ResponseArticles = {
     currentPage: number;
     pages: number;
     orderBy: string;
-    results: ResponseArticlesResults[]
+    results: ResponseSearchResults[]
 }
 
 export type ResponseSectionsResults = {
@@ -38,5 +38,5 @@ export type ResponseSections = {
 }
 
 export type ResponseData = {
-    response: ResponseArticles | ResponseSections;
+    response: ResponseSearch | ResponseSections;
 }
