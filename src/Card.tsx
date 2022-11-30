@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import arrowRight from './arrow-right.svg';
 import type { CardData } from './Card.types';
 
@@ -37,9 +37,10 @@ function handleClick(url: string) {
 
 export default function Card(props: CardData): ReactElement {
     return (
-        <div
+        <a
+            href={props.webUrl}
             className='card'
-            onClick={() => handleClick(props.webUrl)}
+            target='_blank'
         // onClick={() => document.location.href = props.webUrl}
         >
             <div className='card-info'>
@@ -50,22 +51,38 @@ export default function Card(props: CardData): ReactElement {
                     {getParsedDate(props.webPublicationDate)}
                 </p>
             </div>
-            <h2 className='card-title'>
+            <h2
+                className='card-title'
+            // onClick={() => handleClick(props.webUrl)}
+            >
                 {props.webTitle}
             </h2>
-            <p className='card-text'>
+            <p
+                className='card-text'
+            // onClick={() => handleClick(props.webUrl)}
+            >
                 {'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea suscipit fuga quisquam eos, quaerat non at eum eius quia ut deserunt sed, aliquid qui explicabo totam nulla velit modi vitae.'}
             </p>
             <div className='card-info'>
-                <a className='card-info-author' href='/'>
+                <div
+                    className='card-info-author'
+                    onClick={(event: React.PointerEvent<HTMLDivElement>) => {
+                        console.log(`link to: About me - ${props.author.name}`);
+                        event.preventDefault();
+                    }}
+                >
                     <img className='avatar' src={props.author.avatar} alt="avatar" />
                     <p className='name'>{props.author.name}</p>
-                </a>
-                <a className='card-info-link' href={props.webUrl}>
+                </div>
+                <p
+                    className='card-info-link'
+                    // href={props.webUrl}
+                    onClick={() => handleClick(props.webUrl)}
+                >
                     Read more
                     <img src={arrowRight} className={'arrow-right'} alt="arrow right" />
-                </a>
+                </p>
             </div>
-        </div>
+        </a>
     );
 }
