@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import arrowRight from './arrow-right.svg';
-import { getLorem } from './Data';
+import { getRandomLorem } from './Data';
 import type { CardData } from './Card.types';
 
 // function getParsedDate(dateString: string): string {
@@ -63,7 +63,7 @@ export default function Card(props: CardData): ReactElement {
                 className='card-text'
             // onClick={() => handleClick(props.webUrl)}
             >
-                {getLorem(25, 50)}
+                {getRandomLorem(25, 50)}
             </p>
             <div className='card-info'>
                 <div

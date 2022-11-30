@@ -73,22 +73,27 @@ export function getAuthors() {
     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 10)])
 }
 
-export const LOREM_50 = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt repellat voluptatibus a dignissimos dolor esse. Voluptas, hic delectus corrupti quibusdam quis deleniti odio quas dolores, beatae iure perspiciatis perferendis voluptatem necessitatibus minus maiores nihil eveniet. Veritatis, aut iste minima suscipit atque assumenda ducimus pariatur minus quidem recusandae, accusantium aliquid.'
+const LOREM_50 = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt repellat voluptatibus a dignissimos dolor esse. Voluptas, hic delectus corrupti quibusdam quis deleniti odio quas dolores, beatae iure perspiciatis perferendis voluptatem necessitatibus minus maiores nihil eveniet. Veritatis, aut iste minima suscipit atque assumenda ducimus pariatur minus quidem recusandae, accusantium aliquid.'
 
 const LOREM50_LIST = LOREM_50.split(' ');
 
 //_generates text of lorem ipsum
-export function getLorem(min: number, max: number) {
-    const randomEnd = Math.floor(Math.random() * (max - min) + min);
-    const loremSlicedList = LOREM50_LIST.slice(0, randomEnd);
-    const loremLastSignRemoved = (
-        (loremSlicedList[loremSlicedList.length - 1] === (',' || '.')) ?
-            loremSlicedList.splice(0, loremSlicedList.length - 1) :
-            loremSlicedList
-    );
-    return loremLastSignRemoved.join(' ') + '.';
+function getRandomNumber(min: number, max: number) {
+    return Math.floor(Math.random() * (max - min) + min);
 }
 
+export function getRandomLorem(min: number, max: number) {
+    const randomEndNumber = getRandomNumber(min, max);
+    const loremSliced = LOREM50_LIST.slice(0, randomEndNumber);
+    const loremJoined = loremSliced.join(' ');
+    const loremLenght = loremJoined.length - 1;
+    
+    return (
+        ((loremJoined[loremLenght].includes(',')) || loremJoined[loremLenght].includes('.')) ? 
+        loremJoined.slice(0, loremLenght) + '.' :
+        loremJoined + '.'
+    );
+}
 
 /* export const TEST_MAIN_CATEGORIES = [
     'News',
