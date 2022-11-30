@@ -99,6 +99,11 @@ body {
         color: var(--color-dark-grey);
         font-weight: bold;
     }
+
+    &[data-selected="true"] {
+        background-color: var(--color-white-transparent);
+        font-weight: bold;
+    }
 }
 
 //__
@@ -144,6 +149,7 @@ body {
     // background: #f2edec;
     // box-shadow: inset 5px 5px 9px #ebe6e5,
     //             inset -5px -5px 9px #f9f4f3;
+    cursor: pointer;
 }
 
 .card-title {
@@ -183,6 +189,7 @@ body {
         text-decoration: none;
         width: 10ch;
         gap: 7px;
+        color: var(--color-blue);
 
         &:hover {
             text-decoration: underline;
