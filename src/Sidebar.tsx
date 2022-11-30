@@ -6,11 +6,11 @@ import type { SidebarProps } from './Sidebar.types';
 export default function Sidebar(props: SidebarProps): ReactElement {
     return (
         <div className='sidebar'>
-            <SearchForm 
-                onSubmit={props.onSubmit} 
-                onReset={props.onReset} 
+            <SearchForm
+                onSubmit={props.onSubmit}
+                onReset={props.onReset}
             />
-            <Categories 
+            <Categories
                 {...props}
             />
         </div>

@@ -6,29 +6,29 @@ export type ResponseSectionsResults = {
 }
 
 export type ResponseSearchResults = {
-    id:	string;
+    id: string;
     type: string;
     sectionId: string;
     sectionName: string;
     webPublicationDate: string;
     webTitle: string;
-    webUrl:	string;
-    apiUrl:	string;
+    webUrl: string;
+    apiUrl: string;
     isHosted: boolean;
     pillarId: string;
     pillarName: string;
 }
 
 export type ResponseSearch = {
-    status:	string;
+    status: string;
     userTier: string;
-    total:	number;
-    startIndex:	number;
+    total: number;
+    startIndex: number;
     pageSize: number;
     currentPage: number;
     pages: number;
     orderBy: string;
-    results: ResponseSearchResults[]
+    results: ResponseSearchResults[];
 }
 
 export interface Author {
