@@ -11,27 +11,23 @@ import avatar010 from './jpg/named-10/avatar-10-linkedin-sales-solutions-unsplas
 
 export const PAGE_TITLE = 'The Guardian Browser';
 
-export const SEARCH_DEFAULT = '';
-
 export const URL_BASE = 'https://content.guardianapis.com/';
 export const URL_SEARCH = '/search';
 export const URL_SECTIONS = '/sections';
-export const URL_TAGS = '/tags';
 
 export const QUERY = 'q';
 export const PAGE = 'page';
-export const TAG = 'tag';
-export const FROM_DATE = 'from-date';
 
 export const API_KEY = 'api-key';
 export const API_KEY_NUMBER = 'bc1ad419-c748-4289-be70-bc5e1bf855f7';
 
-export const TEST_URL = `https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&${API_KEY}${API_KEY_NUMBER}`
+export const SEARCH_PHRASE_DEFAULT = '';
+export const PAGE_NUMBER_DEFAULT = '1';
 
-export const TEST_AUTHORS_BASE = [
+export const AUTHORS_BASE = [
     {
         name: 'Edward Newgate',
-        avatar: avatar01, 
+        avatar: avatar01,
     },
     {
         name: 'Alisa Bosii',
@@ -39,12 +35,12 @@ export const TEST_AUTHORS_BASE = [
     },
     {
         name: 'Thomas Mazer',
-        avatar: avatar03, 
+        avatar: avatar03,
     },
     {
         name: 'Anastasia Dumitru',
-        avatar: avatar04, 
-    },  
+        avatar: avatar04,
+    },
     {
         name: 'Astrid Giraud',
         avatar: avatar05,
@@ -71,19 +67,28 @@ export const TEST_AUTHORS_BASE = [
     },
 ]
 
-//__orig - for 4 base avatars
-/* export function getAuthors() {
-     const authorsList = TEST_AUTHORS_BASE;
-     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 4)])
-} */
-
-//__new - for 10 avatars
+// generates authors for 10 avatars
 export function getAuthors() {
-    const authorsList = TEST_AUTHORS_BASE;
+    const authorsList = AUTHORS_BASE;
     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 10)])
 }
 
-export const LOREM_ALL = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt repellat voluptatibus a dignissimos dolor esse. Voluptas, hic delectus corrupti quibusdam quis deleniti odio quas dolores, beatae iure perspiciatis perferendis voluptatem necessitatibus minus maiores nihil eveniet. Veritatis, aut iste minima suscipit atque assumenda ducimus pariatur minus quidem recusandae, accusantium aliquid.'
+export const LOREM_50 = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt repellat voluptatibus a dignissimos dolor esse. Voluptas, hic delectus corrupti quibusdam quis deleniti odio quas dolores, beatae iure perspiciatis perferendis voluptatem necessitatibus minus maiores nihil eveniet. Veritatis, aut iste minima suscipit atque assumenda ducimus pariatur minus quidem recusandae, accusantium aliquid.'
+
+const LOREM50_LIST = LOREM_50.split(' ');
+
+//_generates text of lorem ipsum
+export function getLorem(min: number, max: number) {
+    const randomEnd = Math.floor(Math.random() * (max - min) + min);
+    const loremSlicedList = LOREM50_LIST.slice(0, randomEnd);
+    const loremLastSignRemoved = (
+        (loremSlicedList[loremSlicedList.length - 1] === (',' || '.')) ?
+            loremSlicedList.splice(0, loremSlicedList.length - 1) :
+            loremSlicedList
+    );
+    return loremLastSignRemoved.join(' ') + '.';
+}
+
 
 /* export const TEST_MAIN_CATEGORIES = [
     'News',
@@ -176,21 +181,23 @@ export const LOREM_ALL = 'Lorem ipsum dolor sit amet consectetur adipisicing eli
     tag: TEST_CARD_TAG,
     text: TEST_CARD_TEXT,
     url: TEST_CARD_URL,
-    // author: TEST_AUTHORS[0], 
+    // author: TEST_AUTHORS[0],
 } */
 
 /* export const TEST_CARD_DATA_LIST = [
-    TEST_CARD_DATA, 
-    TEST_CARD_DATA, 
     TEST_CARD_DATA,
-    TEST_CARD_DATA, 
-    TEST_CARD_DATA, 
     TEST_CARD_DATA,
-    TEST_CARD_DATA, 
-    TEST_CARD_DATA, 
     TEST_CARD_DATA,
-    TEST_CARD_DATA, 
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
+    TEST_CARD_DATA,
 ]; */
 
 // export const TEST_PAGES_ALL = 511;
 // export const TEST_PAGES_CURRENT = 51;
+
+// export const TEST_URL = `https://content.guardianapis.com/search?q=debate&tag=politics/politics&from-date=2014-01-01&${API_KEY}${API_KEY_NUMBER}`;
