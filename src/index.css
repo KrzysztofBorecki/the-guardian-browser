@@ -292,7 +292,6 @@ body {
 
 input[type=text] {
   color: inherit;
-  border: none;
   outline: none;
 }
 
@@ -316,6 +315,11 @@ input[type=reset] {
   background-color: var(--color-white);
   color: var(--color-black);
   width: 100%;
+  border: 2px solid var(--color-white);
+  transition: 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.form-search:hover, .form-search:active, .form-search:focus {
+  border: 2px solid var(--color-blue);
 }
 
 .form-submit {
@@ -332,7 +336,7 @@ input[type=reset] {
   border: 2px solid var(--color-blue);
   transition: 200ms cubic-bezier(0.22, 0.61, 0.36, 1);
 }
-.form-submit:hover {
+.form-submit:hover, .form-submit:active, .form-submit:focus {
   background-color: transparent;
   color: var(--color-blue);
 }
