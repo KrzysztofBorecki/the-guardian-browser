@@ -73,6 +73,10 @@ body {
   color: var(--color-dark-grey);
   font-weight: bold;
 }
+.main-category[data-selected=true] {
+  background-color: var(--color-white-transparent);
+  font-weight: bold;
+}
 
 .results {
   grid-column: 3/13;
@@ -96,6 +100,7 @@ body {
   grid-template-rows: 2rem min-content 1fr 2rem;
   gap: var(--gap-medium-medium);
   text-decoration: none;
+  cursor: pointer;
 }
 
 .card-title {
@@ -130,6 +135,7 @@ body {
   text-decoration: none;
   width: 10ch;
   gap: 7px;
+  color: var(--color-blue);
 }
 .card-info-author:hover {
   text-decoration: underline;
