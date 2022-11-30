@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import arrowRight from './arrow-right.svg';
+import { getLorem } from './Data';
 import type { CardData } from './Card.types';
 
 // function getParsedDate(dateString: string): string {
@@ -41,6 +42,7 @@ export default function Card(props: CardData): ReactElement {
             href={props.webUrl}
             className='card'
             target='_blank'
+            rel="noreferrer noopener"
         // onClick={() => document.location.href = props.webUrl}
         >
             <div className='card-info'>
@@ -61,7 +63,7 @@ export default function Card(props: CardData): ReactElement {
                 className='card-text'
             // onClick={() => handleClick(props.webUrl)}
             >
-                {'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea suscipit fuga quisquam eos, quaerat non at eum eius quia ut deserunt sed, aliquid qui explicabo totam nulla velit modi vitae.'}
+                {getLorem(25, 50)}
             </p>
             <div className='card-info'>
                 <div
