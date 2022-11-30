@@ -1,13 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
-import { 
-    URL_BASE,
-    API_KEY,
-    API_KEY_NUMBER,
-} from './Data';
-
+import { URL_BASE, API_KEY, API_KEY_NUMBER } from './Data';
 import type { ResponseData } from './httpGet.types';
-// import type { URLSearchParamsInit } from 'react-router-dom';
-
 
 export default async function httpGet(url: string, params?: Record<string, string>) {
     // Record -> typ Record<K, T> -> typ OBIEKTU -> gdzie: K === typ kluczy; T === typ wartości 
