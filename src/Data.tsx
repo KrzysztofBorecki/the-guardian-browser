@@ -72,10 +72,10 @@ export const TEST_AUTHORS_BASE = [
 ]
 
 //__orig - for 4 base avatars
-// export function getAuthors() {
-//     const authorsList = TEST_AUTHORS_BASE;
-//     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 4)])
-// }
+/* export function getAuthors() {
+     const authorsList = TEST_AUTHORS_BASE;
+     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 4)])
+} */
 
 //__new - for 10 avatars
 export function getAuthors() {
@@ -85,84 +85,84 @@ export function getAuthors() {
 
 export const LOREM_ALL = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, sunt repellat voluptatibus a dignissimos dolor esse. Voluptas, hic delectus corrupti quibusdam quis deleniti odio quas dolores, beatae iure perspiciatis perferendis voluptatem necessitatibus minus maiores nihil eveniet. Veritatis, aut iste minima suscipit atque assumenda ducimus pariatur minus quidem recusandae, accusantium aliquid.'
 
-// export const TEST_MAIN_CATEGORIES = [
-//     'News',
-//     'Opinion',
-//     'Sport',
-//     'Culture',
-//     'Lifestyle',
-// ];
+/* export const TEST_MAIN_CATEGORIES = [
+    'News',
+    'Opinion',
+    'Sport',
+    'Culture',
+    'Lifestyle',
+]; */
 
-// export const TEST_CATEGORIES = [
-//     {
-//         maincategory: 'News',
-//         subcategories: [
-//             'World news',
-//             'UK news',
-//             'Coronavirus',
-//             'Climate crisis',
-//             'Environment',
-//             'Science',
-//             'Global development',
-//             'Football',
-//             'Tech',
-//             'Business',
-//             'Obituaries',
-//         ],
-//     },
-//     {
-//         maincategory: 'Opinion',
-//         subcategories: [
-//             'The Guardian view',
-//             'Columnists',
-//             'Cartoons',
-//             'Opinion videos',
-//             'Letters',
-//         ],
-//     },
-//     {
-//         maincategory: 'Sport',
-//         subcategories: [
-//             'Football',
-//             'Cricket',
-//             'Rugby union',
-//             'Tennis',
-//             'Cycling',
-//             'F1',
-//             'Golf',
-//             'US sports',
-//         ],
-//     },
-//     {
-//         maincategory: 'Culture',
-//         subcategories: [
-//             'Music',
-//             'Books',
-//             'TV & radio',
-//             'Art & design',
-//             'Film',
-//             'Games',
-//             'Classical',
-//             'Stage',
-//         ],
-//     },
-//     {
-//         maincategory: 'Lifestyle',
-//         subcategories: [
-//             'Fashion',
-//             'Food',
-//             'Recipes',
-//             'Love & sex',
-//             'Health & fitness',
-//             'Home & garden',
-//             'Women',
-//             'Men',
-//             'Family',
-//             'Travel',
-//             'Money',
-//         ],
-//     },
-// ];
+/* export const TEST_CATEGORIES = [
+    {
+        maincategory: 'News',
+        subcategories: [
+            'World news',
+            'UK news',
+            'Coronavirus',
+            'Climate crisis',
+            'Environment',
+            'Science',
+            'Global development',
+            'Football',
+            'Tech',
+            'Business',
+            'Obituaries',
+        ],
+    },
+    {
+        maincategory: 'Opinion',
+        subcategories: [
+            'The Guardian view',
+            'Columnists',
+            'Cartoons',
+            'Opinion videos',
+            'Letters',
+        ],
+    },
+    {
+        maincategory: 'Sport',
+        subcategories: [
+            'Football',
+            'Cricket',
+            'Rugby union',
+            'Tennis',
+            'Cycling',
+            'F1',
+            'Golf',
+            'US sports',
+        ],
+    },
+    {
+        maincategory: 'Culture',
+        subcategories: [
+            'Music',
+            'Books',
+            'TV & radio',
+            'Art & design',
+            'Film',
+            'Games',
+            'Classical',
+            'Stage',
+        ],
+    },
+    {
+        maincategory: 'Lifestyle',
+        subcategories: [
+            'Fashion',
+            'Food',
+            'Recipes',
+            'Love & sex',
+            'Health & fitness',
+            'Home & garden',
+            'Women',
+            'Men',
+            'Family',
+            'Travel',
+            'Money',
+        ],
+    },
+]; */
 
 // const TEST_CARD_TITLE = 'Test Article Title';
 // const TEST_CARD_DATE_EU = '24/10/2022';
@@ -170,27 +170,27 @@ export const LOREM_ALL = 'Lorem ipsum dolor sit amet consectetur adipisicing eli
 // const TEST_CARD_TEXT = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ea suscipit fuga quisquam eos, quaerat non at eum eius quia ut deserunt sed, aliquid qui explicabo totam nulla velit modi vitae.'
 // const TEST_CARD_URL = 'https://www.google.com'
 
-// const TEST_CARD_DATA = {
-//     title: TEST_CARD_TITLE,
-//     date: TEST_CARD_DATE_EU,
-//     tag: TEST_CARD_TAG,
-//     text: TEST_CARD_TEXT,
-//     url: TEST_CARD_URL,
-//     // author: TEST_AUTHORS[0], 
-// }
+/* const TEST_CARD_DATA = {
+    title: TEST_CARD_TITLE,
+    date: TEST_CARD_DATE_EU,
+    tag: TEST_CARD_TAG,
+    text: TEST_CARD_TEXT,
+    url: TEST_CARD_URL,
+    // author: TEST_AUTHORS[0], 
+} */
 
-// export const TEST_CARD_DATA_LIST = [
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA,
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA,
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA, 
-//     TEST_CARD_DATA,
-//     TEST_CARD_DATA, 
-// ];
+/* export const TEST_CARD_DATA_LIST = [
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA,
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA,
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA, 
+    TEST_CARD_DATA,
+    TEST_CARD_DATA, 
+]; */
 
 // export const TEST_PAGES_ALL = 511;
 // export const TEST_PAGES_CURRENT = 51;
