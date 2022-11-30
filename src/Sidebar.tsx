@@ -10,7 +10,9 @@ export default function Sidebar(props: SidebarProps): ReactElement {
                 onSubmit={props.onSubmit} 
                 onReset={props.onReset} 
             />
-            <Categories sectionsData={props.sectionsData}/>
+            <Categories 
+                {...props}
+            />
         </div>
     );
 }
