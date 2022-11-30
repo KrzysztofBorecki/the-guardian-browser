@@ -15,49 +15,24 @@ export default function App(): ReactElement {
 
   const [authors, setAuthors] = useState<Author[]>(getAuthors());
   const [searchParams, setSearchParams] = useSearchParams();
-  function getObjectFromURLSearchParams(): Record<string, string> {
-    return Object.fromEntries(searchParams);
-  }
+
+  // function getObjectFromURLSearchParams(): Record<string, string> {
+  //   return Object.fromEntries(searchParams);
+  // }
 
   function handleSubmit(searchPhrase: string): void {
-    console.log(`>>>submit: ${searchPhrase}`);
     if (!searchPhrase) return;
 
     setSearchParams({ q: searchPhrase, page: '1' });
   }
 
   function handleReset() {
-    console.log('>>>reset');
     setSearchParams({ page: '1' });
   }
 
-  useEffect(() => {
-    setSearchParams({ page: '1' });
-  }, []);
-
-  useEffect(() => {
-    httpGet('sections').then(
-      (value) => {
-        if (!value) return;
-        if (typeof value === 'string') return;
-        if ('pages' in value) return;
-        
-        setSections(value.results);
-      }
-    );
-
-    //__!!__NAPRAWIĆ TYP ANY
-    httpGet('search', getObjectFromURLSearchParams()).then(
-      (value) => {
-        if (!value) return;
-        if (typeof value === 'string') return;
-        if (!('pages' in value)) return;
-        
-        setAuthors(getAuthors());
-        setArticles(value);
-      }
-    );
-  }, [searchParams]);
+  function handleClick(section: string) {
+    setSearchParams({ section });
+  }
 
   function handlePageDown() {
     if (!searchParams.has('page')) return;
@@ -84,8 +59,6 @@ export default function App(): ReactElement {
   }
 
   function handlePageChange(e: React.PointerEvent<HTMLLIElement>) {
-    console.log('>>>Page Change');
-
     if (!articles) return;
 
     const newPage = Number(e.currentTarget.textContent);
@@ -99,15 +72,42 @@ export default function App(): ReactElement {
     e.preventDefault();
   }
 
+  // useEffect(() => {
+  //   setSearchParams({ page: '1' });
+  // }, []);
+
+  useEffect(() => {
+    httpGet('sections').then(
+      (value) => {
+        if (!value) return;
+        if (typeof value === 'string') return;
+        if ('pages' in value) return;
+        
+        setSections(value.results);
+      }
+    );
+
+    httpGet('search', Object.fromEntries(searchParams)).then(
+      (value) => {
+        if (!value) return;
+        if (typeof value === 'string') return;
+        if (!('pages' in value)) return;
+        
+        setAuthors(getAuthors());
+        setArticles(value);
+      }
+    );
+  }, [searchParams]);
+
   return (
     <div className='app'>
       {(sections) ?
         <Sidebar
           sectionsData={sections}
-          // onChange={handleChange}
+          searchParams={searchParams}
           onSubmit={handleSubmit}
           onReset={handleReset}
-        // searchQuery={searchQuery}
+          onClick={handleClick}
         /> :
         null}
       {(articles) ?
