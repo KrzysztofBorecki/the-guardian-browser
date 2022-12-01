@@ -14,10 +14,6 @@ export default function App(): ReactElement {
     const [authors, setAuthors] = useState<Author[]>(getAuthors());
     const [searchParams, setSearchParams] = useSearchParams();
 
-    // function getObjectFromURLSearchParams(): Record<string, string> {
-    //   return Object.fromEntries(searchParams);
-    // }
-
     function handleSubmit(searchPhrase: string): void {
         if (!searchPhrase) return;
 
@@ -76,8 +72,8 @@ export default function App(): ReactElement {
 
     //_set front page url with 'page=1'? 
 /*     useEffect(() => {
-        setSearchParams({ page: PAGE_NUMBER_DEFAULT });
-    }, []); */
+    setSearchParams({ page: PAGE_NUMBER_DEFAULT });
+    }, []);  */
 
     useEffect(() => {
         httpGet('sections').then(
@@ -104,7 +100,8 @@ export default function App(): ReactElement {
 
     return (
         <div className='app'>
-            {(sections) ?
+            {
+                (sections) ?
                 <Sidebar
                     sectionsData={sections}
                     searchParams={searchParams}
@@ -112,8 +109,10 @@ export default function App(): ReactElement {
                     onReset={handleReset}
                     onClick={handleClick}
                 /> :
-                null}
-            {(articles) ?
+                null
+            }
+            {
+                (articles) ?
                 <Results
                     title={PAGE_TITLE}
                     data={articles}
@@ -122,7 +121,8 @@ export default function App(): ReactElement {
                     onPageUp={handlePageUp}
                     onPageDown={handlePageDown}
                 /> :
-                null}
+                null
+            }
         </div>
     );
 }
