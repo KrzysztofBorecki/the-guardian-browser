@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import arrowRight from './arrow-right.svg';
+import arrowRight from './assets/icons/arrow-right.svg';
 import { getRandomLorem } from './Data';
 import type { CardData } from './Card.types';
 

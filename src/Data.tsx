@@ -1,13 +1,13 @@
-import avatar01 from './jpg/named-10/avatar-01-philip-martin-unsplash.jpg';
-import avatar02 from './jpg/named-10/avatar-02-jonathan-borba-unsplash.jpg';
-import avatar03 from './jpg/named-10/avatar-03-gelmis-bartulis-unsplash.jpg';
-import avatar04 from './jpg/named-10/avatar-04-michael-dam-unsplash.jpg';
-import avatar05 from './jpg/named-10/avatar-05-andrey-zvyagintsev-unsplash.jpg';
-import avatar06 from './jpg/named-10/avatar-06-rachel-mcdermott-unsplash.jpg';
-import avatar07 from './jpg/named-10/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.jpg';
-import avatar08 from './jpg/named-10/avatar-08-jonathan-cosens-photography-unsplash.jpg';
-import avatar09 from './jpg/named-10/avatar-09-christina-wocintechchat-com-unsplash.jpg';
-import avatar010 from './jpg/named-10/avatar-10-linkedin-sales-solutions-unsplash.jpg';
+import avatar01 from './assets/avatars/avatar-01-philip-martin-unsplash.jpg';
+import avatar02 from './assets/avatars/avatar-02-jonathan-borba-unsplash.jpg';
+import avatar03 from './assets/avatars/avatar-03-gelmis-bartulis-unsplash.jpg';
+import avatar04 from './assets/avatars/avatar-04-michael-dam-unsplash.jpg';
+import avatar05 from './assets/avatars/avatar-05-andrey-zvyagintsev-unsplash.jpg';
+import avatar06 from './assets/avatars/avatar-06-rachel-mcdermott-unsplash.jpg';
+import avatar07 from './assets/avatars/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.jpg';
+import avatar08 from './assets/avatars/avatar-08-jonathan-cosens-photography-unsplash.jpg';
+import avatar09 from './assets/avatars/avatar-09-christina-wocintechchat-com-unsplash.jpg';
+import avatar010 from './assets/avatars/avatar-10-linkedin-sales-solutions-unsplash.jpg';
 
 export const PAGE_TITLE = 'The Guardian Browser';
 
