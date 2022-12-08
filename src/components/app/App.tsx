@@ -1,16 +1,16 @@
 import React, { ReactElement, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PAGE_TITLE, PAGE_NUMBER_DEFAULT, getAuthors } from './Data';
-import Sidebar from './Sidebar';
-import Results from './Results';
-import { httpGet } from './httpGet';
+import { PAGE_TITLE, PAGE_NUMBER_DEFAULT, getAuthors } from '../../utils/data';
+import Sidebar from '../sidebar/Sidebar';
+import Results from '../results/Results';
+import { httpGet } from '../../utils/httpGet';
 
-import type { ResponseSectionsResults, ResponseSearch } from './httpGet.types';
-import type { Author } from './Types';
+import type { SectionsResponseResults, SearchResponse } from '../../types/types';
+import type { Author } from '../../types/types';
 
 export default function App(): ReactElement {
-    const [sections, setSections] = useState<ResponseSectionsResults[] | null>(null);
-    const [articles, setArticles] = useState<ResponseSearch | null>(null);
+    const [sections, setSections] = useState<SectionsResponseResults[] | null>(null);
+    const [articles, setArticles] = useState<SearchResponse | null>(null);
     const [authors, setAuthors] = useState<Author[]>(getAuthors());
     const [searchParams, setSearchParams] = useSearchParams();
 

@@ -1,8 +1,9 @@
-import type { Author, ResponseSearch } from './Types';
+import type { Author } from '../../types/types';
+import type { SearchResponse } from '../../types/types';
 
 export interface ResultsData {
     title: string;
-    data: ResponseSearch;
+    data: SearchResponse;
     authors: Author[];
     onClick: (e: React.PointerEvent<HTMLLIElement>) => void;
     onPageUp: () => void;

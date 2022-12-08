@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from 'react';
-import { SEARCH_PHRASE_DEFAULT } from './Data';
+import { SEARCH_PHRASE_DEFAULT } from '../../utils/data';
 import type { SearchFormProps } from './SearchForm.types';
 
 export default function SearchForm(props: SearchFormProps): ReactElement {

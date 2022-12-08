@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { URL_BASE, API_KEY, API_KEY_NUMBER } from './Data';
+import { URL_BASE, API_KEY, API_KEY_NUMBER } from './data';
 import type { ResponseData } from './httpGet.types';
 
 export async function httpGet(url: string, params?: Record<string, string>) {

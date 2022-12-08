@@ -1,4 +1,4 @@
-export type ResponseSearchResults = {
+export interface SearchResponseResults {
     id: string;
     type: string;
     sectionId: string;
@@ -12,7 +12,7 @@ export type ResponseSearchResults = {
     pillarName: string;
 }
 
-export type ResponseSearch = {
+export interface SearchResponse {
     status: string;
     userTier: string;
     total: number;
@@ -21,22 +21,23 @@ export type ResponseSearch = {
     currentPage: number;
     pages: number;
     orderBy: string;
-    results: ResponseSearchResults[];
+    results: SearchResponseResults[];
 }
 
-export type ResponseSectionsResults = {
+export interface SectionsResponseResults {
     apiUrl: string;
     id: string;
     webTitle: string;
     webUrl: string;
 }
 
-export type ResponseSections = {
-    results: ResponseSectionsResults[];
+export interface SectionsResponse {
+    results: SectionsResponseResults[];
     status: string;
     total: string;
 }
 
-export type ResponseData = {
-    response: ResponseSearch | ResponseSections;
+export interface Author {
+    name: string;
+    avatar: string;
 }

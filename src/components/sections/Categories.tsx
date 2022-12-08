@@ -1,12 +1,12 @@
 import { ReactElement } from 'react';
-import type { ResponseSectionsResults } from './Types';
+import type { SectionsResponseResults } from '../../types/types';
 import type { SectionsData } from './Categories.types';
 
 export default function Categories(props: SectionsData): ReactElement {
     const sectionsData = props.sectionsData;
     const searchParams = props.searchParams;
     const currentSection = searchParams.get('section');
-    const items = sectionsData.map((section: ResponseSectionsResults) =>
+    const items = sectionsData.map((section: SectionsResponseResults) =>
         <li 
             key={section.id} 
             className='main-category' 

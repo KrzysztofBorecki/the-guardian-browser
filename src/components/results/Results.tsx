@@ -1,14 +1,14 @@
 import { ReactElement } from 'react';
-import Card from './Card';
-import Pagination from './Pagination';
-import type { ResponseSearchResults } from './Types';
+import Card from '../card/Card';
+import Pagination from '../pagination/Pagination';
+import type { SearchResponseResults } from '../../types/types';
 import type { ResultsData } from './Results.types';
 
 export default function Results(props: ResultsData): ReactElement {
     const articles = props.data.results;
     const items = (
         (articles.length) ? 
-        articles.map((obj: ResponseSearchResults, idx: number) =>
+        articles.map((obj: SearchResponseResults, idx: number) =>
             <Card
                 key={obj.id} {...obj}
                 author={props.authors[idx]}

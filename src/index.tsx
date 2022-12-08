@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import ErrorBoundary from './ErrorPage';
+import './index.scss';
+import App from './components/app/App';
+import ErrorBoundary from './components/error/ErrorBoundary';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([

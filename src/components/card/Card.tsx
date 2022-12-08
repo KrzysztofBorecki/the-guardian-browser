@@ -1,17 +1,6 @@
 import React, { ReactElement } from 'react';
-import arrowRight from './assets/icons/arrow-right.svg';
-import { getRandomLorem } from './Data';
+import { arrowRight, getRandomLorem } from '../../utils/data';
 import type { CardData } from './Card.types';
-
-// function getParsedDate(dateString: string): string {
-//     const dateMs = Date.parse(dateString);
-//     const dateObj = new Date(dateMs);
-//     const year = dateObj.getFullYear();
-//     const month = dateObj.getMonth() + 1;
-//     const day = dateObj.getDate();
-
-//     return `${day}-${month}-${year}`;
-// }
 
 function getDateString(value: string): string {
     return new Date(value).toString();
