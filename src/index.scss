@@ -1,36 +1,5 @@
-*,
-::before,
-::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    //_color
-    --color-white: rgb(255, 255, 255);
-    --color-white-transparent: rgb(255, 255, 255, 0.4);
-    --color-paper-start: #f2edec;
-    --color-paper-end: #E6DDDB;
-    --color-blue: #052962;
-    --color-black: #31353b;
-    --color-dark-grey: #444950;
-    --color-light-grey: #79808b;
-    //_font-size
-    --font-size-small: 14px;
-    --font-size-main: 16px;
-    --font-size-medium: 22px;
-    --font-size-large: 64px;
-    //_spacing
-    --gap-small-small: 5px;
-    --gap-small-large: 10px;
-    --gap-medium-small: 15px;
-    --gap-medium-medium: 20px;
-    --gap-medium-large: 24px;
-    --gap-large-small: 40px;
-    --gap-large-medium: 60px;
-    --gap-large-large: 100px;
-}
+@use './styles/scss/reset.scss'; 
+@use './styles/scss/variables.scss';
 
 //__
 //__MAIN_STYLES
