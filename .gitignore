@@ -12,8 +12,8 @@
 /build
 
 # css
-.css
-.css.map
+*.css
+*.css.map
 
 # misc
 .DS_Store
