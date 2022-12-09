@@ -1,0 +1,24 @@
+.main-category {
+    border-radius: var(--gap-small-large);
+    font-size: var(--font-size-main);
+    padding: var(--gap-small-large) var(--gap-medium-medium);
+    list-style-type: none;
+    margin-bottom: var(--gap-small-large);
+    background-color: var(--color-white);
+    width: 100%;
+    border: 2px solid var(--color-white);
+    transition: 200ms cubic-bezier(.22, .61, .36, 1);
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        border: 2px solid var(--color-dark-grey);
+        color: var(--color-dark-grey);
+        font-weight: bold;
+    }
+
+    &[data-selected="true"] {
+        background-color: var(--color-white-transparent);
+        font-weight: bold;
+    }
+}

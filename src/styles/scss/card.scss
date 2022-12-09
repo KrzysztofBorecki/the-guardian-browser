@@ -1,0 +1,88 @@
+//__
+//__CARD
+//__
+.card {
+    border-radius: var(--gap-small-large);
+    background-color: var(--color-white);
+    padding: var(--gap-large-small);
+    display: grid;
+    grid-template-rows: 2rem min-content 1fr 2rem;
+    gap: var(--gap-medium-medium);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.card-title {
+    font-family: 'Merriweather', serif;
+    font-size: var(--font-size-medium);
+    color: var(--color-black)
+}
+
+.card-text {
+    font-size: var(--font-size-main);
+    color: var(--color-dark-grey);
+}
+
+.card-info {
+
+    font-size: var(--font-size-small);
+    color: var(--color-light-grey);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+
+    &-tag {
+        font-weight: bolder;
+    }
+
+    &-date {
+        font-weight: normal;
+    }
+
+    &-author {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        text-decoration: none;
+        width: 10ch;
+        gap: 7px;
+        color: var(--color-blue);
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: var(--color-blue);
+        }
+    }
+
+    &-link {
+        color: var(--color-blue);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: var(--color-blue);
+        }
+    }
+}
+
+//__
+//__CARD_GRAPHICS
+//__
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 999px;
+}
+
+.arrow-right {
+    padding: 0 0 0 5px;
+    width: 20px;
+}
