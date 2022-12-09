@@ -55,7 +55,6 @@ export default function Card(props: DataCard): ReactElement {
                 <div
                     className='card-info-author'
                     onClick={(event: React.PointerEvent<HTMLDivElement>) => {
-                        console.log(`link to: About me - ${props.author.name}`);
                         event.preventDefault();
                     }}
                 >

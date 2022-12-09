@@ -4,7 +4,6 @@ import { PAGE_TITLE, PAGE_NUMBER_DEFAULT, getAuthors } from '../../utils/data';
 import Sidebar from '../sidebar/Sidebar';
 import Results from '../results/Results';
 import { httpGet } from '../../utils/httpGet';
-
 import type { SectionsResponseResults, SearchResponse, Author } from '../../types/types';
 
 export default function App(): ReactElement {
@@ -72,9 +71,7 @@ export default function App(): ReactElement {
     useEffect(() => {
         httpGet('sections').then(
             (value) => {
-                if (!value) return;
-                if (typeof value === 'string') return;
-                if ('pages' in value) return;
+                if (!value || typeof value === 'string' || 'pages' in value) return;
 
                 setSections(value.results);
             }
@@ -82,9 +79,7 @@ export default function App(): ReactElement {
 
         httpGet('search', Object.fromEntries(searchParams)).then(
             (value) => {
-                if (!value) return;
-                if (typeof value === 'string') return;
-                if (!('pages' in value)) return;
+                if (!value || typeof value === 'string' || !('pages' in value)) return;
 
                 setAuthors(getAuthors());
                 setArticles(value);

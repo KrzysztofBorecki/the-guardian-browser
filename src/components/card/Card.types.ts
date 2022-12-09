@@ -1,5 +1,4 @@
-import { Author } from '../../types/types';
-import { SearchResponseResults } from '../../types/types';
+import type { SearchResponseResults, Author } from '../../types/types';
 
 export interface DataCard extends SearchResponseResults {
     author: Author;
