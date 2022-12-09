@@ -39,7 +39,7 @@ export default function SearchForm(props: SearchFormProps): ReactElement {
                     id='submit'
                     type='submit'
                     name='submit'
-                    value="Find"
+                    value='Find'
                     className='form-submit'
                 />
             </div>

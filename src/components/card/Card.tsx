@@ -31,8 +31,7 @@ export default function Card(props: DataCard): ReactElement {
             href={props.webUrl}
             className='card'
             target='_blank'
-            rel="noreferrer noopener"
-        // onClick={() => document.location.href = props.webUrl}
+            rel='noreferrer noopener'
         >
             <div className='card-info'>
                 <p className='card-info-tag'>
@@ -44,13 +43,11 @@ export default function Card(props: DataCard): ReactElement {
             </div>
             <h2
                 className='card-title'
-            // onClick={() => handleClick(props.webUrl)}
             >
                 {props.webTitle}
             </h2>
             <p
                 className='card-text'
-            // onClick={() => handleClick(props.webUrl)}
             >
                 {getRandomLorem(25, 50)}
             </p>
@@ -62,16 +59,15 @@ export default function Card(props: DataCard): ReactElement {
                         event.preventDefault();
                     }}
                 >
-                    <img className='avatar' src={props.author.avatar} alt="avatar" />
+                    <img className='avatar' src={props.author.avatar} alt='avatar' />
                     <p className='name'>{props.author.name}</p>
                 </div>
                 <p
                     className='card-info-link'
-                    // href={props.webUrl}
                     onClick={() => handleClick(props.webUrl)}
                 >
                     Read more
-                    <img src={arrowRight} className={'arrow-right'} alt="arrow right" />
+                    <img src={arrowRight} className={'arrow-right'} alt='arrow right' />
                 </p>
             </div>
         </a>

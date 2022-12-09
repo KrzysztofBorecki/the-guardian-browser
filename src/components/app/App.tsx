@@ -69,11 +69,6 @@ export default function App(): ReactElement {
         e.preventDefault();
     }
 
-    //_set front page url with 'page=1'? 
-/*     useEffect(() => {
-    setSearchParams({ page: PAGE_NUMBER_DEFAULT });
-    }, []);  */
-
     useEffect(() => {
         httpGet('sections').then(
             (value) => {

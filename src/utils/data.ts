@@ -69,7 +69,6 @@ export const AUTHORS_BASE = [
     },
 ]
 
-//_generates authors for 10 avatars
 export function getAuthors() {
     const authorsList = AUTHORS_BASE;
     return Array.from(new Array(10).fill(null), () => authorsList[Math.floor(Math.random() * 10)])
@@ -79,7 +78,6 @@ const LOREM_50 = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
 
 const LOREM50_LIST = LOREM_50.split(' ');
 
-//_generates text of lorem ipsum
 function getRandomNumber(min: number, max: number) {
     return Math.floor(Math.random() * (max - min) + min);
 }
