@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import Card from '../card/Card';
 import Pagination from '../pagination/Pagination';
-import type { SearchResponseResults } from '../../types/types';
-import type { ResultsData } from './Results.types';
+import { SearchResponseResults } from '../../types/types';
+import { ResultsData } from './types';
 
 export default function Results(props: ResultsData): ReactElement {
     const articles = props.data.results;

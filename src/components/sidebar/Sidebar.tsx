@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import SearchForm from '../searchform/SearchForm';
 import Categories from '../sections/Categories';
-import type { SidebarProps } from './Sidebar.types';
+import { SidebarProps } from './types';
 
 export default function Sidebar(props: SidebarProps): ReactElement {
     return (

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import type { PagesData } from './Pagination.types';
+import { PagesData } from './types';
 
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
     return (Math.floor(pagesCurrent / 10) <= Math.floor(pagesAll / 10)) ?

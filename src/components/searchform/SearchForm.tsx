@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { SEARCH_PHRASE_DEFAULT } from '../../utils/data';
-import type { SearchFormProps } from './SearchForm.types';
+import { SearchFormProps } from './types';
 
 export default function SearchForm(props: SearchFormProps): ReactElement {
     const [searchPhrase, setSearchPhrase] = useState<string>(SEARCH_PHRASE_DEFAULT);

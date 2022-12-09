@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import type { SectionsResponseResults } from '../../types/types';
-import type { SectionsData } from './Categories.types';
+import { SectionsResponseResults } from '../../types/types';
+import { SectionsData } from './types';
 
 export default function Categories(props: SectionsData): ReactElement {
     const sectionsData = props.sectionsData;

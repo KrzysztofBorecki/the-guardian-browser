@@ -1,4 +1,4 @@
-import type { SectionsResponseResults } from '../../types/types';
+import { SectionsResponseResults } from '../../types/types';
 
 export interface SidebarProps {
     onSubmit: (searchPhrase: string) => void;

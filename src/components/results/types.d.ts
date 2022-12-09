@@ -1,5 +1,5 @@
-import type { Author } from '../../types/types';
-import type { SearchResponse } from '../../types/types';
+import { Author } from '../../types/types';
+import { SearchResponse } from '../../types/types';
 
 export interface ResultsData {
     title: string;

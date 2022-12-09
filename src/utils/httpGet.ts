@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from 'axios';
 import { URL_BASE, API_KEY, API_KEY_NUMBER } from './data';
-import type { ResponseData } from './httpGet.types';
+import type { ResponseData } from './types';
 
 export async function httpGet(url: string, params?: Record<string, string>) {
     // Record -> typ Record<K, T> -> typ OBIEKTU -> gdzie: K === typ kluczy; T === typ wartości 

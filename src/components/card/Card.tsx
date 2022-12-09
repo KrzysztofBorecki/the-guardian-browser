@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { arrowRight, getRandomLorem } from '../../utils/data';
-import type { CardData } from './Card.types';
+import { CardData } from './types';
 
 function getDateString(value: string): string {
     return new Date(value).toString();
