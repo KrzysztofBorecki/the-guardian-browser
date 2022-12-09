@@ -1,4 +1,4 @@
-export interface PagesData {
+export interface DataPages {
     pagesAll: number;
     pagesCurrent: number;
     onClick: (e: React.PointerEvent<HTMLLIElement>) => void;

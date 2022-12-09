@@ -1,6 +1,6 @@
 import { Author } from '../../types/types';
 import { SearchResponseResults } from '../../types/types';
 
-export interface CardData extends SearchResponseResults {
+export interface DataCard extends SearchResponseResults {
     author: Author;
 }

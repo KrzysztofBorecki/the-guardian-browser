@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { arrowRight, getRandomLorem } from '../../utils/data';
-import { CardData } from './types';
+import type { DataCard } from './Card.types';
 
 function getDateString(value: string): string {
     return new Date(value).toString();
@@ -25,7 +25,7 @@ function handleClick(url: string) {
     window.open(url);
 }
 
-export default function Card(props: CardData): ReactElement {
+export default function Card(props: DataCard): ReactElement {
     return (
         <a
             href={props.webUrl}

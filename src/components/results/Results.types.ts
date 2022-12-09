@@ -1,7 +1,7 @@
 import { Author } from '../../types/types';
 import { SearchResponse } from '../../types/types';
 
-export interface ResultsData {
+export interface DataResults {
     title: string;
     data: SearchResponse;
     authors: Author[];

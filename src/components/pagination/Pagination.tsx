@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { PagesData } from './types';
+import type { DataPages } from './Pagination.types';
 
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
     return (Math.floor(pagesCurrent / 10) <= Math.floor(pagesAll / 10)) ?
@@ -21,7 +21,7 @@ function getPaginationList(pagesAll: number, pagesCurrent: number): number[] {
     );
 }
 
-export default function Pagination(props: PagesData) {
+export default function Pagination(props: DataPages) {
     const paginationList = getPaginationList(props.pagesAll, props.pagesCurrent);
     const paginationItemsListFull = paginationList.map((value) => {
         return (

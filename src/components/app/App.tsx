@@ -5,8 +5,7 @@ import Sidebar from '../sidebar/Sidebar';
 import Results from '../results/Results';
 import { httpGet } from '../../utils/httpGet';
 
-import type { SectionsResponseResults, SearchResponse } from '../../types/types';
-import type { Author } from '../../types/types';
+import type { SectionsResponseResults, SearchResponse, Author } from '../../types/types';
 
 export default function App(): ReactElement {
     const [sections, setSections] = useState<SectionsResponseResults[] | null>(null);

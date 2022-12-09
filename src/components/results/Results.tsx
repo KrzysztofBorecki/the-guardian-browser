@@ -1,10 +1,10 @@
 import { ReactElement } from 'react';
 import Card from '../card/Card';
 import Pagination from '../pagination/Pagination';
-import { SearchResponseResults } from '../../types/types';
-import { ResultsData } from './types';
+import type { SearchResponseResults } from '../../types/types';
+import type { DataResults } from './Results.types';
 
-export default function Results(props: ResultsData): ReactElement {
+export default function Results(props: DataResults): ReactElement {
     const articles = props.data.results;
     const items = (
         (articles.length) ? 

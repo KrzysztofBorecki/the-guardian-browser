@@ -1,8 +1,8 @@
 import { ReactElement } from 'react';
 import { SectionsResponseResults } from '../../types/types';
-import { SectionsData } from './types';
+import type { DataSections } from './Categories.types';
 
-export default function Categories(props: SectionsData): ReactElement {
+export default function Categories(props: DataSections): ReactElement {
     const sectionsData = props.sectionsData;
     const searchParams = props.searchParams;
     const currentSection = searchParams.get('section');

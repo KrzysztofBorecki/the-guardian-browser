@@ -37,6 +37,10 @@ export interface SectionsResponse {
     total: string;
 }
 
+export interface DataResponse {
+    response: SearchResponse | SectionsResponse;
+}
+
 export interface Author {
     name: string;
     avatar: string;
