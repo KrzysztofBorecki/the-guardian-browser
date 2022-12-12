@@ -12,8 +12,11 @@ export default function App(): ReactElement {
     const [articles, setArticles] = useState<SearchResponse | null>(null);
     const [authors, setAuthors] = useState<Author[]>(getAuthors());
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isLoading, setIsLoading] = useState<true | false>(false);  
-    const [hasArticlesError, setHasArticlesError] = useState<true | false>(false);
+    const [isLoadingArticles, setIsLoadingArticles] = useState<true | false>(false);  
+    const [hasErrorArticles, setHasErrorArticles] = useState<true | false>(false);
+
+    const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);  
+    const [hasErrorSections, setHasErrorSections] = useState<true | false>(false);
 
     function handleSubmit(searchPhrase: string): void {
         if (!searchPhrase) return;
@@ -70,21 +73,26 @@ export default function App(): ReactElement {
     }
 
     useEffect(() => {
+        setIsLoadingSections(true);
+        setHasErrorSections(false);
+
         httpGet('sections').then(
             (value) => {
                 if (!value || (typeof value === 'string') || ('pages' in value)) return;
 
                 setSections(value.results);
+                setIsLoadingSections(false);
             },
-            (error) => {
-                console.log(error);
+            () => {
+                setIsLoadingSections(false);
+                setHasErrorSections(true);
             }
         );
     }, []);  
 
     useEffect(() => {
-        setIsLoading(true);
-        setHasArticlesError(false);
+        setIsLoadingArticles(true);
+        setHasErrorArticles(false);
 
         httpGet('search', Object.fromEntries(searchParams)).then(
             (value) => {
@@ -92,12 +100,11 @@ export default function App(): ReactElement {
 
                 setAuthors(getAuthors());
                 setArticles(value)
-                setIsLoading(false);
+                setIsLoadingArticles(false);
             },
-            (err) => {
-                console.log(`error: ${err}`)
-                setIsLoading(false);
-                setHasArticlesError(true);
+            () => {
+                setIsLoadingArticles(false);
+                setHasErrorArticles(true);
             }
         );
     }, [searchParams]);
@@ -105,25 +112,25 @@ export default function App(): ReactElement {
     return (
         <div className='app'>
             {
-                (sections) ?
                 <Sidebar
                     sectionsData={sections}
                     searchParams={searchParams}
                     onSubmit={handleSubmit}
                     onReset={handleReset}
                     onClick={handleClick}
-                /> :
-                null
+                    isLoading={isLoadingSections}
+                    hasError={hasErrorSections}
+                />
             }
             {
                 <div  className='results'>
                     <h1 className='page-title'>
                         {PAGE_TITLE}
                     </h1>
-                    {hasArticlesError && <strong className='error'>Oops! Something went wrong.</strong>}
-                    {!hasArticlesError && isLoading && <Spinner text='Searching for articles...'/>}
+                    {hasErrorArticles && <strong className='error'>Oops! Something went wrong.</strong>}
+                    {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...'/>}
                     {
-                        !isLoading && articles && <Results
+                        !isLoadingArticles && articles && <Results
                             title={PAGE_TITLE}
                             data={articles}
                             authors={authors}
