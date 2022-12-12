@@ -6,7 +6,8 @@
 @use './styles/scss/card.scss';
 @use './styles/scss/pagination.scss';
 @use './styles/scss/form.scss';
-
+@use './styles/scss/spinner.scss';
+@use './styles/scss/error.scss';
 //__RWD-Mobile-First
 /* @media screen and (min-width: 1035px) {
     .app {

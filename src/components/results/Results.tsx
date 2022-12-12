@@ -18,10 +18,10 @@ export default function Results(props: DataResults): ReactElement {
     );
 
     return (
-        <div className='results'>
-            <h1 className='page-title'>
+        <>
+            {/* <h1 className='page-title'>
                 {props.title}
-            </h1>
+            </h1> */}
             <div className='articles'>
                 {items}
             </div>
@@ -36,6 +36,6 @@ export default function Results(props: DataResults): ReactElement {
                 /> : 
                 null
             }
-        </div>
+        </>
     );
 }
