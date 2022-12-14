@@ -87,10 +87,10 @@ export function getRandomLorem(min: number, max: number) {
     const loremSliced = LOREM50_LIST.slice(0, randomEndNumber);
     const loremJoined = loremSliced.join(' ');
     const loremLenght = loremJoined.length - 1;
-    
+
     return (
-        ((loremJoined[loremLenght].includes(',')) || loremJoined[loremLenght].includes('.')) ? 
-        loremJoined.slice(0, loremLenght) + '.' :
-        loremJoined + '.'
+        ((loremJoined[loremLenght].includes(',')) || loremJoined[loremLenght].includes('.')) ?
+            loremJoined.slice(0, loremLenght) + '.' :
+            loremJoined + '.'
     );
 }
