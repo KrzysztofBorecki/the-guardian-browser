@@ -14,7 +14,6 @@ export default function Sidebar(props: SidebarProps): ReactElement {
             {props.hasError && <strong className='error'>Oops! Something went wrong.</strong>}
             {!props.hasError && props.isLoading && <Spinner text='Finding Sections...'/>}
             {!props.isLoading && props.sectionsData && <Sections
-                    // {...props}
                     sectionsData={props.sectionsData}
                     searchParams={props.searchParams}
                     onClick={props.onClick}

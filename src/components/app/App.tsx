@@ -1,10 +1,10 @@
-import React, { ReactElement, useState, useEffect } from 'react';
+import { ReactElement, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PAGE_TITLE, PAGE_NUMBER_DEFAULT, getAuthors } from '../../utils/data';
+import { PAGE_TITLE, getAuthors, PAGE_NUMBER_DEFAULT } from '../../utils/data';
+import { httpGet } from '../../utils/httpGet';
 import Sidebar from '../sidebar/Sidebar';
 import Results from '../results/Results';
 import Spinner from '../spinner/Spinner';
-import { httpGet } from '../../utils/httpGet';
 import type { SectionsResponseResults, SearchResponse, Author } from '../../types/types';
 
 export default function App(): ReactElement {
@@ -12,10 +12,9 @@ export default function App(): ReactElement {
     const [articles, setArticles] = useState<SearchResponse | null>(null);
     const [authors, setAuthors] = useState<Author[]>(getAuthors());
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isLoadingArticles, setIsLoadingArticles] = useState<true | false>(false);  
+    const [isLoadingArticles, setIsLoadingArticles] = useState<true | false>(false);
+    const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);
     const [hasErrorArticles, setHasErrorArticles] = useState<true | false>(false);
-
-    const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);  
     const [hasErrorSections, setHasErrorSections] = useState<true | false>(false);
 
     function handleSubmit(searchPhrase: string): void {
@@ -32,44 +31,10 @@ export default function App(): ReactElement {
         setSearchParams({ section });
     }
 
-    function getCurrentPageNumber() {
-        return Number(searchParams.get('page'));
-    }
-
-    function handlePageDown() {
-        if (!searchParams.has('page')) return;
-
-        const currentPage = getCurrentPageNumber();
-
-        if (currentPage === 1) return;
-
-        const page = String(currentPage - 1);
-
-        setSearchParams({ ...searchParams, page });
-    }
-
-    function handlePageUp() {
-        const currentPage = getCurrentPageNumber();
-
-        if (!currentPage || !articles || (currentPage === articles.pages)) return;
-
-        const page = String(currentPage + 1);
-
-        setSearchParams({ ...searchParams, page });
-    }
-
-    function handlePageChange(e: React.PointerEvent<HTMLLIElement>) {
-        if (!articles) return;
-
-        const newPage = Number(e.currentTarget.textContent);
-
-        if (!newPage || (newPage === articles.currentPage)) return;
-
-        const page = String(newPage);
-
-        setSearchParams({ ...searchParams, page })
-
-        e.preventDefault();
+    function handlePageChange(value: number) {
+        const page = value.toString();
+        const searchObject = Object.fromEntries(searchParams.entries());
+        setSearchParams({...searchObject, page});
     }
 
     useEffect(() => {
@@ -88,7 +53,7 @@ export default function App(): ReactElement {
                 setHasErrorSections(true);
             }
         );
-    }, []);  
+    }, []);
 
     useEffect(() => {
         setIsLoadingArticles(true);
@@ -123,23 +88,21 @@ export default function App(): ReactElement {
                 />
             }
             {
-                <div  className='results'>
+                <div className='results'>
                     <h1 className='page-title'>
                         {PAGE_TITLE}
                     </h1>
                     {hasErrorArticles && <strong className='error'>Oops! Something went wrong.</strong>}
-                    {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...'/>}
+                    {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...' />}
                     {
                         !isLoadingArticles && articles && <Results
                             title={PAGE_TITLE}
                             data={articles}
                             authors={authors}
                             onClick={handlePageChange}
-                            onPageUp={handlePageUp}
-                            onPageDown={handlePageDown}
-                        /> 
+                        />
                     }
-                </div>     
+                </div>
             }
         </div>
     );

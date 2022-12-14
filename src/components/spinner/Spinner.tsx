@@ -1,16 +1,16 @@
 import type { DataSpinner } from './Spinner.types';
 
-export default function Spinner(props: DataSpinner) {
-    const element = Array.from(new Array(12).fill(null), (_, idx) => idx + 1);
-    const elements = element.map((value) => <div key={value}/>);
+const list = Array.from(new Array(12).fill(null), (_, idx) => idx + 1);
+const divList = list.map((value) => <div key={value}/>);
 
+export default function Spinner(props: DataSpinner) {
     return (
         <>
             <strong className='spinner-text'>
                 {props.text}
             </strong>
             <div className="spinner">
-                {elements}
+                {divList}
             </div>
         </>
     );

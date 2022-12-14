@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+// import { useSearchParams } from 'react-router-dom';
 import type { DataPages } from './Pagination.types';
 
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
@@ -21,15 +22,28 @@ function getPaginationList(pagesAll: number, pagesCurrent: number): number[] {
     );
 }
 
-export default function Pagination(props: DataPages) {
+function getPageDown(pagesCurrent: number): number {
+    return (pagesCurrent === 1) ? 
+    pagesCurrent : 
+    pagesCurrent - 1;
+}
+
+function getPageUp(pagesCurrent: number, pagesAll: number): number {
+    return (pagesCurrent === pagesAll ) ? 
+    pagesCurrent : 
+    pagesCurrent + 1;
+}
+
+function getPaginationItems(props: DataPages) {
     const paginationList = getPaginationList(props.pagesAll, props.pagesCurrent);
-    const paginationItemsListFull = paginationList.map((value) => {
+    
+    return paginationList.map((value) => {
         return (
             <li
                 key={value}
                 className='pagination-list-item'
                 data-selected={(value === props.pagesCurrent) ? true : false}
-                onClick={props.onClick}
+                onClick={() => props.onClick(value)}
             >
                 <Link
                     to={'/'}
@@ -41,23 +55,32 @@ export default function Pagination(props: DataPages) {
             </li>
         );
     });
+}
+
+export default function Pagination(props: DataPages) {
+    // const [searchParams, setSearchParams] = useSearchParams();
+
+    // function handlePageChange(value: number) {
+    //     const page = value.toString();
+    //     setSearchParams({ ...searchParams, page });
+    // }
 
     return (
         <ul className='pagination'>
             <li
                 className='pagination-btn'
                 data-title='Previous'
-                onClick={props.onPageDown}
+                onClick={() => props.onClick(getPageDown(props.pagesCurrent))}
             >
                 Previous
             </li>
             <ul className='pagination-list'>
-                {paginationItemsListFull}
+                {getPaginationItems(props)}
             </ul>
             <li
                 className='pagination-btn'
                 data-title='Next'
-                onClick={props.onPageUp}
+                onClick={() => props.onClick(getPageUp(props.pagesCurrent, props.pagesAll))}
             >
                 Next
             </li>

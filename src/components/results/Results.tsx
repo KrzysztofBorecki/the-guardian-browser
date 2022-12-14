@@ -1,40 +1,33 @@
 import { ReactElement } from 'react';
 import Card from '../card/Card';
 import Pagination from '../pagination/Pagination';
-import type { SearchResponseResults } from '../../types/types';
+import type { SearchResponseResults, Author } from '../../types/types';
 import type { DataResults } from './Results.types';
+
+function getArticlesCards(articles: SearchResponseResults[], authors: Author[]) {
+    return articles.map((obj: SearchResponseResults, idx: number) =>
+            <Card
+                key={obj.id} {...obj}
+                author={authors[idx]}
+            />   
+   );
+}
 
 export default function Results(props: DataResults): ReactElement {
     const articles = props.data.results;
-    const items = (
-        (articles.length) ? 
-        articles.map((obj: SearchResponseResults, idx: number) =>
-            <Card
-                key={obj.id} {...obj}
-                author={props.authors[idx]}
-            />   
-        ) :
-        <strong className='no-results'>Sorry! No results found!</strong>
-    );
+    const articlesCards = getArticlesCards(articles, props.authors);
 
     return (
         <>
-            {/* <h1 className='page-title'>
-                {props.title}
-            </h1> */}
             <div className='articles'>
-                {items}
+                {!!articles.length && articlesCards}
+                {!articles.length && <strong className='no-results'>Sorry! No results found!</strong>}
             </div>
-            {
-                (articles.length) ?
-                <Pagination
+            {!!articles.length && <Pagination
                     pagesAll={props.data.pages}
                     pagesCurrent={props.data.currentPage}
                     onClick={props.onClick}
-                    onPageUp={props.onPageUp}
-                    onPageDown={props.onPageDown}
-                /> : 
-                null
+                />
             }
         </>
     );
