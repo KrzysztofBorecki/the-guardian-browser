@@ -12,10 +12,10 @@ body {
 }
 
 .app {
-    max-width: 1600px;
+    
     display: grid;
     padding: var(--gap-medium-large);
-    grid-template-columns: repeat(12, minmax(60px, 1fr));
+    grid-template-columns: repeat(3, minmax(20px, 1fr));
     grid-template-rows: auto 100% auto;
     gap: var(--gap-medium-large);
     margin: 0 auto;
@@ -24,7 +24,7 @@ body {
 
 .sidebar {
     grid-column: 1 / 4;
-    grid-row: 1/3;
+    grid-row: 1 / 2;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

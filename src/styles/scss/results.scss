@@ -1,6 +1,6 @@
 .results {
-    grid-column: 4 / 13;
-    grid-row: 1/3;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -9,15 +9,19 @@
 
 .page-title {
     font-family: 'Merriweather', serif;
-    font-size: var(--font-size-large);
+    font-size: clamp(
+        var(--font-size-medium-small), 
+        var(--font-size-page-title-dynamic), 
+        var(--font-size-large)
+    );
     font-weight: bold;
     text-align: center;
-    line-height: 9rem;
+    line-height: 2rem;
 }
 
 .articles {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     gap: var(--gap-medium-large);
 }
 
