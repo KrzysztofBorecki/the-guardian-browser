@@ -16,25 +16,44 @@ export default function App(): ReactElement {
     const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);
     const [hasErrorArticles, setHasErrorArticles] = useState<true | false>(false);
     const [hasErrorSections, setHasErrorSections] = useState<true | false>(false);
+    const [state, setState] = useState<any[]>([]);
+
+    useEffect(() => {
+        setState([...state, searchParams]);
+    }, [searchParams])
+
+    useEffect(() => {
+        state.forEach((value, idx, array) => {
+            if (array.length - 1 === idx) return;
+            console.log(value === array[idx + 1]);
+            console.log(state);
+        })
+    }, [state]);
+
 
     function handleSubmit(searchPhrase: string): void {
         if (!searchPhrase) return;
-
-        setSearchParams({ q: searchPhrase, page: PAGE_NUMBER_DEFAULT });
+        searchParams.set('q', searchPhrase);
+        searchParams.set('page', PAGE_NUMBER_DEFAULT);
+        setSearchParams(searchParams);
     }
 
     function handleReset() {
+        //__to show /?page=1
         setSearchParams({ page: PAGE_NUMBER_DEFAULT });
+        //__to omit /?page=1
+        // setSearchParams({});
     }
 
     function handleClick(section: string) {
-        setSearchParams({ section });
+        searchParams.set('section', section)
+        setSearchParams(searchParams);
     }
 
     function handlePageChange(value: number) {
         const page = value.toString();
-        const searchObject = Object.fromEntries(searchParams.entries());
-        setSearchParams({...searchObject, page});
+        searchParams.set('page', page);
+        setSearchParams(searchParams);
     }
 
     useEffect(() => {
