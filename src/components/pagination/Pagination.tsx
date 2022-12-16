@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-// import { useSearchParams } from 'react-router-dom';
 import type { DataPages } from './Pagination.types';
 
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
@@ -17,26 +16,26 @@ function getPaginationList(pagesAll: number, pagesCurrent: number): number[] {
     const paginationListLength = getPaginationListLength(pagesAll, baseValue);
 
     return Array.from(
-        new Array(paginationListLength), 
+        new Array(paginationListLength),
         (_, idx) => baseValue * 10 + idx + 1
     );
 }
 
 function getPageDown(pagesCurrent: number): number {
-    return (pagesCurrent === 1) ? 
-    pagesCurrent : 
-    pagesCurrent - 1;
+    return (pagesCurrent === 1) ?
+        pagesCurrent :
+        pagesCurrent - 1;
 }
 
 function getPageUp(pagesCurrent: number, pagesAll: number): number {
-    return (pagesCurrent === pagesAll ) ? 
-    pagesCurrent : 
-    pagesCurrent + 1;
+    return (pagesCurrent === pagesAll) ?
+        pagesCurrent :
+        pagesCurrent + 1;
 }
 
 function getPaginationItems(props: DataPages) {
     const paginationList = getPaginationList(props.pagesAll, props.pagesCurrent);
-    
+
     return paginationList.map((value) => {
         return (
             <li
@@ -58,13 +57,6 @@ function getPaginationItems(props: DataPages) {
 }
 
 export default function Pagination(props: DataPages) {
-    // const [searchParams, setSearchParams] = useSearchParams();
-
-    // function handlePageChange(value: number) {
-    //     const page = value.toString();
-    //     setSearchParams({ ...searchParams, page });
-    // }
-
     return (
         <ul className='pagination'>
             <li

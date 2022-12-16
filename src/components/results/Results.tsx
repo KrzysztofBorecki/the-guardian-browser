@@ -6,11 +6,11 @@ import type { DataResults } from './Results.types';
 
 function getArticlesCards(articles: SearchResponseResults[], authors: Author[]) {
     return articles.map((obj: SearchResponseResults, idx: number) =>
-            <Card
-                key={obj.id} {...obj}
-                author={authors[idx]}
-            />   
-   );
+        <Card
+            key={obj.id} {...obj}
+            author={authors[idx]}
+        />
+    );
 }
 
 export default function Results(props: DataResults): ReactElement {
@@ -24,10 +24,10 @@ export default function Results(props: DataResults): ReactElement {
                 {!articles.length && <strong className='no-results'>Sorry! No results found!</strong>}
             </div>
             {!!articles.length && <Pagination
-                    pagesAll={props.data.pages}
-                    pagesCurrent={props.data.currentPage}
-                    onClick={props.onClick}
-                />
+                pagesAll={props.data.pages}
+                pagesCurrent={props.data.currentPage}
+                onClick={props.onClick}
+            />
             }
         </>
     );
