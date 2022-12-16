@@ -13,6 +13,5 @@ export async function httpGet(url: string, params?: Record<string, string>) {
             }
         }
     );
-
     return response.data.response;
 }
