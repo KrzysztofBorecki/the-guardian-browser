@@ -1,15 +1,17 @@
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
 import { SectionsResponseResults } from '../../types/types';
+import Button from '../button/Button';
 import type { DataSections } from './Sections.types';
 
 export default function Sections(props: DataSections): ReactElement {
+    const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
     const sectionsData = props.sectionsData;
     const searchParams = props.searchParams;
     const currentSection = searchParams.get('section');
     const items = sectionsData.map((section: SectionsResponseResults) =>
         <li 
             key={section.id} 
-            className='main-section' 
+            className='sections-item' 
             data-href={section.webUrl}
             onClick={() => {
                 props.onClick(section.id);
@@ -20,12 +22,19 @@ export default function Sections(props: DataSections): ReactElement {
         </li>
     );
     
+    function handleClick() {
+        setIsCollapsed(!isCollapsed);
+    }
+
     return (
-        <>
-            <div className={'hidden main-section'}>Sections</div>
-            <ul className='sections'>
+        <div className='sections-container'>
+            <div className={'hidden sections-item sections-toggle'} data-iscollapsed={isCollapsed} onClick={handleClick}>
+                <p>Sections</p>
+                <Button isCollapsed={isCollapsed}/>
+            </div>
+            <ul className='sections' data-iscollapsed={isCollapsed}>
                 {items}
             </ul>
-        </>
+        </div>
     );
 }

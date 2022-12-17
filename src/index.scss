@@ -8,6 +8,7 @@
 @use './styles/scss/form.scss';
 @use './styles/scss/spinner.scss';
 @use './styles/scss/error.scss';
+@use './styles/scss/button.scss';
 
 @media screen and (min-width: 550px) {
     .app {
@@ -27,6 +28,27 @@
 
     .page-title {
         line-height: 3rem;
+    }
+
+    .sections-toggle{
+        display: none;
+    }
+    // .sections-toggle[data-iscollapsed="true"] {
+    //     display: none;
+    // }
+
+    .sections {
+        background-color: none;
+        position: initial;
+        &[data-iscollapsed="true"] {
+            transform: translateX(0%);
+        }
+    }
+}
+
+@media screen and (min-device-width: 480px) {
+    .sections {
+        transition: 0ms;   
     }
 }
 
