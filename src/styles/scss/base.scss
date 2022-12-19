@@ -4,11 +4,11 @@ body {
     font-family: Poppins, Arial, Helvetica, sans-serif;
     color: var(--color-black);
     background: 
-        linear-gradient(160deg,
-        var(--color-paper-end) 0%,
-        var(--color-paper-start) 5%,
-        var(--color-paper-start)95%,
-        var(--color-paper-end) 100%);
+        linear-gradient(30deg,
+        var(--color-paper-shadow) 0%,
+        var(--color-paper-base) 5%,
+        var(--color-paper-base)95%,
+        var(--color-paper-shadow) 100%);
 }
 
 .app {
@@ -16,7 +16,8 @@ body {
     display: grid;
     padding: var(--gap-medium-large);
     grid-template-columns: repeat(3, minmax(20px, 1fr));
-    grid-template-rows: auto 100% auto;
+    // grid-template-rows: minmax(1rem, min-content);
+    grid-template-rows: minmax(min-content, 20px);
     gap: var(--gap-medium-large);
     margin: 0 auto;
     min-height: 100vh;
@@ -24,8 +25,23 @@ body {
 
 .sidebar {
     grid-column: 1 / 4;
-    grid-row: 1 / 2;
+    grid-row: 2 / 3;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
+}
+
+.page-title {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    font-family: 'Merriweather', serif;
+    font-size: clamp(
+        var(--font-size-medium-small), 
+        var(--font-size-page-title-dynamic), 
+        var(--font-size-large)
+    );
+    font-weight: bold;
+    text-align: center;
+    line-height: 2rem;
+    letter-spacing: 0.03em;
 }

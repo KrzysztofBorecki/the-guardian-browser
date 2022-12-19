@@ -1,4 +1,4 @@
-.menu-toggle-btn {
+.btn-toggle {
 	overflow: hidden;
 	width: 18px;
 	height: 18px;
@@ -7,7 +7,7 @@
 	background: none;
 	display: block;
 	cursor: pointer;
-
+	
 	&::before,
 	&::after,
 	& span {

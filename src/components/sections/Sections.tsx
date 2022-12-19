@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { SectionsResponseResults } from '../../types/types';
-import Button from '../button/Button';
+import ButtonToggle from '../button-toggle/ButtonToggle';
 import type { DataSections } from './Sections.types';
 
 export default function Sections(props: DataSections): ReactElement {
@@ -29,8 +29,8 @@ export default function Sections(props: DataSections): ReactElement {
     return (
         <div className='sections-container'>
             <div className={'hidden sections-item sections-toggle'} data-iscollapsed={isCollapsed} onClick={handleClick}>
-                <p>Sections</p>
-                <Button isCollapsed={isCollapsed}/>
+                Sections
+                <ButtonToggle id='toggle-btn' isCollapsed={isCollapsed}/>
             </div>
             <ul className='sections' data-iscollapsed={isCollapsed}>
                 {items}

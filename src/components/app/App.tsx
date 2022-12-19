@@ -16,19 +16,19 @@ export default function App(): ReactElement {
     const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);
     const [hasErrorArticles, setHasErrorArticles] = useState<true | false>(false);
     const [hasErrorSections, setHasErrorSections] = useState<true | false>(false);
-    const [state, setState] = useState<any[]>([]);
+    // const [state, setState] = useState<any[]>([]);
 
-    useEffect(() => {
-        setState([...state, searchParams]);
-    }, [searchParams])
+    // useEffect(() => {
+    //     setState([...state, searchParams]);
+    // }, [searchParams])
 
-    useEffect(() => {
-        state.forEach((value, idx, array) => {
-            if (array.length - 1 === idx) return;
-            console.log(value === array[idx + 1]);
-            console.log(state);
-        })
-    }, [state]);
+    // useEffect(() => {
+    //     state.forEach((value, idx, array) => {
+    //         if (array.length - 1 === idx) return;
+    //         console.log(value === array[idx + 1]);
+    //         console.log(state);
+    //     })
+    // }, [state]);
 
 
     function handleSubmit(searchPhrase: string): void {
@@ -95,6 +95,9 @@ export default function App(): ReactElement {
 
     return (
         <div className='app'>
+            <h1 className='page-title'>
+                {PAGE_TITLE}
+            </h1>
             {
                 <Sidebar
                     sectionsData={sections}
@@ -108,9 +111,6 @@ export default function App(): ReactElement {
             }
             {
                 <div className='results'>
-                    <h1 className='page-title'>
-                        {PAGE_TITLE}
-                    </h1>
                     {hasErrorArticles && <strong className='error'>Oops! Something went wrong.</strong>}
                     {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...' />}
                     {

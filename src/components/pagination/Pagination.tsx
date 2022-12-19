@@ -43,14 +43,9 @@ function getPaginationItems(props: DataPages) {
                 className='pagination-list-item'
                 data-selected={(value === props.pagesCurrent) ? true : false}
                 onClick={() => props.onClick(value)}
+                data-title={value}
             >
-                <Link
-                    to={'/'}
-                    className='pagination-link'
-                    data-title={value}
-                >
-                    {value}
-                </Link>
+                {value}
             </li>
         );
     });
