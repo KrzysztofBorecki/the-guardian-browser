@@ -17,14 +17,18 @@
     min-width: 12ch;
     grid-row: 2 / 3;
 
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     -webkit-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     -moz-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    // inset 0px 4px 11px -7px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
 }
 
 .pagination-btn:link,
@@ -67,19 +71,24 @@
     text-align: center;
     border: 2px solid var(--color-white-transparent-high);
     cursor: pointer;
-    
+
+    user-select: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
 
     -webkit-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     -moz-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    // inset 0px 4px 11px -7px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
 
     &[data-selected="true"] {
         font-weight: bold;
         border: 2px solid var(--color-dark-grey);
+
         &>a {
             background-color: var(--color-white-transparent-high);
         }

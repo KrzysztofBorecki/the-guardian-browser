@@ -1,56 +1,55 @@
 .btn-toggle {
-	overflow: hidden;
-	width: 18px;
-	height: 18px;
-	padding: 0;
-	border: none;
-	background: none;
-	display: block;
-	cursor: pointer;
-	
-	&::before,
-	&::after,
-	& span {
-		content: "";
-		height: 2px;
-		border-radius: 2px;
-		background: var(--color-black);
-		display: block;
-		transition: 300ms cubic-bezier(.86,-0.3,.09,1.31);
-	}
-	
-	&::before {
-		transform: translateY(7px);
-	}
-	&::after{ 
-		transform: translateY(-7px)
-	}
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: none;
+    background: none;
+    display: block;
+    cursor: pointer;
 
-	&[data-iscollapsed="false"] {
-		&::before {
-			transform: translateY(100%) rotate(45deg);
-		}
-		&::after {
-			transform: translateY(-100%) rotate(-45deg);
-		}
-		& span {
-			transform: rotate(45deg) scale(0);
-		}
+    &::before,
+    &::after,
+    & span {
+        content: "";
+        height: 2px;
+        border-radius: 2px;
+        background: var(--color-black);
+        display: block;
+        transition: 300ms cubic-bezier(.86, -0.3, .09, 1.31);
+    }
 
-		&:hover::before,
-		&:hover::after,
-		&:hover span {
-			background: var(--color-dark-grey)
-		}
-	}
+    &::before {
+        transform: translateY(7px);
+    }
 
-	&:hover::before,
-	&:hover::after,
-	&:hover span {
-		background: var(--color-dark-grey);
-	}
+    &::after {
+        transform: translateY(-7px)
+    }
 
-	// @media (hover) and (pointer: fine) {
-	// 	display: none;
-	// }
+    &[data-iscollapsed="false"] {
+        &::before {
+            transform: translateY(100%) rotate(45deg);
+        }
+
+        &::after {
+            transform: translateY(-100%) rotate(-45deg);
+        }
+
+        & span {
+            transform: rotate(45deg) scale(0);
+        }
+
+        &:hover::before,
+        &:hover::after,
+        &:hover span {
+            background: var(--color-dark-grey)
+        }
+    }
+
+    &:hover::before,
+    &:hover::after,
+    &:hover span {
+        background: var(--color-dark-grey);
+    }
 }

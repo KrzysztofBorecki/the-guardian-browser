@@ -3,7 +3,7 @@ body {
     width: 100%;
     font-family: Poppins, Arial, Helvetica, sans-serif;
     color: var(--color-black);
-    background: 
+    background:
         linear-gradient(30deg,
         var(--color-paper-shadow) 0%,
         var(--color-paper-base) 5%,
@@ -12,11 +12,9 @@ body {
 }
 
 .app {
-    
     display: grid;
     padding: var(--gap-medium-large);
     grid-template-columns: repeat(3, minmax(20px, 1fr));
-    // grid-template-rows: minmax(1rem, min-content);
     grid-template-rows: minmax(min-content, 20px);
     gap: var(--gap-medium-large);
     margin: 0 auto;
@@ -35,11 +33,9 @@ body {
     grid-column: 1 / 4;
     grid-row: 1 / 2;
     font-family: 'Merriweather', serif;
-    font-size: clamp(
-        var(--font-size-medium-small), 
-        var(--font-size-page-title-dynamic), 
-        var(--font-size-large)
-    );
+    font-size: clamp(var(--font-size-medium-small),
+        var(--font-size-page-title-dynamic),
+        var(--font-size-large));
     font-weight: bold;
     text-align: center;
     line-height: 2rem;

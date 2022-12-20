@@ -15,11 +15,11 @@
     }
 
     -webkit-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     -moz-box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
     box-shadow: 0px 14px 27px -13px var(--color-paper-shadow),
-    inset 0px -14px 27px -13px var(--color-paper-light);
+        inset 0px -14px 27px -13px var(--color-paper-light);
 }
 
 .card-title {
@@ -63,6 +63,7 @@
         &:hover {
             text-decoration: underline;
         }
+
         &:visited {
             color: var(--color-blue);
         }
@@ -75,6 +76,7 @@
         &:hover {
             text-decoration: underline;
         }
+        
         &:visited {
             color: var(--color-blue);
         }
