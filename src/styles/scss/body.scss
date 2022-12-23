@@ -1,0 +1,12 @@
+body {
+    min-height: 100vh;
+    width: 100%;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    color: var(--color-black);
+    background:
+        linear-gradient(30deg,
+            var(--color-paper-shadow) 0%,
+            var(--color-paper-base) 5%,
+            var(--color-paper-base)95%,
+            var(--color-paper-shadow) 100%);
+}

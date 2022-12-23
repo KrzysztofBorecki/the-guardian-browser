@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import styles from './Pagination.module.scss';
 import type { DataPages } from './Pagination.types';
 
 function getPaginationBaseValue(pagesAll: number, pagesCurrent: number): number {
@@ -40,7 +40,7 @@ function getPaginationItems(props: DataPages) {
         return (
             <li
                 key={value}
-                className='pagination-list-item'
+                className={styles['pagination-list-item']}
                 data-selected={(value === props.pagesCurrent) ? true : false}
                 onClick={() => props.onClick(value)}
                 data-title={value}
@@ -53,19 +53,19 @@ function getPaginationItems(props: DataPages) {
 
 export default function Pagination(props: DataPages) {
     return (
-        <ul className='pagination'>
+        <ul className={styles.pagination}>
             <li
-                className='pagination-btn'
+                className={styles['pagination-btn']}
                 data-title='Previous'
                 onClick={() => props.onClick(getPageDown(props.pagesCurrent))}
             >
                 Previous
             </li>
-            <ul className='pagination-list'>
+            <ul className={styles['pagination-list']}>
                 {getPaginationItems(props)}
             </ul>
             <li
-                className='pagination-btn'
+                className={styles['pagination-btn']}
                 data-title='Next'
                 onClick={() => props.onClick(getPageUp(props.pagesCurrent, props.pagesAll))}
             >

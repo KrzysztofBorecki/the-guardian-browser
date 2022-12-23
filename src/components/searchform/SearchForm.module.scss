@@ -1,11 +1,14 @@
 .form {
-    margin-bottom: var(--gap-medium-medium);
+    margin-bottom: var(--gap-medium-small);
+    display: flex;
+    flex-flow: column;
+    gap: var(--gap-medium-small);
 }
 
 .form-panel {
     display: flex;
     flex-flow: row nowrap;
-    margin-bottom: var(--gap-medium-medium);
+    // margin-bottom: var(--gap-medium-medium);
     gap: var(--gap-medium-medium);
 }
 

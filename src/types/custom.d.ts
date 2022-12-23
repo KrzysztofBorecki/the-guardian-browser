@@ -12,3 +12,8 @@ declare module '*.jpg' {
     const content: any;
     export default content;
 }
+
+declare module '*.module.scss' {
+    const content: Record<string, string>;
+    export default content;
+}

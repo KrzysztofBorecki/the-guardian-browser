@@ -1,3 +1,4 @@
+import styles from './ButtonToggle.module.scss'
 import type { DataButtonToggle } from './ButtonToggle.types';
 
 export default function ButtonToggle(props: DataButtonToggle) {
@@ -6,7 +7,7 @@ export default function ButtonToggle(props: DataButtonToggle) {
             <button 
                 type='button'
                 id={props.id}
-                className='btn-toggle'
+                className={styles['btn-toggle']}
                 data-iscollapsed = {props.isCollapsed} 
                 // aria-controls="navbar-navigation" 
                 // aria-expanded="false"

@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import Card from '../card/Card';
 import Pagination from '../pagination/Pagination';
+import styles from './Results.module.scss';
 import type { SearchResponseResults, Author } from '../../types/types';
 import type { DataResults } from './Results.types';
 
@@ -19,9 +20,9 @@ export default function Results(props: DataResults): ReactElement {
 
     return (
         <>
-            <div className='articles'>
+            <div className={styles.articles}>
                 {!!articles.length && articlesCards}
-                {!articles.length && <strong className='no-results'>Sorry! No results found!</strong>}
+                {!articles.length && <strong className={styles['no-results']}>Sorry! No results found!</strong>}
             </div>
             {!!articles.length && <Pagination
                 pagesAll={props.data.pages}

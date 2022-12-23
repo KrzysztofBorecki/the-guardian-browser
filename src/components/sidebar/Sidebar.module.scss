@@ -1,0 +1,14 @@
+.sidebar {
+    // grid-column: 1 / 4;
+    // grid-row: 2 / 3;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+@media screen and (min-width: 550px) {
+    .sidebar {
+        grid-area: sidebar;
+        justify-content: flex-start;
+    }
+}
