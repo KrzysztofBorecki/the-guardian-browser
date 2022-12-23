@@ -1,5 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { SEARCH_PHRASE_DEFAULT } from '../../utils/data';
+import styles from './SearchForm.module.scss';
 import type { SearchFormProps } from './SearchForm.types';
 
 export default function SearchForm(props: SearchFormProps): ReactElement {
@@ -15,41 +16,58 @@ export default function SearchForm(props: SearchFormProps): ReactElement {
         event.preventDefault();
     }
 
-    function handleReset(event: React.FormEvent<HTMLFormElement>) {
+    function handleResetArticles(event: React.FormEvent<HTMLFormElement>) {
         setSearchPhrase(SEARCH_PHRASE_DEFAULT);
-        props.onReset();
+        props.onResetArticles();
+        // event.preventDefault();
+    }
+
+    function handleResetSections(event: React.FormEvent<HTMLInputElement>) {
+        // setSearchPhrase(SEARCH_PHRASE_DEFAULT);
+        props.onResetSections();
         event.preventDefault();
     }
 
     return (
-        <form onSubmit={handleSubmit} onReset={handleReset} className='form'>
-            <div className='form-panel'>
-                <label htmlFor='search' hidden={true}>Search</label>
+        <form 
+        onSubmit={handleSubmit} 
+        onReset={handleResetArticles} 
+        className={styles.form}>
+            <div className={styles['form-panel']}>
+                <label htmlFor='search' className='visually-hidden'>Search</label>
                 <input
                     id='search'
-                    type='text'
-                    name='search'
+                    type='search'
+                    // name='search'
                     value={searchPhrase}
                     onChange={handleChange}
                     placeholder='Search...'
-                    className='form-search'
+                    className={styles['form-search']}
+                    // aria-label='search'
                 />
-                <label htmlFor='submit' hidden={true}>Submit</label>
+                <label htmlFor='submit' className='visually-hidden'>Find</label>
                 <input
                     id='submit'
                     type='submit'
-                    name='submit'
+                    // name='submit'
                     value='Find'
-                    className='form-submit'
+                    className={styles['form-submit']}
                 />
             </div>
-            <label htmlFor='reset' hidden={true}>All articles</label>
+            <label htmlFor='resetArticles' className='visually-hidden'>All articles</label>
             <input
-                id='reset'
+                id='resetArticles'
                 type='reset'
-                name='reset'
                 value='All articles'
-                className='form-reset'
+                className={styles['form-reset']}
+            />
+            <label htmlFor='resetSections' className='visually-hidden'>All sections</label>
+            <input
+                id='resetSections'
+                type='button'
+                value='All sections'
+                className={styles['form-reset']}
+                onClick={handleResetSections}
             />
         </form>
     );

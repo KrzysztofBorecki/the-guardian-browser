@@ -5,53 +5,52 @@ import { httpGet } from '../../utils/httpGet';
 import Sidebar from '../sidebar/Sidebar';
 import Results from '../results/Results';
 import Spinner from '../spinner/Spinner';
+import styles from './App.module.scss';
 import type { SectionsResponseResults, SearchResponse, Author } from '../../types/types';
+// import type { TSetSearchParams } from './App.types';
 
 export default function App(): ReactElement {
     const [sections, setSections] = useState<SectionsResponseResults[] | null>(null);
     const [articles, setArticles] = useState<SearchResponse | null>(null);
     const [authors, setAuthors] = useState<Author[]>(getAuthors());
     const [searchParams, setSearchParams] = useSearchParams();
-    const [isLoadingArticles, setIsLoadingArticles] = useState<true | false>(false);
-    const [isLoadingSections, setIsLoadingSections] = useState<true | false>(false);
-    const [hasErrorArticles, setHasErrorArticles] = useState<true | false>(false);
-    const [hasErrorSections, setHasErrorSections] = useState<true | false>(false);
-    // const [state, setState] = useState<any[]>([]);
-
-    // useEffect(() => {
-    //     setState([...state, searchParams]);
-    // }, [searchParams])
-
-    // useEffect(() => {
-    //     state.forEach((value, idx, array) => {
-    //         if (array.length - 1 === idx) return;
-    //         console.log(value === array[idx + 1]);
-    //         console.log(state);
-    //     })
-    // }, [state]);
-
+    const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false);
+    const [isLoadingSections, setIsLoadingSections] = useState<boolean>(false);
+    const [hasErrorArticles, setHasErrorArticles] = useState<boolean>(false);
+    const [hasErrorSections, setHasErrorSections] = useState<boolean>(false);
 
     function handleSubmit(searchPhrase: string): void {
-        if (!searchPhrase) return;
-        searchParams.set('q', searchPhrase);
-        searchParams.set('page', PAGE_NUMBER_DEFAULT);
+        if (searchPhrase === '') {
+            searchParams.delete('q');     
+            searchParams.set('page', PAGE_NUMBER_DEFAULT);
+            setSearchParams(searchParams);
+        } else {
+            searchParams.set('q', searchPhrase);
+            searchParams.set('page', PAGE_NUMBER_DEFAULT);
+            setSearchParams(searchParams);
+        }
+    }
+
+    function handleResetArticles(): void {
+        searchParams.delete('q')  
+        searchParams.delete('section')
+        searchParams.set('page', PAGE_NUMBER_DEFAULT)  
         setSearchParams(searchParams);
     }
 
-    function handleReset() {
-        //__to show /?page=1
-        setSearchParams({ page: PAGE_NUMBER_DEFAULT });
-        //__to omit /?page=1
-        // setSearchParams({});
+    function handleResetSections(): void {
+        searchParams.delete('section')  
+        setSearchParams(searchParams);
     }
 
-    function handleClick(section: string) {
+    function handleSectionClick(section: string): void {
         searchParams.set('section', section)
         setSearchParams(searchParams);
     }
 
-    function handlePageChange(value: number) {
+    function handlePageChange(value: number): void {
         const page = value.toString();
+
         searchParams.set('page', page);
         setSearchParams(searchParams);
     }
@@ -94,24 +93,23 @@ export default function App(): ReactElement {
     }, [searchParams]);
 
     return (
-        <div className='app'>
-            <h1 className='page-title'>
+        <div className={styles.app}>
+            <h1 className={styles['page-title']}>
                 {PAGE_TITLE}
             </h1>
+            <Sidebar
+                sectionsData={sections}
+                searchParams={searchParams}
+                onSubmit={handleSubmit}
+                onResetArticles={handleResetArticles}
+                onResetSections={handleResetSections}
+                onClick={handleSectionClick}
+                isLoading={isLoadingSections}
+                hasError={hasErrorSections}
+            />
             {
-                <Sidebar
-                    sectionsData={sections}
-                    searchParams={searchParams}
-                    onSubmit={handleSubmit}
-                    onReset={handleReset}
-                    onClick={handleClick}
-                    isLoading={isLoadingSections}
-                    hasError={hasErrorSections}
-                />
-            }
-            {
-                <div className='results'>
-                    {hasErrorArticles && <strong className='error'>Oops! Something went wrong.</strong>}
+                <div className={styles.results}>
+                    {hasErrorArticles && <strong className={styles.error}>Oops! Something went wrong.</strong>}
                     {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...' />}
                     {
                         !isLoadingArticles && articles && <Results

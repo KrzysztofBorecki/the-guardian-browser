@@ -2,14 +2,16 @@ import { ReactElement } from 'react';
 import SearchForm from '../searchform/SearchForm';
 import Sections from '../sections/Sections';
 import Spinner from '../spinner/Spinner';
+import styles from './Sidebar.module.scss';
 import type { SidebarProps } from './Sidebar.types';
 
 export default function Sidebar(props: SidebarProps): ReactElement {
     return (
-        <div className='sidebar'>
+        <div className={styles.sidebar}>
             <SearchForm
                 onSubmit={props.onSubmit}
-                onReset={props.onReset}
+                onResetArticles={props.onResetArticles}
+                onResetSections={props.onResetSections}
             />
             {props.hasError && <strong className='error'>Oops! Something went wrong.</strong>}
             {!props.hasError && props.isLoading && <Spinner text='Finding Sections...'/>}

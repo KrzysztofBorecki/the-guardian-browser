@@ -1,4 +1,5 @@
 export interface SearchFormProps {
     onSubmit: (searchPhrase: string) => void;
-    onReset: () => void;
+    onResetArticles: () => void;
+    onResetSections: () => void;
 }
