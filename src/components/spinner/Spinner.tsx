@@ -1,18 +1,15 @@
+import { ReactElement } from 'react';
 import type { DataSpinner } from './Spinner.types';
+import { spinner } from '../../utils/data';
 import styles from './Spinner.module.scss';
 
-const list = Array.from(new Array(12).fill(null), (_, idx) => idx + 1);
-const divList = list.map((value) => <div key={value}/>);
-
-export default function Spinner(props: DataSpinner) {
+export default function Spinner(props: DataSpinner): ReactElement {
     return (
-        <>
+        <div className={styles.spinner}>
             <strong className={styles['spinner-text']}>
                 {props.text}
             </strong>
-            <div className={styles.spinner}>
-                {divList}
-            </div>
-        </>
+            <img className={styles['spinner-svg']} src={spinner} alt='spinner' />
+        </div>
     );
 }

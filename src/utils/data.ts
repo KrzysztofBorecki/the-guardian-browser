@@ -10,6 +10,7 @@ import avatar09 from '../assets/avatars/avatar-09-christina-wocintechchat-com-un
 import avatar010 from '../assets/avatars/avatar-10-linkedin-sales-solutions-unsplash.jpg';
 
 export { default as arrowRight } from '../assets/icons/arrow-right.svg';
+export { default as spinner } from '../assets/icons/ring-resize.svg';
 
 export const PAGE_TITLE = 'The Guardian Browser';
 
@@ -21,7 +22,7 @@ export const QUERY = 'q';
 export const PAGE = 'page';
 
 export const API_KEY = 'api-key';
-export const API_KEY_NUMBER = 'bc1ad419-c748-4289-be70-bc5e1bf855f7';
+export const API_KEY_NUMBER = 'test';
 
 export const SEARCH_PHRASE_DEFAULT = '';
 export const PAGE_NUMBER_DEFAULT = '1';
@@ -78,11 +79,11 @@ const LOREM_50 = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod,
 
 const LOREM50_LIST = LOREM_50.split(' ');
 
-function getRandomNumber(min: number, max: number) {
+function getRandomNumber(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-export function getRandomLorem(min: number, max: number) {
+export function getRandomLorem(min: number, max: number): string {
     const randomEndNumber = getRandomNumber(min, max);
     const loremSliced = LOREM50_LIST.slice(0, randomEndNumber);
     const loremJoined = loremSliced.join(' ');

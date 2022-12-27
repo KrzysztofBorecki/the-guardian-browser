@@ -1,6 +1,6 @@
 import { ReactElement, useState } from 'react';
 import { SectionsResponseResults } from '../../types/types';
-import ButtonToggle from '../button-toggle/ButtonToggle';
+import HamburgerIcon from '../hamburger-icon/HamburgerIcon';
 import styles from './Sections.module.scss';
 import type { DataSections } from './Sections.types';
 
@@ -23,22 +23,14 @@ export default function Sections(props: DataSections): ReactElement {
         </li>
     );
     
-    function handleClick() {
-        setIsCollapsed(!isCollapsed);
-    }
-
     return (
         <div className={styles['sections-container']}>
             <div 
-                className={`
-                    'hidden' 
-                    ${styles['sections-item']} 
-                    ${styles['sections-toggle']}`
-                } 
+                className={`'hidden' ${styles['sections-item']} ${styles['sections-toggle']}`} 
                 data-iscollapsed={isCollapsed} 
-                onClick={handleClick}>
+                onClick={() => setIsCollapsed(!isCollapsed)}>
                     Sections
-                    <ButtonToggle id='toggle-btn' isCollapsed={isCollapsed}/>
+                    <HamburgerIcon isCollapsed={isCollapsed}/>
             </div>
             <ul className={styles.sections} data-iscollapsed={isCollapsed}>
                 {items}
