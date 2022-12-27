@@ -6,57 +6,50 @@ import type { SearchFormProps } from './SearchForm.types';
 export default function SearchForm(props: SearchFormProps): ReactElement {
     const [searchPhrase, setSearchPhrase] = useState<string>(SEARCH_PHRASE_DEFAULT);
 
-    function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+    function updateSearchPhrase(event: React.ChangeEvent<HTMLInputElement>): void {
         setSearchPhrase(event.target.value);
-        event.preventDefault();
     }
 
-    function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    function submitSearchPhrase(event: React.FormEvent<HTMLFormElement>): void {
+        event.preventDefault();
         props.onSubmit(searchPhrase);
-        event.preventDefault();
     }
 
-    function handleResetArticles(event: React.FormEvent<HTMLFormElement>) {
+    function resetAll(): void {
         setSearchPhrase(SEARCH_PHRASE_DEFAULT);
-        props.onResetArticles();
-        // event.preventDefault();
+        props.onResetAll();
     }
 
-    function handleResetSections(event: React.FormEvent<HTMLInputElement>) {
-        // setSearchPhrase(SEARCH_PHRASE_DEFAULT);
-        props.onResetSections();
-        event.preventDefault();
+    function resetSections(): void {
+        props.onResetSection();
     }
 
     return (
         <form 
-        onSubmit={handleSubmit} 
-        onReset={handleResetArticles} 
-        className={styles.form}>
+            onSubmit={submitSearchPhrase} 
+            onReset={resetAll} 
+            className={styles.form}>
             <div className={styles['form-panel']}>
                 <label htmlFor='search' className='visually-hidden'>Search</label>
                 <input
                     id='search'
                     type='search'
-                    // name='search'
                     value={searchPhrase}
-                    onChange={handleChange}
+                    onChange={updateSearchPhrase}
                     placeholder='Search...'
                     className={styles['form-search']}
-                    // aria-label='search'
                 />
                 <label htmlFor='submit' className='visually-hidden'>Find</label>
                 <input
                     id='submit'
                     type='submit'
-                    // name='submit'
                     value='Find'
                     className={styles['form-submit']}
                 />
             </div>
-            <label htmlFor='resetArticles' className='visually-hidden'>All articles</label>
+            <label htmlFor='resetAll' className='visually-hidden'>All articles</label>
             <input
-                id='resetArticles'
+                id='resetAll'
                 type='reset'
                 value='All articles'
                 className={styles['form-reset']}
@@ -67,7 +60,7 @@ export default function SearchForm(props: SearchFormProps): ReactElement {
                 type='button'
                 value='All sections'
                 className={styles['form-reset']}
-                onClick={handleResetSections}
+                onClick={resetSections}
             />
         </form>
     );

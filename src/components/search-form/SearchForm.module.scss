@@ -3,12 +3,12 @@
     display: flex;
     flex-flow: column;
     gap: var(--gap-medium-small);
+    padding: 0 var(--gap-medium-large);
 }
 
 .form-panel {
     display: flex;
     flex-flow: row nowrap;
-    // margin-bottom: var(--gap-medium-medium);
     gap: var(--gap-medium-medium);
 }
 
