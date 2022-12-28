@@ -73,6 +73,7 @@
 .pagination-list {
     display: flex;
     flex-flow: row nowrap;
+    justify-content: center;
     gap: var(--gap-small-small);
     grid-row: 1 / 2;
     grid-column: 1 / 3;
