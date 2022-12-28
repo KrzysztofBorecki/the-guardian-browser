@@ -1,13 +1,22 @@
 import { ReactElement, useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { PAGE_TITLE, getAuthors, PAGE_NUMBER_DEFAULT } from '../../utils/data';
+import { PAGE_TITLE, PAGE_NUMBER_DEFAULT, getAuthors } from '../../utils/data';
 import { httpGet } from '../../utils/httpGet';
 import Sidebar from '../sidebar/Sidebar';
 import Results from '../results/Results';
 import Spinner from '../spinner/Spinner';
 import styles from './App.module.scss';
-import type { SectionsResponseResults, SearchResponse, Author } from '../../types/types';
-// import type { TSetSearchParams } from './App.types';
+import type { SectionsResponseResults, SectionsResponse, SearchResponse, Author } from '../../types/types';
+
+function updateSearchParams(searchParams: URLSearchParams, params: Record<string, string | null>): void {
+    Object.entries(params).forEach((value) => {
+        if (value[1] === '') {
+            searchParams.delete(`${value[0]}`)
+        } else {
+            searchParams.set(`${value[0]}`,`${value[1]}`);
+        }
+    });
+}
 
 export default function App(): ReactElement {
     const [sections, setSections] = useState<SectionsResponseResults[] | null>(null);
@@ -16,80 +25,60 @@ export default function App(): ReactElement {
     const [searchParams, setSearchParams] = useSearchParams();
     const [isLoadingArticles, setIsLoadingArticles] = useState<boolean>(false);
     const [isLoadingSections, setIsLoadingSections] = useState<boolean>(false);
-    const [hasErrorArticles, setHasErrorArticles] = useState<boolean>(false);
-    const [hasErrorSections, setHasErrorSections] = useState<boolean>(false);
+    const [articlesRequestError, setArticlesRequestError] = useState<boolean>(false);
+    const [sectionsRequestError, setSectionsRequestError] = useState<boolean>(false);
 
-    function handleSubmit(searchPhrase: string): void {
-        if (searchPhrase === '') {
-            searchParams.delete('q');     
-            searchParams.set('page', PAGE_NUMBER_DEFAULT);
-            setSearchParams(searchParams);
-        } else {
-            searchParams.set('q', searchPhrase);
-            searchParams.set('page', PAGE_NUMBER_DEFAULT);
-            setSearchParams(searchParams);
-        }
-    }
-
-    function handleResetArticles(): void {
-        searchParams.delete('q')  
-        searchParams.delete('section')
-        searchParams.set('page', PAGE_NUMBER_DEFAULT)  
+    function submitSearchPhrase(searchPhrase: string): void {
+        updateSearchParams(searchParams, {'q': searchPhrase, 'page': PAGE_NUMBER_DEFAULT});
         setSearchParams(searchParams);
     }
 
-    function handleResetSections(): void {
-        searchParams.delete('section')  
+    function resetAll(): void {
+        updateSearchParams(searchParams, {'q': '', 'section': '', 'page': PAGE_NUMBER_DEFAULT});
         setSearchParams(searchParams);
     }
 
-    function handleSectionClick(section: string): void {
-        searchParams.set('section', section)
+    function resetSection(): void {
+        updateSearchParams(searchParams, {'section': ''});
         setSearchParams(searchParams);
     }
 
-    function handlePageChange(value: number): void {
+    function selectSection(section: string): void {
+        updateSearchParams(searchParams, {'section': section});
+        setSearchParams(searchParams);
+    }
+
+    function selectPage(value: number): void {
         const page = value.toString();
 
-        searchParams.set('page', page);
+        updateSearchParams(searchParams, {'page': page});
         setSearchParams(searchParams);
+        window.scrollTo(0,0);
     }
 
     useEffect(() => {
         setIsLoadingSections(true);
-        setHasErrorSections(false);
-
-        httpGet('sections').then(
-            (value) => {
-                if (!value || (typeof value === 'string') || ('pages' in value)) return;
-
-                setSections(value.results);
-                setIsLoadingSections(false);
-            },
-            () => {
-                setIsLoadingSections(false);
-                setHasErrorSections(true);
-            }
-        );
+        setSectionsRequestError(false);
+        httpGet<SectionsResponse>('sections').then((value) => {
+            setSections(value.results);
+            setIsLoadingSections(false);
+        }).catch(() => {
+            setIsLoadingSections(false);
+            setSectionsRequestError(true);
+        });
     }, []);
 
     useEffect(() => {
         setIsLoadingArticles(true);
-        setHasErrorArticles(false);
-
-        httpGet('search', Object.fromEntries(searchParams)).then(
-            (value) => {
-                if (!value || (typeof value === 'string') || !('pages' in value)) return;
-
-                setAuthors(getAuthors());
-                setArticles(value)
-                setIsLoadingArticles(false);
-            },
-            () => {
-                setIsLoadingArticles(false);
-                setHasErrorArticles(true);
-            }
-        );
+        setArticlesRequestError(false);
+        httpGet<SearchResponse>('search', Object.fromEntries(searchParams)).then((value) => {
+            setAuthors(getAuthors());
+            setArticles(value)
+            setIsLoadingArticles(false);
+        }).catch(() => {
+            setIsLoadingArticles(false);
+            setArticlesRequestError(true);
+        });
     }, [searchParams]);
 
     return (
@@ -100,27 +89,25 @@ export default function App(): ReactElement {
             <Sidebar
                 sectionsData={sections}
                 searchParams={searchParams}
-                onSubmit={handleSubmit}
-                onResetArticles={handleResetArticles}
-                onResetSections={handleResetSections}
-                onClick={handleSectionClick}
+                onSubmit={submitSearchPhrase}
+                onResetAll={resetAll}
+                onResetSection={resetSection}
+                onClick={selectSection}
                 isLoading={isLoadingSections}
-                hasError={hasErrorSections}
+                hasError={sectionsRequestError}
             />
-            {
-                <div className={styles.results}>
-                    {hasErrorArticles && <strong className={styles.error}>Oops! Something went wrong.</strong>}
-                    {!hasErrorArticles && isLoadingArticles && <Spinner text='Searching for articles...' />}
-                    {
-                        !isLoadingArticles && articles && <Results
-                            title={PAGE_TITLE}
-                            data={articles}
-                            authors={authors}
-                            onClick={handlePageChange}
-                        />
-                    }
-                </div>
-            }
+            <>
+                {articlesRequestError && <strong className='error'>Oops! Something went wrong.</strong>}
+                {!articlesRequestError && isLoadingArticles && <Spinner text='Searching for articles...' />}
+                {
+                    !isLoadingArticles && articles && <Results
+                        title={PAGE_TITLE}
+                        data={articles}
+                        authors={authors}
+                        onClick={selectPage}
+                    />
+                }
+            </>
         </div>
     );
 }

@@ -5,7 +5,7 @@ import styles from './Results.module.scss';
 import type { SearchResponseResults, Author } from '../../types/types';
 import type { DataResults } from './Results.types';
 
-function getArticlesCards(articles: SearchResponseResults[], authors: Author[]) {
+function getArticlesCards(articles: SearchResponseResults[], authors: Author[]): ReactElement[] {
     return articles.map((obj: SearchResponseResults, idx: number) =>
         <Card
             key={obj.id} {...obj}
@@ -19,7 +19,7 @@ export default function Results(props: DataResults): ReactElement {
     const articlesCards = getArticlesCards(articles, props.authors);
 
     return (
-        <>
+        <div className={styles.results}>
             <div className={styles.articles}>
                 {!!articles.length && articlesCards}
                 {!articles.length && <strong className={styles['no-results']}>Sorry! No results found!</strong>}
@@ -30,6 +30,6 @@ export default function Results(props: DataResults): ReactElement {
                 onClick={props.onClick}
             />
             }
-        </>
+        </div>
     );
 }

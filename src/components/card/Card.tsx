@@ -1,30 +1,8 @@
 import React, { ReactElement } from 'react';
 import { arrowRight, getRandomLorem } from '../../utils/data';
+import { getParsedDate } from '../../utils/dates';
 import styles from './Card.module.scss';
 import type { DataCard } from './Card.types';
-
-function getDateString(value: string): string {
-    return new Date(value).toString();
-};
-
-function getDateParamList(value: string): string[] {
-    return value.split(' ');
-}
-
-function getArticleDate(value: string[]): string {
-    return `${value[2]} ${value[1]} ${value[3]}`;
-}
-
-function getParsedDate(value: string): string {
-    const dateString = getDateString(value);
-    const dateSplitted = getDateParamList(dateString);
-
-    return getArticleDate(dateSplitted);
-}
-
-function handleClick(url: string) {
-    window.open(url);
-}
 
 export default function Card(props: DataCard): ReactElement {
     return (
@@ -64,7 +42,7 @@ export default function Card(props: DataCard): ReactElement {
                 </div>
                 <p
                     className={styles['card-info-link']}
-                    onClick={() => handleClick(props.webUrl)}
+                    onClick={() => window.open(props.webUrl, '_blank', 'noopener,noreferrer')}
                 >
                     Read more
                     <img src={arrowRight} className={styles['arrow-right']} alt='arrow right' />

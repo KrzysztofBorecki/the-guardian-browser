@@ -1,3 +1,4 @@
+import { ReactElement } from 'react';
 import styles from './Pagination.module.scss';
 import type { DataPages } from './Pagination.types';
 
@@ -33,7 +34,7 @@ function getPageUp(pagesCurrent: number, pagesAll: number): number {
         pagesCurrent + 1;
 }
 
-function getPaginationItems(props: DataPages) {
+function getPaginationItems(props: DataPages): ReactElement[] {
     const paginationList = getPaginationList(props.pagesAll, props.pagesCurrent);
 
     return paginationList.map((value) => {
@@ -51,7 +52,7 @@ function getPaginationItems(props: DataPages) {
     });
 }
 
-export default function Pagination(props: DataPages) {
+export default function Pagination(props: DataPages): ReactElement {
     return (
         <ul className={styles.pagination}>
             <li
