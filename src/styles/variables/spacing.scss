@@ -1,0 +1,22 @@
+@mixin gaps {
+    --gap-small-small: 5px;
+    --gap-small-large: 10px;
+    --gap-medium-small: 15px;
+    --gap-medium-medium: 20px;
+    --gap-medium-large: 24px;
+}
+
+@mixin paddings {
+    --padding-small-small: 8px;
+    --padding-small-large: 10px;
+    --padding-medium-small: 15px;
+    --padding-medium-medium: 20px;
+    --padding-medium-large: 24px;
+    --padding-large-small: 40px;
+    --padding-large-large: 60px;
+}
+
+@mixin margins {
+    --margin-small: 10px; 
+    --margin-medium: 15px;   
+}

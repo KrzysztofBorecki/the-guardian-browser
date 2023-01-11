@@ -3,10 +3,10 @@
     align-items: center;
     flex-direction: column;
     gap: var(--gap-medium-large);
-    padding: 0 var(--gap-medium-large);
+    padding: 0 var(--padding-medium-large);
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 661px) {
     .results {
         grid-area: results;
     }
@@ -27,11 +27,9 @@
 
 .no-results {
     font-size: var(--font-size-medium);
-    line-height: 5rem; 
+    line-height: 5rem;
     text-align: center;
-    background-color: var(--color-white-transparent-high);
-    padding: 0 var(--gap-large-medium);
-    border-radius: 20px;
+    padding: 0 var(--padding-large-large);
     grid-column: 1 / span 2;
     margin: 0 auto;
 }

@@ -1,6 +1,6 @@
 .app {
     display: grid;
-    padding: var(--gap-medium-large) 0;
+    padding: var(--padding-medium-large) 0;
     grid-template-columns: 1fr;
     grid-template-rows: minmax(min-content, 1rem);
     row-gap: var(--gap-medium-large);
@@ -8,12 +8,12 @@
     min-height: 100vh;
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 661px) {
     .app {
         grid-template-columns: 280px 1fr;
-        grid-template-areas: 
-        "sidebar title"
-        "sidebar results";
+        grid-template-areas:
+            "sidebar title"
+            "sidebar results";
     }
 }
 
@@ -24,17 +24,17 @@
 }
 
 .page-title {
-    font-family: 'Merriweather', serif;
+    font-family: "Merriweather", serif;
     font-size: clamp(var(--font-size-medium-small),
-        var(--font-size-page-title-dynamic),
-        var(--font-size-large));
+            var(--font-size-page-title-dynamic),
+            var(--font-size-large));
     font-weight: bold;
     text-align: center;
     line-height: 2rem;
     letter-spacing: 0.03em;
 }
 
-@media screen and (min-width: 550px) {
+@media screen and (min-width: 661px) {
     .page-title {
         grid-area: title;
         line-height: 3rem;
@@ -47,8 +47,12 @@
     }
 }
 
-@media screen and (min-width: 1520px) {    
+@media screen and (min-width: 1520px) {
     .page-title {
         line-height: 9rem;
     }
+}
+
+.search-phrase {
+    display: inline-block;
 }

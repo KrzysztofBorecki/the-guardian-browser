@@ -1,0 +1,13 @@
+@mixin colors {
+    --color-bg: #3c3744;
+    --color-bg-darker: #322d39;
+    --color-bg-darkest: #28242e;
+
+    --color-text-main: #fbf5f3;
+    --color-text-secondary-light: #cabac0;
+    --color-text-secondary-dark: #9d8088;
+    --color-text-btn-submit: var(--color-bg-darkest);
+    --color-text-btn-submit-active: var(--color-text-main);
+
+    --color-btn: #faa916;
+}

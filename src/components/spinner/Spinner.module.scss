@@ -11,6 +11,12 @@
 
 .spinner-svg {
     width: 100px;
-    height: 100px;
-    filter: invert(17%) sepia(1%) saturate(4631%) hue-rotate(178deg) brightness(98%) contrast(88%);
+    filter: invert(89%) sepia(2%) saturate(1286%) hue-rotate(316deg) brightness(111%) contrast(97%);
+}
+
+@media (prefers-color-scheme: light) {
+    .spinner-svg {
+        width: 100px;
+        filter: invert(29%) sepia(7%) saturate(1459%) hue-rotate(285deg) brightness(87%) contrast(82%);
+    }
 }

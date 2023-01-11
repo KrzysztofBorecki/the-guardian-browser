@@ -14,7 +14,7 @@
         content: "";
         height: 2px;
         border-radius: 2px;
-        background: var(--color-black);
+        background: var(--color-text-main);
         display: block;
         transition: 300ms cubic-bezier(.86, -0.3, .09, 1.31);
     }
@@ -43,13 +43,13 @@
         &:hover::before,
         &:hover::after,
         &:hover span {
-            background: var(--color-dark-grey)
+            background: var(--color-text-main)
         }
     }
 
     &:hover::before,
     &:hover::after,
     &:hover span {
-        background: var(--color-dark-grey);
+        background: var(--color-text-main);
     }
 }

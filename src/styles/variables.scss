@@ -1,0 +1,19 @@
+@use "./variables/color-darkmode.scss" as color-dark;
+@use "./variables/color-lightmode.scss" as color-light;
+@use "./variables/font-size.scss" as font;
+@use "./variables/spacing.scss" as spacing;
+
+:root {
+    @include color-dark.colors;
+    @include font.font-sizes;
+    @include spacing.gaps;
+    @include spacing.paddings;
+    @include spacing.margins;
+
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        @include color-light.colors;
+    }
+}
