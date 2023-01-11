@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
-import { SEARCH_PHRASE_DEFAULT } from '../../utils/data';
+import { SEARCH_PHRASE_DEFAULT, PAGE_NUMBER_DEFAULT } from '../../utils/constants';
 import styles from './SearchForm.module.scss';
-import type { SearchFormProps } from './SearchForm.types';
+import type { ISearchFormProps } from './SearchForm.types';
 
-export default function SearchForm(props: SearchFormProps): ReactElement {
+export default function SearchForm(props: ISearchFormProps): ReactElement {
     const [searchPhrase, setSearchPhrase] = useState<string>(SEARCH_PHRASE_DEFAULT);
 
     function updateSearchPhrase(event: React.ChangeEvent<HTMLInputElement>): void {
@@ -12,22 +12,22 @@ export default function SearchForm(props: SearchFormProps): ReactElement {
 
     function submitSearchPhrase(event: React.FormEvent<HTMLFormElement>): void {
         event.preventDefault();
-        props.onSubmit(searchPhrase);
+        props.onSearchChange({ 'q': searchPhrase, 'page': PAGE_NUMBER_DEFAULT });
     }
 
     function resetAll(): void {
         setSearchPhrase(SEARCH_PHRASE_DEFAULT);
-        props.onResetAll();
+        props.onSearchChange({ 'q': '', 'section': '', 'page': PAGE_NUMBER_DEFAULT });
     }
 
     function resetSections(): void {
-        props.onResetSection();
+        props.onSearchChange({ 'section': '', 'page': PAGE_NUMBER_DEFAULT });
     }
 
     return (
-        <form 
-            onSubmit={submitSearchPhrase} 
-            onReset={resetAll} 
+        <form
+            onSubmit={submitSearchPhrase}
+            onReset={resetAll}
             className={styles.form}>
             <div className={styles['form-panel']}>
                 <label htmlFor='search' className='visually-hidden'>Search</label>

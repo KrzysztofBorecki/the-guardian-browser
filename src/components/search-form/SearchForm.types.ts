@@ -1,5 +1,5 @@
-export interface SearchFormProps {
-    onSubmit: (searchPhrase: string) => void;
-    onResetAll: () => void;
-    onResetSection: () => void;
+import { ISearchParams } from '../../types/types';
+
+export interface ISearchFormProps {
+    onSearchChange: (data: ISearchParams) => void;
 }

@@ -1,12 +1,10 @@
-import { SectionsResponseResults } from '../../types/types';
+import { ISectionsResponseResults, ISearchParams } from '../../types/types';
 
-export interface SidebarProps {
-    onSubmit: (searchPhrase: string) => void;
-    onResetAll: () => void;
-    onResetSection: () => void;
+export interface ISidebarProps {
+    onSearchChange: (data: ISearchParams) => void;
     onClick: (section: string) => void;
     searchParams: URLSearchParams;
-    sectionsData: SectionsResponseResults[] | null;
+    sectionsData: ISectionsResponseResults[] | null;
     isLoading: boolean;
     hasError: boolean;
 }
