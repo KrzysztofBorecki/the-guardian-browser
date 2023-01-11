@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
-import { arrowRight, getRandomLorem } from '../../utils/data';
+import { arrowRight } from '../../utils/icons';
 import { getParsedDate } from '../../utils/dates';
-import styles from './Card.module.scss';
-import type { DataCard } from './Card.types';
+import styles from './ArticlePreview.module.scss';
+import type { TArticlePreviewProps } from './ArticlePreview.types';
 
-export default function Card(props: DataCard): ReactElement {
+export default function ArticlePreview(props: TArticlePreviewProps): ReactElement {
     return (
         <a
             href={props.webUrl}
@@ -20,15 +20,11 @@ export default function Card(props: DataCard): ReactElement {
                     {getParsedDate(props.webPublicationDate)}
                 </p>
             </div>
-            <h2
-                className={styles['card-title']}
-            >
+            <h2 className={styles['card-title']}>
                 {props.webTitle}
             </h2>
-            <p
-                className={styles['card-text']}
-            >
-                {getRandomLorem(25, 50)}
+            <p className={styles['card-text']}>
+                {props.text}
             </p>
             <div className={styles['card-info']}>
                 <div

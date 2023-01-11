@@ -1,27 +1,26 @@
 import { ReactElement } from 'react';
-import Card from '../card/Card';
+import ArticlePreview from '../article-preview/ArticlePreview';
 import Pagination from '../pagination/Pagination';
-import styles from './Results.module.scss';
-import type { SearchResponseResults, Author } from '../../types/types';
-import type { DataResults } from './Results.types';
+import styles from './ArticlesList.module.scss';
+import type { ISearchResponseResultsMocked } from '../../types/types';
+import type { IArticlesListProps } from './ArticlesList.types';
 
-function getArticlesCards(articles: SearchResponseResults[], authors: Author[]): ReactElement[] {
-    return articles.map((obj: SearchResponseResults, idx: number) =>
-        <Card
+function getArticlesPreviews(articles: ISearchResponseResultsMocked[]): ReactElement[] {
+    return articles.map((obj: ISearchResponseResultsMocked) =>
+        <ArticlePreview
             key={obj.id} {...obj}
-            author={authors[idx]}
         />
     );
 }
 
-export default function Results(props: DataResults): ReactElement {
+export default function ArticlesList(props: IArticlesListProps): ReactElement {
     const articles = props.data.results;
-    const articlesCards = getArticlesCards(articles, props.authors);
+    const articlesPreviews = getArticlesPreviews(articles);
 
     return (
         <div className={styles.results}>
             <div className={styles.articles}>
-                {!!articles.length && articlesCards}
+                {!!articles.length && articlesPreviews}
                 {!articles.length && <strong className={styles['no-results']}>Sorry! No results found!</strong>}
             </div>
             {!!articles.length && <Pagination
