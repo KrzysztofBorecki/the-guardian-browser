@@ -1,4 +1,4 @@
-export interface SearchResponseResults {
+export interface ISearchResponseResults {
     id: string;
     type: string;
     sectionId: string;
@@ -12,7 +12,12 @@ export interface SearchResponseResults {
     pillarName: string;
 }
 
-export interface SearchResponse {
+export interface ISearchResponseResultsMocked extends ISearchResponseResults {
+    author: IAuthor;
+    text: string;
+}
+
+export interface ISearchResponse {
     status: string;
     userTier: string;
     total: number;
@@ -21,27 +26,35 @@ export interface SearchResponse {
     currentPage: number;
     pages: number;
     orderBy: string;
-    results: SearchResponseResults[];
+    results: ISearchResponseResults[];
 }
 
-export interface SectionsResponseResults {
+export interface ISearchResponseMocked {
+    currentPage: number;
+    pages: number;
+    results: ISearchResponseResultsMocked[];
+}
+
+export interface ISectionsResponseResults {
     apiUrl: string;
     id: string;
     webTitle: string;
     webUrl: string;
 }
 
-export interface SectionsResponse {
-    results: SectionsResponseResults[];
+export interface ISectionsResponse {
+    results: ISectionsResponseResults[];
     status: string;
     total: string;
 }
 
-export interface DataResponse {
-    response: SearchResponse | SectionsResponse;
-}
-
-export interface Author {
+export interface IAuthor {
     name: string;
     avatar: string;
+}
+
+export interface ISearchParams {
+    q?: string,
+    section?: string,
+    page: string,
 }

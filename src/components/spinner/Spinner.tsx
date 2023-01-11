@@ -1,9 +1,9 @@
 import { ReactElement } from 'react';
-import type { DataSpinner } from './Spinner.types';
-import { spinner } from '../../utils/data';
+import type { ISpinnerProps } from './Spinner.types';
+import { spinner } from '../../utils/icons';
 import styles from './Spinner.module.scss';
 
-export default function Spinner(props: DataSpinner): ReactElement {
+export default function Spinner(props: ISpinnerProps): ReactElement {
     return (
         <div className={styles.spinner}>
             <strong className={styles['spinner-text']}>

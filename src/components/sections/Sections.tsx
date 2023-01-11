@@ -1,17 +1,18 @@
 import { ReactElement, useState } from 'react';
-import { SectionsResponseResults } from '../../types/types';
+import { ISectionsResponseResults } from '../../types/types';
 import HamburgerIcon from '../hamburger-icon/HamburgerIcon';
 import styles from './Sections.module.scss';
-import type { DataSections } from './Sections.types';
+import type { ISectionsProps } from './Sections.types';
 
-export default function Sections(props: DataSections): ReactElement {
+export default function Sections(props: ISectionsProps): ReactElement {
     const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
     const sectionsData = props.sectionsData;
     const searchParams = props.searchParams;
     const currentSection = searchParams.get('section');
-    const items = sectionsData.map((section: SectionsResponseResults) =>
-        <li 
-            key={section.id} 
+
+    const items = sectionsData.map((section: ISectionsResponseResults) =>
+        <li
+            key={section.id}
             className={styles['sections-item']}
             data-href={section.webUrl}
             onClick={() => {
@@ -22,15 +23,15 @@ export default function Sections(props: DataSections): ReactElement {
             {section.webTitle}
         </li>
     );
-    
+
     return (
         <div className={styles['sections-container']}>
-            <div 
-                className={`'hidden' ${styles['sections-item']} ${styles['sections-toggle']}`} 
-                data-iscollapsed={isCollapsed} 
+            <div
+                className={`'hidden' ${styles['sections-item']} ${styles['sections-btn']}`}
+                data-iscollapsed={isCollapsed}
                 onClick={() => setIsCollapsed(!isCollapsed)}>
-                    Sections
-                    <HamburgerIcon isCollapsed={isCollapsed}/>
+                Sections
+                <HamburgerIcon isCollapsed={isCollapsed} />
             </div>
             <ul className={styles.sections} data-iscollapsed={isCollapsed}>
                 {items}

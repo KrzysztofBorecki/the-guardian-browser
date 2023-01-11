@@ -1,3 +1,3 @@
-export interface HamburgerIconData {
+export interface IHamburgerIconProps {
     isCollapsed: boolean;
 }

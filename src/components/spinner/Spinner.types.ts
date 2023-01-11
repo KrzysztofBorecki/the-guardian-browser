@@ -1,3 +1,3 @@
-export interface DataSpinner {
+export interface ISpinnerProps {
     text: string;
 }

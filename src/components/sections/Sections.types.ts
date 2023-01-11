@@ -1,7 +1,7 @@
-import type { SectionsResponseResults } from '../../types/types';
+import type { ISectionsResponseResults } from '../../types/types';
 
-export interface DataSections {
-    sectionsData: SectionsResponseResults[];
+export interface ISectionsProps {
+    sectionsData: ISectionsResponseResults[];
     searchParams: URLSearchParams;
     onClick: (section: string) => void;
 }
