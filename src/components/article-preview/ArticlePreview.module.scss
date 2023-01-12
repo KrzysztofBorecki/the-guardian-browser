@@ -9,8 +9,12 @@
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
         background: var(--color-bg-darkest);
+    }
+
+    &:focus-visible {
+        outline: var(--color-focus);
     }
 }
 

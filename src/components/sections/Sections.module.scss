@@ -49,6 +49,10 @@
     &:focus-visible {
         background-color: var(--color-bg-darker);
     }
+    
+    &:focus-visible {
+        outline: var(--color-focus);
+    }
 }
 
 .sections {
