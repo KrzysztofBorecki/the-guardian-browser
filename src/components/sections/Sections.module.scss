@@ -42,10 +42,11 @@
     background-color: var(--color-bg-dark);
     border: 2px solid var(--color-btn);
     border-radius: 999px;
+    color: var(--color-text-main);
 
     &:hover,
     &:active,
-    &:focus {
+    &:focus-visible {
         background-color: var(--color-bg-darker);
     }
 }
@@ -59,7 +60,6 @@
     display: flex;
     flex-flow: column;
     gap: var(--gap-small-large);
-
     left: 0;
     right: 0;
     padding: 0 var(--padding-medium-large);

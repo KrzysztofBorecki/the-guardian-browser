@@ -26,13 +26,14 @@ export default function Sections(props: ISectionsProps): ReactElement {
 
     return (
         <div className={styles['sections-container']}>
-            <div
+            <button
+                type='button'
                 className={`'hidden' ${styles['sections-item']} ${styles['sections-btn']}`}
                 data-iscollapsed={isCollapsed}
                 onClick={() => setIsCollapsed(!isCollapsed)}>
                 Sections
                 <HamburgerIcon isCollapsed={isCollapsed} />
-            </div>
+            </button>
             <ul className={styles.sections} data-iscollapsed={isCollapsed}>
                 {items}
             </ul>

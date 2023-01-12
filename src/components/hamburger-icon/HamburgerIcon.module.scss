@@ -1,4 +1,5 @@
-.btn-toggle {
+.btn-toggle-container {
+    position: relative;
     overflow: hidden;
     width: 18px;
     height: 18px;
@@ -7,49 +8,57 @@
     background: none;
     display: block;
     cursor: pointer;
+}
 
-    &::before,
-    &::after,
-    & span {
-        content: "";
+.btn-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+
+    &>div {
+        position: relative;
+        width: 100%;
         height: 2px;
+        background-color: var(--color-text-main);
         border-radius: 2px;
-        background: var(--color-text-main);
-        display: block;
         transition: 300ms cubic-bezier(.86, -0.3, .09, 1.31);
     }
 
-    &::before {
-        transform: translateY(7px);
+    &>div::before,
+    &>div::after {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: -7px;
+        width: 100%;
+        height: 2px;
+        border-radius: 2px;
+        background: inherit;
+        transition: 300ms cubic-bezier(.86, -0.3, .09, 1.31);
     }
 
-    &::after {
-        transform: translateY(-7px)
+    &[data-iscollapsed='true']>div::after {
+        top: 7px;
+    }
+
+    &[data-iscollapsed="false"]>div {
+        transform: rotate(45deg);
     }
 
     &[data-iscollapsed="false"] {
-        &::before {
-            transform: translateY(100%) rotate(45deg);
+        &>div::before {
+            top: 0;
+            transform: rotate(0deg);
         }
 
-        &::after {
-            transform: translateY(-100%) rotate(-45deg);
+        &>div::after {
+            top: 0;
+            transform: rotate(-90deg);
         }
-
-        & span {
-            transform: rotate(45deg) scale(0);
-        }
-
-        &:hover::before,
-        &:hover::after,
-        &:hover span {
-            background: var(--color-text-main)
-        }
-    }
-
-    &:hover::before,
-    &:hover::after,
-    &:hover span {
-        background: var(--color-text-main);
     }
 }

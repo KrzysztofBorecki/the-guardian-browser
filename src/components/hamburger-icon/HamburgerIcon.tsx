@@ -4,14 +4,13 @@ import type { IHamburgerIconProps } from './HamburgerIcon.types';
 
 export default function HamburgerIcon(props: IHamburgerIconProps): ReactElement {
     return (
-        <>
-            <button
-                type='button'
+        <div className={styles['btn-toggle-container']}>
+            <div
                 className={styles['btn-toggle']}
                 data-iscollapsed={props.isCollapsed}
             >
-                <span></span>
-            </button>
-        </>
+                <div></div>
+            </div>
+        </div>
     );
 }
