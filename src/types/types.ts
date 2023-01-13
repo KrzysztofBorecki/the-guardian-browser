@@ -44,8 +44,6 @@ export interface ISectionsResponseResults {
 
 export interface ISectionsResponse {
     results: ISectionsResponseResults[];
-    status: string;
-    total: string;
 }
 
 export interface IAuthor {
