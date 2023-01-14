@@ -1,4 +1,4 @@
-import { getRandomLorem } from "./lorem.mock";
+import { getRandomLorem } from './lorem.mock';
 
 describe('utils/lorem.mock', () => {
     test('getRandomLorem returns string of 10 words', () => {

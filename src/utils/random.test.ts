@@ -1,4 +1,4 @@
-import { getRandomNumber } from "./random";
+import { getRandomNumber } from './random';
 
 describe('utils/random', () => {
     test('getRandomNumber returns number >= 1', () => {

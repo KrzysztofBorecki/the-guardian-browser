@@ -8,6 +8,9 @@ export default function HamburgerIcon(props: IHamburgerIconProps): ReactElement 
             <div
                 className={styles['btn-toggle']}
                 data-iscollapsed={props.isCollapsed}
+                role='switch'
+                aria-checked={!props.isCollapsed}
+                aria-readonly='true'
             >
                 <div></div>
             </div>

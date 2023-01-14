@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { httpGet } from "./httpGet";
+import { httpGet } from './httpGet';
 
 jest.mock('axios');
 
@@ -29,11 +29,13 @@ describe('utils/httpGet', () => {
         }
 
         mockedAxios.get.mockResolvedValueOnce(mockedResponse);
+
         expect(axios.get).not.toHaveBeenCalled();
 
         const data = await httpGet<ISectionsResponse>('sections');
-        console.log(data)
+        
         expect(axios.get).toHaveBeenCalled();
         expect(data).toEqual(sectionsResponse);
     });
 });
+
