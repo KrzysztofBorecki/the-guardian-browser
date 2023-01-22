@@ -89,12 +89,11 @@ export default function App(): ReactElement {
             <>
                 {articlesRequestError && <strong className='error'>Oops! Something went wrong.</strong>}
                 {!articlesRequestError && isLoadingArticles && <Spinner text='Searching for articles...' />}
-                {
-                    !isLoadingArticles && articles && <ArticlesList
-                        title={PAGE_TITLE}
-                        data={articles}
-                        onClick={selectPage}
-                    />
+                {!isLoadingArticles && articles && <ArticlesList
+                    title={PAGE_TITLE}
+                    data={articles}
+                    onClick={selectPage}
+                />
                 }
             </>
         </div>

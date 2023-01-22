@@ -26,7 +26,7 @@ export default function SearchForm(props: ISearchFormProps): ReactElement {
 
     return (
         <form
-            name="search form" 
+            name="search form"
             onSubmit={submitSearchPhrase}
             onReset={resetAll}
             className={styles.form}>
