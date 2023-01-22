@@ -2,16 +2,14 @@ import HamburgerIcon from './HamburgerIcon';
 import type { IHamburgerIconProps } from './HamburgerIcon.types';
 import { render, screen } from '@testing-library/react';
 
-describe('components/hamburger-icon', () => {
-	it('should render Hamburger icon', () => {
-		const mockIsCollapsed: IHamburgerIconProps = {
+describe(`HamburgerIcon`, () => {
+	it(`should render component`, () => {
+		const mockedIsCollapsed: IHamburgerIconProps = {
 			isCollapsed: true,
 		};
 
-		render(<HamburgerIcon isCollapsed={mockIsCollapsed.isCollapsed} />);
+		render(<HamburgerIcon isCollapsed={mockedIsCollapsed.isCollapsed} />);
 
-		const element = screen.getByRole('switch');
-
-		expect(element).toBeInTheDocument();
+		expect(screen.getByRole('switch')).toBeInTheDocument();
 	});
 });

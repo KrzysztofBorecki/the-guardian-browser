@@ -1,14 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import Spinner from './Spinner';
 
-describe('components/spinner', () => {
-    it('should render Spinner component with text and svg', async () => {
+describe(`Spinner`, () => {
+    it(`should render component with text`, () => {
         render(<Spinner text='test-spinner' />);
 
-        const spinnerText = screen.getByText('test-spinner');
-        const spinnerSvg = screen.getByAltText('spinner');
+        expect(screen.getByText('test-spinner')).toBeInTheDocument();
+    });
 
-        expect(spinnerText).toBeInTheDocument();
-        expect(spinnerSvg).toBeInTheDocument();
+    it(`should render component with image`, () => {
+        render(<Spinner text='test-spinner' />);
+
+        expect(screen.getByAltText('spinner')).toBeInTheDocument();
     });
 });

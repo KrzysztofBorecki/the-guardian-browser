@@ -1,84 +1,123 @@
 import axios, { AxiosResponse } from 'axios';
 import { httpGet } from './httpGet';
+import { URL_BASE, API_KEY } from '../utils/constants';
 import type { ISectionsResponseResults, ISectionsResponse, ISearchResponseResults, ISearchResponse } from '../types/types';
 
 jest.mock('axios');
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
-describe('utils/httpGet', () => {
-    it('should return ISectionsResponse type object', async () => {
-        const sectionsResponseResults: ISectionsResponseResults = {
-            apiUrl: 'test',
-            id: 'test',
-            webTitle: 'test',
-            webUrl: 'test',
+describe(`httpGet`, () => {
+    const mockedSectionsResponseResults: ISectionsResponseResults = {
+        id: 'test-section-id',
+        webTitle: 'test-section-webTitle',
+        webUrl: 'test-section-webUrl',
+    };
+
+    const mockedSectionsResponse: ISectionsResponse = {
+        results: [mockedSectionsResponseResults],
+    };
+
+    const mockedAxiosSectionsResponse: AxiosResponse<{ response: ISectionsResponse }> = {
+        data: { response: mockedSectionsResponse },
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config: {},
+    };
+
+    const mockedSearchResponseResultsList: ISearchResponseResults[] = Array.from(new Array(21).fill(null).map((_, idx) => (
+        {
+            'id': `test-article-id-${idx}`,
+            type: 'test-article-type',
+            sectionId: 'test-article-sectionId',
+            sectionName: 'test-article-sectionName',
+            webPublicationDate: new Date('2023-01-01').toString(),
+            webTitle: 'test-article-webTitle',
+            webUrl: 'test-article-webUrl',
         }
+    )));
 
-        const sectionsResponse: ISectionsResponse = {
-            results: [sectionsResponseResults],
-        }
+    const mockedSearchResponse: ISearchResponse = {
+        total: 21,
+        startIndex: 1,
+        pageSize: 10,
+        currentPage: 1,
+        pages: 3,
+        results: mockedSearchResponseResultsList,
+    };
 
-        const mockedResponse: AxiosResponse<{ response: ISectionsResponse }> = {
-            data: { response: sectionsResponse },
-            status: 200,
-            statusText: 'OK',
-            headers: {},
-            config: {},
-        }
+    const mockedAxiosSearchResponse: AxiosResponse<{ response: ISectionsResponse }> = {
+        data: { response: mockedSearchResponse },
+        status: 200,
+        statusText: 'OK',
+        headers: {},
+        config: {},
+    };
 
-        mockedAxios.get.mockResolvedValueOnce(mockedResponse);
+    function mockedAxiosGetImplementation(url: string) {
+        return new Promise((resolve, reject) => {
+            if (url === `${URL_BASE}/sections`) {
+                resolve(mockedAxiosSectionsResponse);
+            } else if (url === `${URL_BASE}/search`) {
+                resolve(mockedAxiosSearchResponse);
+            } else {
+                reject(new Error('request error'));
+            }
+        });
+    }
 
-        expect(axios.get).not.toHaveBeenCalled();
+    beforeEach(() => {
+        mockedAxios.get.mockImplementationOnce(mockedAxiosGetImplementation);
+    })
 
-        const data = await httpGet<ISectionsResponse>('sections');
+    describe(`call httpGet('sections')`, () => {
+        it(`should resolve with ISectionsResponse type object`, async () => {
+            expect(axios.get).not.toHaveBeenCalled();
 
-        expect(axios.get).toHaveBeenCalled();
-        expect(data).toEqual(sectionsResponse);
+            const data = await httpGet<ISectionsResponse>('sections');
+
+            expect(axios.get).toHaveBeenCalledWith(`${URL_BASE}/sections`, {
+                params: {
+                    [API_KEY]: 'test',
+                }
+            });
+
+            expect(data).toEqual(mockedSectionsResponse);
+        });
     });
 
-    it('should return ISectionsResponse type object', async () => {
-        const searchResponseResultsList: ISearchResponseResults[] = Array.from(new Array(21).fill(null).map((_, idx) => (
-            {
-                'id': `test-${idx}`,
-                type: 'test',
-                sectionId: 'test',
-                sectionName: 'test',
-                webPublicationDate: 'test',
-                webTitle: 'test',
-                webUrl: 'test',
-                apiUrl: 'test',
-                isHosted: true,
-                pillarId: 'test',
-                pillarName: 'test',
-            }
-        )));
+    describe(`call httpGet('search', {}) `, () => {
+        it(`should resolve with ISearchResponse type object`, async () => {
+            expect(axios.get).not.toHaveBeenCalled();
 
-        const searchResponse: ISearchResponse = {
-            status: 'test',
-            total: 21,
-            startIndex: 1,
-            pageSize: 10,
-            currentPage: 1,
-            pages: 3,
-            results: searchResponseResultsList,
-        }
+            const data = await httpGet<ISearchResponse>('search', {
+                q: 'test',
+                page: '10',
+            });
 
-        const mockedResponse: AxiosResponse<{ response: ISectionsResponse }> = {
-            data: { response: searchResponse },
-            status: 200,
-            statusText: 'OK',
-            headers: {},
-            config: {},
-        }
+            expect(axios.get).toHaveBeenCalledWith(`${URL_BASE}/search`, {
+                params: {
+                    [API_KEY]: 'test',
+                    page: '10',
+                    q: 'test',
+                }
+            });
 
-        mockedAxios.get.mockResolvedValueOnce(mockedResponse);
+            expect(data).toEqual(mockedSearchResponse);
+        });
+    });
 
-        expect(axios.get).not.toHaveBeenCalled();
-
-        const data = await httpGet<ISearchResponse>('search', {});
-
-        expect(axios.get).toHaveBeenCalled();
-        expect(data).toEqual(searchResponse);
+    describe(`call httpGet('wrong-value') `, () => {
+        it(`should reject with Error object`, async () => {
+            expect(axios.get).not.toHaveBeenCalled();
+            expect(httpGet<ISearchResponse>('wrong-value')).rejects.toThrowError('request error');
+            
+            expect(axios.get).toHaveBeenCalledWith(`${URL_BASE}/wrong-value`, {
+                params: {
+                    [API_KEY]: 'test',
+                }
+            });
+        });
     });
 });
