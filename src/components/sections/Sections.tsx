@@ -34,7 +34,10 @@ export default function Sections(props: ISectionsProps): ReactElement {
                 Sections
                 <HamburgerIcon isCollapsed={isCollapsed} />
             </button>
-            <ul className={styles.sections} data-iscollapsed={isCollapsed}>
+            <ul 
+                className={styles.sections} 
+                data-iscollapsed={isCollapsed} 
+                aria-label='sections list'>
                 {items}
             </ul>
         </div>

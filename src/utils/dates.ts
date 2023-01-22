@@ -1,6 +1,6 @@
 function getDateString(value: string): string {
     return new Date(value).toString();
-};
+}
 
 function getDateParamList(value: string): string[] {
     return value.split(' ');

@@ -6,10 +6,6 @@ export interface ISearchResponseResults {
     webPublicationDate: string;
     webTitle: string;
     webUrl: string;
-    apiUrl: string;
-    isHosted: boolean;
-    pillarId: string;
-    pillarName: string;
 }
 
 export interface ISearchResponseResultsMocked extends ISearchResponseResults {
@@ -18,14 +14,11 @@ export interface ISearchResponseResultsMocked extends ISearchResponseResults {
 }
 
 export interface ISearchResponse {
-    status: string;
-    userTier: string;
     total: number;
     startIndex: number;
     pageSize: number;
     currentPage: number;
     pages: number;
-    orderBy: string;
     results: ISearchResponseResults[];
 }
 
@@ -36,7 +29,6 @@ export interface ISearchResponseMocked {
 }
 
 export interface ISectionsResponseResults {
-    apiUrl: string;
     id: string;
     webTitle: string;
     webUrl: string;

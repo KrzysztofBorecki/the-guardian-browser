@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import { arrowRight } from '../../utils/icons';
 import { getParsedDate } from '../../utils/dates';
 import styles from './ArticlePreview.module.scss';
@@ -27,12 +27,7 @@ export default function ArticlePreview(props: TArticlePreviewProps): ReactElemen
                 {props.text}
             </p>
             <div className={styles['card-info']}>
-                <div
-                    className={styles['card-info-author']}
-                    onClick={(event: React.PointerEvent<HTMLDivElement>) => {
-                        event.preventDefault();
-                    }}
-                >
+                <div className={styles['card-info-author']}>
                     <img className={styles.avatar} src={props.author.avatar} alt='avatar' />
                     <p className={styles.name}>{props.author.name}</p>
                 </div>

@@ -3,7 +3,7 @@ import { URL_BASE, API_KEY, API_KEY_NUMBER } from './constants';
 
 export async function httpGet<T>(url: string, params?: Record<string, string>) {
     const response: AxiosResponse<{ response: T }> = await axios.get(
-        `${URL_BASE}/${url}`, 
+        `${URL_BASE}/${url}`,
         {
             params: {
                 ...params,
@@ -11,6 +11,6 @@ export async function httpGet<T>(url: string, params?: Record<string, string>) {
             }
         }
     );
-    
+
     return response.data.response;
 }
