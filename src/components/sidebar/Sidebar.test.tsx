@@ -11,7 +11,7 @@ describe(`Sidebar`, () => {
         }
     )));
 
-    describe(`request succeded`, () => {
+    describe(`request succeeded`, () => {
         it(`should render component with sections list`, () => {
             const mockedSidebarProps = {
                 sections: mockedSectionsResponseResultsList,

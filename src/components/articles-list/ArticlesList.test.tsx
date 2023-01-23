@@ -73,12 +73,12 @@ describe(`ArticlesList`, () => {
 
                 expect(() => screen.getByText(/previous/i)).toThrow();
                 expect(() => screen.getByText(/next/i)).toThrow();
-                expect(() => screen.getByText("1")).toThrow();
-                expect(() => screen.getByText("10")).toThrow();
+                expect(() => screen.getByText('1')).toThrow();
+                expect(() => screen.getByText('10')).toThrow();
             })
         });
 
-        describe(`request succeded`, () => {
+        describe(`request succeeded`, () => {
             it(`should render component with results`, () => {
                 const mockedSearchResponseMocked: ISearchResponseMocked = {
                     currentPage: 1,
@@ -132,8 +132,8 @@ describe(`ArticlesList`, () => {
 
                 const elementPrev = screen.getByText(/previous/i);
                 const elementNext = screen.getByText(/next/i);
-                const expectedStartValue = screen.getByText("1");
-                const expectedEndValue = screen.getByText("10");
+                const expectedStartValue = screen.getByText('1');
+                const expectedEndValue = screen.getByText('10');
 
                 expect(elementPrev).toBeInTheDocument();
                 expect(elementNext).toBeInTheDocument();
