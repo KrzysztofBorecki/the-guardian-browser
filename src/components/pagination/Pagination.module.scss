@@ -4,7 +4,7 @@
     border-radius: 999px;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1015px) {
     .pagionation {
         grid-template-rows: repeat(1, 1fr);
     }
@@ -49,13 +49,13 @@
     font-weight: bold;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 800px) {
     .pagination-btn {
         padding: var(--padding-small-large) var(--padding-medium-small);
     }
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1015px) {
     .pagination-btn {
         min-width: 12ch;
         grid-row: 1 / 2;
@@ -72,7 +72,7 @@
     background-color: var(--color-bg-darker);
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (min-width: 1015px) {
     .pagination-list {
         grid-row: 1 / 2;
         grid-column: 2 / 3;
@@ -139,7 +139,7 @@
     }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 801px) {
     .pagination-list-item {
         padding: var(--padding-small-large) var(--padding-medium-small);
     }
