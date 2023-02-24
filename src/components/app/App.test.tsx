@@ -1,4 +1,4 @@
-import { render, screen, act, waitFor, fireEvent } from '@testing-library/react';
+import { render, screen, act, waitFor, fireEvent, waitForElementToBeRemoved } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom'
 import * as httpGetModule from '../../utils/httpGet';
 import { httpGet } from '../../utils/httpGet';
@@ -9,15 +9,15 @@ import type { ISectionsResponseResults, ISectionsResponse, ISearchResponseResult
 describe(`App`, () => {
     beforeAll(() => {
         window.scrollTo = jest.fn();
-    })
+    });
 
     beforeEach(() => {
-        jest.useFakeTimers()
+        jest.useFakeTimers();
     });
 
     afterEach(() => {
-        jest.runOnlyPendingTimers()
-        jest.useRealTimers()
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
     });
 
     const mockedSectionsResponseResultsList: ISectionsResponseResults[] = Array.from(new Array(20).fill(null).map((_, idx) => (
@@ -31,6 +31,12 @@ describe(`App`, () => {
     const mockedSectionsResponse: ISectionsResponse = {
         results: mockedSectionsResponseResultsList,
     };
+
+    const mockedAxiosResponseForSections = {
+        data: {
+            response: mockedSectionsResponse,
+        },
+    }
 
     const mockedSearchResponseResultsList: ISearchResponseResults[] = Array.from(new Array(10).fill(null).map((_, idx) => (
         {
@@ -53,80 +59,83 @@ describe(`App`, () => {
         results: mockedSearchResponseResultsList,
     };
 
+    const mockedAxiosResponseForSearch = {
+        data: {
+            response: mockedSearchResponse,
+        },
+    }
+
     describe(`requests failed`, () => {
         it(`should render "sections" and "search" loading error indication`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation(() => {
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation(() => {
                 return Promise.reject(new Error('test-error'));
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
             expect(httpGet).toHaveBeenCalledTimes(2);
             expect(httpGet).toHaveBeenNthCalledWith(1, 'sections');
             expect(httpGet).toHaveBeenNthCalledWith(2, 'search', {});
             expect(httpGet).rejects.toThrowError(new Error('test-error'));
             expect(httpGet).rejects.not.toThrowError(new Error('test-errorXYZ'));
-            expect(screen.getAllByText(/Oops! Something went wrong/i)).toHaveLength(2);
+            expect(await screen.findAllByText(/Oops! Something went wrong/i)).toHaveLength(2);
         });
     });
 
     describe(`requests pending`, () => {
-        it(`should render App component with "sections" and "articles" loading indication`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ?
-                    new Promise(resolve => setTimeout(() => resolve(mockedSectionsResponse), 2000)) :
-                    new Promise(resolve => setTimeout(() => resolve(mockedSearchResponse), 2000));
-            });
-
-            act(() => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                )
-            });
-
+        it(`should render "sections" and "articles" loading indication`, async () => {
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                  return (url === 'sections') ?
+                      new Promise(resolve => setTimeout(() => resolve(mockedAxiosResponseForSections.data), 1000)) :
+                      new Promise(resolve => setTimeout(() => resolve(mockedAxiosResponseForSearch.data), 500));
+              });
+  
+            render(
+              <MemoryRouter initialEntries={['']}>
+                <App />
+              </MemoryRouter>
+            );
+  
             const loadingArticles = await screen.findByText(/searching for articles/i);
             const loadingSections = await screen.findByText(/finding sections/i);
-
-            waitFor(() => expect(loadingArticles).toBeInTheDocument());
-            waitFor(() => expect(loadingSections).toBeInTheDocument());
-        });
+  
+            expect(loadingArticles).toBeInTheDocument();
+            expect(loadingSections).toBeInTheDocument();
+  
+            await waitForElementToBeRemoved(() => screen.getByText(/searching for articles/i));
+            await waitForElementToBeRemoved(() => screen.getByText(/finding sections/i));
+          });
     });
 
     describe(`requests successful`, () => {
         it(`should render complete App component`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const searchForm = screen.getByRole('form');
-            const searchbox = screen.getByRole('searchbox', { name: /search/i });
-            const submit = screen.getByRole('button', { name: /find/i });
-            const resetArticles = screen.getByRole('button', { name: /all articles/i });
-            const resetSections = screen.getByRole('button', { name: /all sections/i });
-            const sectionsBtn = screen.getByRole('button', { name: /^sections$/i })
-            const sectionsList = screen.getByRole('list', { name: /sections list/i });
-            const sectionsBtns = screen.getAllByText(/test-section-webTitle/i);
-            const articles = screen.getAllByRole('link');
-            const elementPrev = screen.getByText(/previous/i);
-            const elementNext = screen.getByText(/next/i);
-            const expectedStartValue = screen.getByText('1')
-            const expectedEndValue = screen.getByText('10')
+            const searchForm = await screen.findByRole('form');
+            const searchbox = await screen.findByRole('searchbox', { name: /search/i });
+            const submit = await screen.findByRole('button', { name: /find/i });
+            const resetArticles = await screen.findByRole('button', { name: /all articles/i });
+            const resetSections = await screen.findByRole('button', { name: /all sections/i });
+            const sectionsBtn = await screen.findByRole('button', { name: /^sections$/i });
+            const sectionsList = await screen.findByRole('list', { name: /sections list/i });
+            const sectionsBtns = await screen.findAllByText(/test-section-webTitle/i);
+            const articles = await screen.findAllByRole('link');
+            const elementPrev = await screen.findByText(/previous/i);
+            const elementNext = await screen.findByText(/next/i);
+            const expectedStartValue = await screen.findByText('1');
+            const expectedEndValue = await screen.findByText('10');
 
             expect(searchForm).toBeInTheDocument();
             expect(searchbox).toBeInTheDocument();
@@ -146,145 +155,140 @@ describe(`App`, () => {
 
     describe(`on Change event on searchbox`, () => {
         it(`should change searchbox input value to 'test-search-phrase'`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const searchbox: HTMLInputElement = screen.getByRole("searchbox", { name: /search/i });
+            const searchbox: HTMLInputElement = await screen.findByRole('searchbox', { name: /search/i });
 
             fireEvent.change(searchbox, { target: { value: 'test-search-phrase' } });
 
-            expect(searchbox.value).toBe('test-search-phrase');
+            await waitFor(() => expect(searchbox.value).toBe('test-search-phrase'));
         });
     });
 
     describe(`on Submit event on search form`, () => {
         it(`should make search requests and re-render App with new data`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const searchForm = screen.getByRole('form');
-            const searchbox: HTMLInputElement = screen.getByRole("searchbox", { name: /search/i });
+            const searchForm = await screen.findByRole('form');
+            const searchbox: HTMLInputElement = await screen.findByRole('searchbox', { name: /search/i });
 
-            fireEvent.change(searchbox, { target: { value: 'test-search-phrase' } })
+            fireEvent.change(searchbox, { target: { value: 'test-search-phrase' } });
             fireEvent.submit(searchForm);
 
-            expect(searchbox.value).toBe('test-search-phrase')
-            expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'q': 'test-search-phrase', 'page': PAGE_NUMBER_DEFAULT });
+            await waitFor(() => expect(searchbox.value).toBe('test-search-phrase'));
+            await waitFor(() => expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'q': 'test-search-phrase', 'page': PAGE_NUMBER_DEFAULT }));
         });
     });
 
     describe(`on Click event on all articles (reset) btn`, () => {
         it(`should make search requests and re-render App with new data`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const resetArticles = screen.getByRole('button', { name: /all articles/i });
+            const resetArticles = await screen.findByRole('button', { name: /all articles/i });
 
             fireEvent.click(resetArticles);
 
-            expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': PAGE_NUMBER_DEFAULT });
-            expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'section': '', 'page': PAGE_NUMBER_DEFAULT })
-            expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'q': '', 'section': '', 'page': PAGE_NUMBER_DEFAULT })
+            await waitFor(() => expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': PAGE_NUMBER_DEFAULT }));
+            await waitFor(() => expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'section': '', 'page': PAGE_NUMBER_DEFAULT }));
+            await waitFor(() => expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'q': '', 'section': '', 'page': PAGE_NUMBER_DEFAULT }));
         });
     });
 
     describe(`on Click event on all sections (reset) btn`, () => {
         it(`should make search requests and re-render App with new data`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const resetSections = screen.getByRole('button', { name: /all sections/i });
+            const resetSections = await screen.findByRole('button', { name: /all sections/i });
 
             fireEvent.click(resetSections);
 
-            expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': PAGE_NUMBER_DEFAULT });
-            expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'section': '', 'page': PAGE_NUMBER_DEFAULT })
+            await waitFor(() => expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': PAGE_NUMBER_DEFAULT }));
+            await waitFor(() => expect(httpGet).not.toHaveBeenNthCalledWith(3, 'search', { 'section': '', 'page': PAGE_NUMBER_DEFAULT }));
         });
     });
 
     describe(`on Click event on section btn`, () => {
         it(`should make search requests and re-render App with new data`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
-            const sectionsBtns = screen.getAllByText(/test-section-webTitle/i);
+            await waitFor(() => expect(httpGet).toHaveBeenCalledTimes(2));
 
-            fireEvent.click(sectionsBtns[0]);
+            const sectionsBtns = await screen.findAllByText(/test-section-webTitle/i);
 
-            expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'section': 'test-section-id-1', 'page': PAGE_NUMBER_DEFAULT });
+            fireEvent.click(sectionsBtns[1]);
+
+            await waitFor(() => expect(httpGet).toHaveBeenCalledTimes(3));
+            await waitFor(() => expect(httpGet).toHaveBeenNthCalledWith(3, 'search', 
+                { 'section': 'test-section-id-2', 'page': PAGE_NUMBER_DEFAULT }));
         });
     });
+
     describe(`on Click event on pagination page number btn`, () => {
         it(`should make search requests and re-render App with new data`, async () => {
-            jest.spyOn(httpGetModule, "httpGet").mockImplementation((url: string, params?: Record<string, string>) => {
-                return (url === 'sections') ? Promise.resolve(mockedSectionsResponse) : Promise.resolve(mockedSearchResponse);
+            jest.spyOn(httpGetModule, 'httpGet').mockImplementation((url: string, params?: Record<string, string>) => {
+                return (url === 'sections') ? Promise.resolve(mockedAxiosResponseForSections.data) : Promise.resolve(mockedAxiosResponseForSearch.data);
             });
 
-            await act(async () => {
-                render(
-                    <MemoryRouter initialEntries={['']}>
-                        <App />
-                    </MemoryRouter>
-                );
-            });
+            render(
+                <MemoryRouter initialEntries={['']}>
+                    <App />
+                </MemoryRouter>
+            );
 
             const articlesBase = await screen.findAllByText(/test-article-webTitle/i);
+
             expect(articlesBase).toHaveLength(10);
 
-            fireEvent(screen.getByText('5'), new MouseEvent('click', {
-                bubbles: true,
-                cancelable: true,
-            }));
+            const paginationBtn = await screen.findByText('5');
 
-            expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': '5' });
+            fireEvent.click(paginationBtn);
+
+            await waitFor(() => expect(httpGet).toHaveBeenCalledTimes(3));
+            await waitFor(() => expect(httpGet).toHaveBeenNthCalledWith(3, 'search', { 'page': '5' }));
 
             const articlesReq = await screen.findAllByText(/test-article-webTitle/i);
-            expect(articlesReq).toHaveLength(10);
+
+            await waitFor(() => expect(articlesReq).toHaveLength(10));
         });
     });
 });

@@ -1,7 +1,7 @@
 import { getRandomNumber } from './random';
 
-describe(`random`, () => {
-    describe(`call getRandomNumber(1, 10)`, () => {
+describe(`getRandomNumber`, () => {
+    describe(`when called with arguments (1, 10)`, () => {
         it(`should return number >= 1`, () => {
             expect(getRandomNumber(1, 10)).toBeGreaterThanOrEqual(1);
         });

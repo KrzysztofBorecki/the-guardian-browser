@@ -8,7 +8,7 @@ describe(`Pagination`, () => {
 
     beforeEach(() => {
         mockedCallback = jest.fn((value: number) => value);
-    })
+    });
 
     describe(`request succeeded`, () => {
         it(`should render Pagination`, () => {
@@ -28,8 +28,8 @@ describe(`Pagination`, () => {
 
             const elementPrev = screen.getByText(/previous/i);
             const elementNext = screen.getByText(/next/i);
-            const expectedStartValue = screen.getByText("1");
-            const expectedEndValue = screen.getByText("10");
+            const expectedStartValue = screen.getByText('1');
+            const expectedEndValue = screen.getByText('10');
 
             expect(elementPrev).toBeInTheDocument();
             expect(elementNext).toBeInTheDocument();
@@ -89,7 +89,7 @@ describe(`Pagination`, () => {
             expect(unexpectedEndValue).toHaveLength(0);
         });
 
-        it(`should render n pages with n === pagesAll when pagesCurrent > pagesAll `, () => {
+        it(`should render n pages with n === pagesAll when pagesCurrent > pagesAll`, () => {
             const props: IPaginationProps = {
                 pagesAll: 5,
                 pagesCurrent: 11,
@@ -106,8 +106,8 @@ describe(`Pagination`, () => {
 
             const elementPrev = screen.getByText(/previous/i);
             const elementNext = screen.getByText(/next/i);
-            const expectedStartValue = screen.getByText("1");
-            const expectedEndValue = screen.getByText("5");
+            const expectedStartValue = screen.getByText('1');
+            const expectedEndValue = screen.getByText('5');
 
             expect(elementPrev).toBeInTheDocument();
             expect(elementNext).toBeInTheDocument();
@@ -140,7 +140,7 @@ describe(`Pagination`, () => {
                 expect(mockedCallback).toHaveBeenCalledWith(1);
             });
 
-            it(`should call mockedCallback with "2" for current page "3" `, () => {
+            it(`should call mockedCallback with "2" for current page "3"`, () => {
                 const props: IPaginationProps = {
                     pagesAll: 11,
                     pagesCurrent: 3,
@@ -164,7 +164,7 @@ describe(`Pagination`, () => {
                 expect(mockedCallback).toHaveBeenCalledWith(2);
             });
 
-            it(`should call mockedCallback with "10" for current page "11" `, () => {
+            it(`should call mockedCallback with "10" for current page "11"`, () => {
                 const props: IPaginationProps = {
                     pagesAll: 11,
                     pagesCurrent: 11,

@@ -25,7 +25,7 @@ describe(`SearchForm`, () => {
         expect(resetSections).toBeInTheDocument();
     });
 
-    describe(`entering search phrase`, () => {
+    describe(`when entered search phrase`, () => {
         it(`should update searchbox input value`, () => {
             const mockedSearchFormProps: ISearchFormProps = {
                 onSearchChange: jest.fn((value: ISearchParams) => value),
@@ -41,7 +41,7 @@ describe(`SearchForm`, () => {
         });
     });
 
-    describe(`submitting search phrase`, () => {
+    describe(`when submitted search phrase`, () => {
         it(`should call callback with right arguments`, () => {
             const mockedSearchFormProps: ISearchFormProps = {
                 onSearchChange: jest.fn((value: ISearchParams) => value),
@@ -60,7 +60,7 @@ describe(`SearchForm`, () => {
         });
     });
 
-    describe(`resetting to all articles`, () => {
+    describe(`when reset to all articles`, () => {
         it(`should call callback with right arguments`, () => {
             const mockedSearchFormProps: ISearchFormProps = {
                 onSearchChange: jest.fn((value: ISearchParams) => value),
@@ -76,7 +76,7 @@ describe(`SearchForm`, () => {
         });
     });
 
-    describe(`resetting to all sections`, () => {
+    describe(`when reset to all sections`, () => {
         it(`should call callback with right arguments`, () => {
             const mockedSearchFormProps: ISearchFormProps = {
                 onSearchChange: jest.fn((value: ISearchParams) => value),

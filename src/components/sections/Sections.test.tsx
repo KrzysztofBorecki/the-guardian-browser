@@ -35,7 +35,7 @@ describe(`Sections`, () => {
                 />
             );
 
-            const sectionsBtn = screen.getByRole('button', { name: /sections/i })
+            const sectionsBtn = screen.getByRole('button', { name: /sections/i });
             const sectionsList = screen.getByRole('list', { name: /sections list/i });
             const sectionsBtns = screen.getAllByText(/test-section-webTitle-/i);
             const sectionFirst = screen.getByText(/^test-section-webTitle-1$/i);
@@ -48,7 +48,7 @@ describe(`Sections`, () => {
             expect(sectionLast).toBeInTheDocument();
         });
 
-        describe(`sections list is collapsed`, () => {
+        describe(`when sections list is collapsed`, () => {
             describe(`on Click event on Sections btn`, () => {
                 it(`should show sections list`, () => {
                     const mockProps: ISectionsProps = {
@@ -65,7 +65,7 @@ describe(`Sections`, () => {
                         />
                     );
 
-                    const sectionsBtn = screen.getByRole('button', { name: /sections/i })
+                    const sectionsBtn = screen.getByRole('button', { name: /sections/i });
 
                     expect(screen.getByRole('list', { name: /sections list/i })).toHaveAttribute('data-iscollapsed', 'true');
 
@@ -76,7 +76,7 @@ describe(`Sections`, () => {
             });
         });
 
-        describe(`sections list is visible`, () => {
+        describe(`when sections list is visible`, () => {
             describe(`on Click event on section list item`, () => {
                 it(`should return section list item's "test-section-id" value`, () => {
                     const mockProps: ISectionsProps = {
@@ -128,7 +128,7 @@ describe(`Sections`, () => {
 
                     sectionsBtns.forEach((val, idx) => {
                         if (idx) expect(val).toHaveAttribute('data-selected', 'false');
-                    })
+                    });
                 });
             });
 
@@ -154,7 +154,7 @@ describe(`Sections`, () => {
 
                     sectionsBtns.forEach((value) => expect(value).toHaveAttribute('data-selected', 'false'));
                 });
-            })
+            });
         });
     });
 });

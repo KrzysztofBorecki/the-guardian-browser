@@ -37,6 +37,8 @@ describe(`ArticlesList`, () => {
                     title: PAGE_TITLE,
                     data: mockedSearchResponseMocked,
                     onClick: mockedCallback,
+                    hasError: false,
+                    isLoading: false,
                 };
 
                 render(
@@ -44,6 +46,8 @@ describe(`ArticlesList`, () => {
                         title={mockedArticlesListProps.title}
                         data={mockedArticlesListProps.data}
                         onClick={mockedArticlesListProps.onClick}
+                        hasError={mockedArticlesListProps.hasError}
+                        isLoading={mockedArticlesListProps.isLoading}
                     />
                 );
 
@@ -61,6 +65,8 @@ describe(`ArticlesList`, () => {
                     title: PAGE_TITLE,
                     data: mockedSearchResponseMocked,
                     onClick: mockedCallback,
+                    hasError: false,
+                    isLoading: false,
                 };
 
                 render(
@@ -68,6 +74,8 @@ describe(`ArticlesList`, () => {
                         title={mockedArticlesListProps.title}
                         data={mockedArticlesListProps.data}
                         onClick={mockedArticlesListProps.onClick}
+                        hasError={mockedArticlesListProps.hasError}
+                        isLoading={mockedArticlesListProps.isLoading}
                     />
                 );
 
@@ -75,7 +83,7 @@ describe(`ArticlesList`, () => {
                 expect(() => screen.getByText(/next/i)).toThrow();
                 expect(() => screen.getByText('1')).toThrow();
                 expect(() => screen.getByText('10')).toThrow();
-            })
+            });
         });
 
         describe(`request succeeded`, () => {
@@ -90,6 +98,8 @@ describe(`ArticlesList`, () => {
                     title: PAGE_TITLE,
                     data: mockedSearchResponseMocked,
                     onClick: mockedCallback,
+                    hasError: false,
+                    isLoading: false,
                 };
 
                 render(
@@ -97,6 +107,8 @@ describe(`ArticlesList`, () => {
                         title={mockedArticlesListProps.title}
                         data={mockedArticlesListProps.data}
                         onClick={mockedArticlesListProps.onClick}
+                        hasError={mockedArticlesListProps.hasError}
+                        isLoading={mockedArticlesListProps.isLoading}
                     />
                 );
 
@@ -120,6 +132,8 @@ describe(`ArticlesList`, () => {
                     title: PAGE_TITLE,
                     data: mockedSearchResponseMocked,
                     onClick: mockedCallback,
+                    hasError: false,
+                    isLoading: false,
                 };
 
                 render(
@@ -127,6 +141,8 @@ describe(`ArticlesList`, () => {
                         title={mockedArticlesListProps.title}
                         data={mockedArticlesListProps.data}
                         onClick={mockedArticlesListProps.onClick}
+                        hasError={mockedArticlesListProps.hasError}
+                        isLoading={mockedArticlesListProps.isLoading}
                     />
                 );
 
