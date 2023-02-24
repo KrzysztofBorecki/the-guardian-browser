@@ -12,5 +12,5 @@ export async function httpGet<T>(url: string, params?: Record<string, string>) {
         }
     );
 
-    return response.data.response;
+    return response.data;
 }

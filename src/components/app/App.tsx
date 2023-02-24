@@ -5,7 +5,6 @@ import { getArticlesMock } from '../../utils/articles.mock';
 import { httpGet } from '../../utils/httpGet';
 import Sidebar from '../sidebar/Sidebar';
 import ArticlesList from '../articles-list/ArticlesList';
-import Spinner from '../spinner/Spinner';
 import styles from './App.module.scss';
 import type { ISectionsResponseResults, ISectionsResponse, ISearchResponse, ISearchParams, ISearchResponseMocked } from '../../types/types';
 import type { TSetSearchParams } from './App.types';
@@ -52,7 +51,7 @@ export default function App(): ReactElement {
         setSectionsRequestError(false);
 
         httpGet<ISectionsResponse>('sections').then((value) => {
-            setSections(value.results);
+            setSections(value.response.results);
         }).catch(() => {
             setSectionsRequestError(true);
         }).finally(() => {
@@ -65,7 +64,7 @@ export default function App(): ReactElement {
         setArticlesRequestError(false);
 
         httpGet<ISearchResponse>('search', Object.fromEntries(searchParams)).then((value) => {
-            setArticles(getArticlesMock(value));
+            setArticles(getArticlesMock(value.response));
         }).catch(() => {
             setArticlesRequestError(true);
         }).finally(() => {
@@ -87,14 +86,13 @@ export default function App(): ReactElement {
                 hasError={sectionsRequestError}
             />
             <>
-                {articlesRequestError && <strong className='error'>Oops! Something went wrong.</strong>}
-                {!articlesRequestError && isLoadingArticles && <Spinner text='Searching for articles...' />}
-                {!isLoadingArticles && articles && <ArticlesList
+                <ArticlesList
                     title={PAGE_TITLE}
                     data={articles}
                     onClick={selectPage}
+                    isLoading={isLoadingArticles}
+                    hasError={articlesRequestError}
                 />
-                }
             </>
         </div>
     );
