@@ -2,7 +2,7 @@
 
 The purpose of this App is to fetch articles from The Guardian Open Platform API [https://open-platform.theguardian.com/](https://open-platform.theguardian.com/).
 
-## Requirements:
+## Requirements
 
 1. Results must be narrowed down to selected category (section) and / or the search phrase entered by the user
 
@@ -11,13 +11,14 @@ The purpose of this App is to fetch articles from The Guardian Open Platform API
 3. Articles presentation can be of any form - but single article must contain date, title and its category (section)
 
 4. App UI must consist of 2 parts:
+
 - Sidebar, with:
-    - Search field
-    - Submit button
-    - "All articles" (resets category and search phrase constraint)
-    - "All sections" (resets category constraint, leaves the search phrase constraint)
-    - Available categories (sections) (on Desktop)
-    - Available categories (sections) and "Sections" button (on Mobile)
+  - Search field
+  - Submit button
+  - "All articles" (resets category and search phrase constraint)
+  - "All sections" (resets category constraint, leaves the search phrase constraint)
+  - Available categories (sections) (on Desktop)
+  - Available categories (sections) and "Sections" button (on Mobile)
 - Search results
 
 5. On mobile - available categories (sections) should be displayed as a toggleable dropdown with the "Sections" button
@@ -46,7 +47,7 @@ The purpose of this App is to fetch articles from The Guardian Open Platform API
 ![](iphone_xr-dark.png)
 ![](iphone_xr-light.png)
 
-## Disclaimer:
+## Disclaimer
 
 This App is using public API key published in The Guardian Open Platform [Documentation](https://open-platform.theguardian.com/documentation/).
 
