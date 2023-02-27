@@ -1,3 +1,5 @@
+# The Guardian Browser
+
 The purpose of this App is to fetch articles from The Guardian Open Platform API [https://open-platform.theguardian.com/](https://open-platform.theguardian.com/).
 
 ## Requirements:
@@ -26,15 +28,26 @@ The purpose of this App is to fetch articles from The Guardian Open Platform API
 
 8. This project should be made without use of UI libraries.
 
+## Used Libraries:
+
+- axios
+- jest
+- lorem-ipsum
+- react
+- react-router
+- react-testing-library
+- sass
+- typescript
+
+## Final Result
+
+![](desktop-dark.png)
+![](desktop-light.png)
+![](iphone_xr-dark.png)
+![](iphone_xr-light.png)
+
 ## Disclaimer:
 
 This App is using public API key published in The Guardian Open Platform [Documentation](https://open-platform.theguardian.com/documentation/).
 
 The private API key can be obtained through The Guardian Open Platform [Access](https://open-platform.theguardian.com/access/) website.
-
-
-
-#### TO-DO:
-
-- add screenshots (desktop 1920x1080 + mobile)
-- add list of used libraries
