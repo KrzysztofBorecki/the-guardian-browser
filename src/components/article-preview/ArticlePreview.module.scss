@@ -1,0 +1,106 @@
+.card {
+    background-color: var(--color-bg-darker);
+    padding: var(--padding-large-small);
+    display: grid;
+    grid-template-rows: 2rem min-content 1fr 2rem;
+    gap: var(--gap-medium-medium);
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus-visible {
+        background: var(--color-bg-darkest);
+    }
+
+    &:focus-visible {
+        outline: var(--color-focus);
+    }
+}
+
+.card-title {
+    font-family: "Merriweather", serif;
+    font-size: var(--font-size-medium-small);
+    color: var(--color-text-main);
+    line-height: 2.5ch;
+}
+
+.card-text {
+    font-size: var(--font-size-main);
+    color: var(--color-text-main);
+    line-height: 2.5ch;
+}
+
+.card-info {
+    font-size: var(--font-size-small);
+    color: var(--color-text-secondary-light);
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &-tag {
+        font-weight: bolder;
+    }
+
+    &-date {
+        font-weight: normal;
+    }
+
+    &-author {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        text-decoration: none;
+        width: min-content;
+        gap: var(--gap-small-large);
+        color: var(--color-text-secondary-light);
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: var(--color-btn);
+        }
+    }
+
+    &-link {
+        color: var(--color-text-secondary-light);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+
+        &:visited {
+            color: var(--color-text-secondary-light);
+            color: var(--color-btn);
+        }
+    }
+}
+
+@media screen and (min-width: 642px) {
+    .card-info-author {
+        width: initial;
+    }
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 999px;
+    outline: 2px solid var(--color-bg);
+}
+
+.arrow-right {
+    padding: 0 0 0 var(--padding-small-large);
+    width: 1.71em;
+    filter: invert(95%) sepia(7%) saturate(739%) hue-rotate(293deg) brightness(82%) contrast(92%);
+}
+
+@media (prefers-color-scheme: light) {
+    .arrow-right {
+        filter: invert(27%) sepia(3%) saturate(3174%) hue-rotate(286deg) brightness(92%) contrast(81%);
+    }
+}

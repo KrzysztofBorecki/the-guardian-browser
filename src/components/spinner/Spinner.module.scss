@@ -1,0 +1,22 @@
+.spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--gap-medium-medium);
+}
+
+.spinner-text {
+    font-size: var(--font-size-medium);
+}
+
+.spinner-svg {
+    width: 100px;
+    filter: invert(89%) sepia(2%) saturate(1286%) hue-rotate(316deg) brightness(111%) contrast(97%);
+}
+
+@media (prefers-color-scheme: light) {
+    .spinner-svg {
+        width: 100px;
+        filter: invert(29%) sepia(7%) saturate(1459%) hue-rotate(285deg) brightness(87%) contrast(82%);
+    }
+}

@@ -11,6 +11,10 @@
 # production
 /build
 
+# css
+*.css
+*.css.map
+
 # misc
 .DS_Store
 .env.local
@@ -23,6 +27,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # info
-
+/_public_default
+/_src_default
 _CRA-info.md
+_info_Sidebar.md
 _to-do-list.md
+_old_*
+_ign_*
