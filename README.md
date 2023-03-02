@@ -40,15 +40,18 @@ The purpose of this App is to fetch articles from The Guardian Open Platform API
 - sass
 - typescript
 
+## Disclaimer
+
+A `createHashRouter` was used instead of `createBrowserRouter` due to the known issue with GitHub Pages, as described in the Create React App [Documentation](https://create-react-app.dev/docs/deployment/#notes-on-client-side-routing):
+>"GitHub Pages doesn’t support routers that use the HTML5 pushState history API under the hood (for example, React Router using `browserHistory`). This is because when there is a fresh page load for a url like `http://user.github.io/todomvc/todos/42`, where `/todos/42` is a frontend route, the GitHub Pages server returns 404 because it knows nothing of `/todos/42`."
+
+This App is using public API key published in The Guardian Open Platform [Documentation](https://open-platform.theguardian.com/documentation/).
+
+The private API key can be obtained through The Guardian Open Platform [Access](https://open-platform.theguardian.com/access/) website.
+
 ## Final Result
 
 ![](desktop-dark.png)
 ![](desktop-light.png)
 ![](iphone_xr-dark.png)
 ![](iphone_xr-light.png)
-
-## Disclaimer
-
-This App is using public API key published in The Guardian Open Platform [Documentation](https://open-platform.theguardian.com/documentation/).
-
-The private API key can be obtained through The Guardian Open Platform [Access](https://open-platform.theguardian.com/access/) website.
