@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.fb95206d.css",
-    "main.js": "/static/js/main.9f7d84c9.js",
-    "static/media/avatar-09-christina-wocintechchat-com-unsplash.jpg": "/static/media/avatar-09-christina-wocintechchat-com-unsplash.7f8e3816bd656697a5d3.jpg",
-    "static/media/avatar-10-linkedin-sales-solutions-unsplash.jpg": "/static/media/avatar-10-linkedin-sales-solutions-unsplash.bbffc62aa94caeac64c0.jpg",
-    "static/media/avatar-08-jonathan-cosens-photography-unsplash.jpg": "/static/media/avatar-08-jonathan-cosens-photography-unsplash.026f61112dfcf893bf4a.jpg",
-    "static/media/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.jpg": "/static/media/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.5838328ea963429d1c7c.jpg",
-    "static/media/avatar-05-andrey-zvyagintsev-unsplash.jpg": "/static/media/avatar-05-andrey-zvyagintsev-unsplash.fe8fbfbb448568fde8d5.jpg",
-    "static/media/avatar-03-gelmis-bartulis-unsplash.jpg": "/static/media/avatar-03-gelmis-bartulis-unsplash.3b227d8a912e07654d3f.jpg",
-    "static/media/avatar-04-michael-dam-unsplash.jpg": "/static/media/avatar-04-michael-dam-unsplash.5e1290ac844353133d71.jpg",
-    "static/media/avatar-02-jonathan-borba-unsplash.jpg": "/static/media/avatar-02-jonathan-borba-unsplash.d34d38f1febd7c21b45b.jpg",
-    "static/media/avatar-01-philip-martin-unsplash.jpg": "/static/media/avatar-01-philip-martin-unsplash.58a8618aff607c0e8d2b.jpg",
-    "static/media/avatar-06-rachel-mcdermott-unsplash.jpg": "/static/media/avatar-06-rachel-mcdermott-unsplash.dfef2594ddda4e8fc80e.jpg",
-    "index.html": "/index.html",
-    "static/media/ring-resize.svg": "/static/media/ring-resize.26a3bb20d17c722a4edf6b2112b77eb0.svg",
-    "static/media/arrow-right.svg": "/static/media/arrow-right.171a0462722bfb2c9f9483119f3dd3c8.svg",
-    "main.fb95206d.css.map": "/static/css/main.fb95206d.css.map",
-    "main.9f7d84c9.js.map": "/static/js/main.9f7d84c9.js.map"
+    "main.css": "/the-guardian-browser/static/css/main.16f2d425.css",
+    "main.js": "/the-guardian-browser/static/js/main.e7ac3420.js",
+    "static/media/avatar-09-christina-wocintechchat-com-unsplash.jpg": "/the-guardian-browser/static/media/avatar-09-christina-wocintechchat-com-unsplash.7f8e3816bd656697a5d3.jpg",
+    "static/media/avatar-10-linkedin-sales-solutions-unsplash.jpg": "/the-guardian-browser/static/media/avatar-10-linkedin-sales-solutions-unsplash.bbffc62aa94caeac64c0.jpg",
+    "static/media/avatar-08-jonathan-cosens-photography-unsplash.jpg": "/the-guardian-browser/static/media/avatar-08-jonathan-cosens-photography-unsplash.026f61112dfcf893bf4a.jpg",
+    "static/media/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.jpg": "/the-guardian-browser/static/media/avatar-07-d-a-v-i-d-s-o-n-l-u-n-a-unsplash.5838328ea963429d1c7c.jpg",
+    "static/media/avatar-05-andrey-zvyagintsev-unsplash.jpg": "/the-guardian-browser/static/media/avatar-05-andrey-zvyagintsev-unsplash.fe8fbfbb448568fde8d5.jpg",
+    "static/media/avatar-03-gelmis-bartulis-unsplash.jpg": "/the-guardian-browser/static/media/avatar-03-gelmis-bartulis-unsplash.3b227d8a912e07654d3f.jpg",
+    "static/media/avatar-04-michael-dam-unsplash.jpg": "/the-guardian-browser/static/media/avatar-04-michael-dam-unsplash.5e1290ac844353133d71.jpg",
+    "static/media/avatar-02-jonathan-borba-unsplash.jpg": "/the-guardian-browser/static/media/avatar-02-jonathan-borba-unsplash.d34d38f1febd7c21b45b.jpg",
+    "static/media/avatar-01-philip-martin-unsplash.jpg": "/the-guardian-browser/static/media/avatar-01-philip-martin-unsplash.58a8618aff607c0e8d2b.jpg",
+    "static/media/avatar-06-rachel-mcdermott-unsplash.jpg": "/the-guardian-browser/static/media/avatar-06-rachel-mcdermott-unsplash.dfef2594ddda4e8fc80e.jpg",
+    "index.html": "/the-guardian-browser/index.html",
+    "static/media/ring-resize.svg": "/the-guardian-browser/static/media/ring-resize.26a3bb20d17c722a4edf6b2112b77eb0.svg",
+    "static/media/arrow-right.svg": "/the-guardian-browser/static/media/arrow-right.171a0462722bfb2c9f9483119f3dd3c8.svg",
+    "main.16f2d425.css.map": "/the-guardian-browser/static/css/main.16f2d425.css.map",
+    "main.e7ac3420.js.map": "/the-guardian-browser/static/js/main.e7ac3420.js.map"
   },
   "entrypoints": [
-    "static/css/main.fb95206d.css",
-    "static/js/main.9f7d84c9.js"
+    "static/css/main.16f2d425.css",
+    "static/js/main.e7ac3420.js"
   ]
 }
