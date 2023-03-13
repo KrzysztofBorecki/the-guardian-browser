@@ -5,7 +5,7 @@ export default function ErrorBoundary() {
 
     if (isRouteErrorResponse(error)) {
         return (
-            <div>
+            <div className='error'>
                 <h1>Oops!</h1>
                 <h2>{error.status}</h2>
                 <p>{error.statusText}</p>
@@ -13,6 +13,6 @@ export default function ErrorBoundary() {
             </div>
         );
     } else {
-        return <div>Oops</div>;
+        return <div className='error'>Oops!</div>;
     }
 }
