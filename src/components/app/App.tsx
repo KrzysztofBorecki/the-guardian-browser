@@ -85,15 +85,13 @@ export default function App(): ReactElement {
                 isLoading={isLoadingSections}
                 hasError={sectionsRequestError}
             />
-            <>
-                <ArticlesList
-                    title={PAGE_TITLE}
-                    data={articles}
-                    onClick={selectPage}
-                    isLoading={isLoadingArticles}
-                    hasError={articlesRequestError}
-                />
-            </>
+            <ArticlesList
+                title={PAGE_TITLE}
+                data={articles}
+                onClick={selectPage}
+                isLoading={isLoadingArticles}
+                hasError={articlesRequestError}
+            />
         </div>
     );
 }
