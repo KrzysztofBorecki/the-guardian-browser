@@ -12,7 +12,7 @@ export default function Sidebar(props: ISidebarProps): ReactElement {
                 onSearchChange={props.onSearchChange}
             />
             {props.hasError && <strong className='error'>Oops! Something went wrong.</strong>}
-            {!props.hasError && props.isLoading && <Spinner text='Finding Sections...' />}
+            {!props.hasError && props.isLoading && <Spinner text='Loading...' />}
             {!props.isLoading && props.sectionsData && <Sections
                 sectionsData={props.sectionsData}
                 searchParams={props.searchParams}
