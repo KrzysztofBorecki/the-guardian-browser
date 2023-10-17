@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/the-guardian-browser/static/css/main.f0e7a83a.css",
-    "main.js": "/the-guardian-browser/static/js/main.4ee8b1bc.js",
+    "main.css": "/the-guardian-browser/static/css/main.e60454be.css",
+    "main.js": "/the-guardian-browser/static/js/main.f5ed1f79.js",
     "static/media/avatar-09-christina-wocintechchat-com-unsplash.jpg": "/the-guardian-browser/static/media/avatar-09-christina-wocintechchat-com-unsplash.7f8e3816bd656697a5d3.jpg",
     "static/media/avatar-10-linkedin-sales-solutions-unsplash.jpg": "/the-guardian-browser/static/media/avatar-10-linkedin-sales-solutions-unsplash.bbffc62aa94caeac64c0.jpg",
     "static/media/avatar-08-jonathan-cosens-photography-unsplash.jpg": "/the-guardian-browser/static/media/avatar-08-jonathan-cosens-photography-unsplash.026f61112dfcf893bf4a.jpg",
@@ -15,11 +15,11 @@
     "index.html": "/the-guardian-browser/index.html",
     "static/media/ring-resize.svg": "/the-guardian-browser/static/media/ring-resize.26a3bb20d17c722a4edf6b2112b77eb0.svg",
     "static/media/arrow-right.svg": "/the-guardian-browser/static/media/arrow-right.171a0462722bfb2c9f9483119f3dd3c8.svg",
-    "main.f0e7a83a.css.map": "/the-guardian-browser/static/css/main.f0e7a83a.css.map",
-    "main.4ee8b1bc.js.map": "/the-guardian-browser/static/js/main.4ee8b1bc.js.map"
+    "main.e60454be.css.map": "/the-guardian-browser/static/css/main.e60454be.css.map",
+    "main.f5ed1f79.js.map": "/the-guardian-browser/static/js/main.f5ed1f79.js.map"
   },
   "entrypoints": [
-    "static/css/main.f0e7a83a.css",
-    "static/js/main.4ee8b1bc.js"
+    "static/css/main.e60454be.css",
+    "static/js/main.f5ed1f79.js"
   ]
 }
